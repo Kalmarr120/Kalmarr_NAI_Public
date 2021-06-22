@@ -66,7 +66,7 @@ Injection of Entries into context is also controlled by `Insertion`. Insertion a
 
 Update: As mentioned below, with `[ ]` instead of `•`, Featherlite appears to work. Further testing is needed, but results have so far been promising.
 
-Format testing so far is showing that use of encapsulation `[ .]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight.]' 
+Format testing so far is showing that use of encapsulation `[ .]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight.]`
 
 Monky research in NAI Discord suggests that keeping lines to 20 tokens then separating new lines seems to work well. Will follow up with my own testing.
 
