@@ -28,8 +28,8 @@ I have updated my suggestion to use `-200` for `Priority`. Instead, I recommend 
 | -4       | -800     | 200     | Author's Note                           |
 | 0        | 0        | 512     | Story                                   |
 
-From OPVAM:
->In this example the [Story Overview] (Editor's note replaced) would be populated with the various Writing Style, Genre etc for high-level story structure.  Author's Note would be repurposed as an easy way to steer the story (ie, Rating, In this scene xyz happens..).
+From OPVAM (_New from June 22, 2021_):
+> Pretty much breaking your author's notes into 2 parts.  Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story.  For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting.  Genre: action] then change it to [ Genre: romance.] or something like that.
 
 **Older information:**
 
@@ -37,7 +37,7 @@ From NAI:
 
 > Priority Entries are ordered by priority before context is built. Entries with higher priority will reserve and use tokens first. If two entries share the same priority there is no guarantee which will go first.
 
-In the Advanced Context Menu, the `Priority` for `Story`, `Author's Note`, and `Memory` are:
+In the default Advanced Context Menu, the `Priority` for `Story`, `Author's Note`, and `Memory` are:
 > **Story:** 0<br/>**Author's Notes:** -400<br/>**Memory:** 800
 
 In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Priority` setting of 400 for Entries, the result puts Entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context.
