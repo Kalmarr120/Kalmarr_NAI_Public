@@ -4,7 +4,7 @@ _Note: going to move this to a research document in the main repository. Will le
 
 As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others.
 
-Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. 
+Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI.
 
 Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output.
 
@@ -31,7 +31,7 @@ I have updated my suggestion to use `-200` for `Priority`. Instead, I recommend 
 From OPVAM:
 >In this example the [Story Overview] (Editor's note replaced) would be populated with the various Writing Style, Genre etc for high-level story structure.  Author's Note would be repurposed as an easy way to steer the story (ie, Rating, In this scene xyz happens..).
 
-**Older information:** 
+**Older information:**
 
 From NAI:
 
@@ -40,15 +40,15 @@ From NAI:
 In the Advanced Context Menu, the `Priority` for `Story`, `Author's Note`, and `Memory` are:
 > **Story:** 0<br/>**Author's Notes:** -400<br/>**Memory:** 800
 
-In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Priority` setting of 400 for Entries, the result puts Entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context. 
+In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Priority` setting of 400 for Entries, the result puts Entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context.
 
 OPVAM suggested that `Priority` for Lorebook Entries should be set to `0` to avoid placing them in the back of the context with `Memory`. Upon testing, `0` worked. However, there was a side effect. Due to `0` being the same `Priority` as `Story`, I found that sometimes the `Story` and Entries would conflict with where they entered the context. Some generations would put all of the Entries at the very front, literally in front of the output. Others would split an output into two and put them in different parts of the context.
 
-My solution to this problem was to set the `Priority` to **`-200.`** This places the entries essentially where directed by the `Injection` setting, as it sets Entries to a higher priority than `Story` or `Memory`. 
+My solution to this problem was to set the `Priority` to **`-200.`** This places the entries essentially where directed by the `Injection` setting, as it sets Entries to a higher priority than `Story` or `Memory`.
 
 ### Insertion
 
-My current recommended `Insertion` setting for entries is based on usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make a similar entry in NAI with `Insertion: -9`. 
+My current recommended `Insertion` setting for entries is based on usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make a similar entry in NAI with `Insertion: -9`.
 
 From NAI:
 
@@ -58,29 +58,30 @@ Insertion
 Default `Insertion` settings for `Story`, `Author Note`, and `Memory` are as follows:
 >**Story:** -1<br/>**Author Note:** -4<br/>**Memory:** 0
 
-Injection of Entries into context is also controlled by `Insertion`. Insertion appears to be similar to EWI. Testing will be needed to see what `Insertion` positions will be helpful given the difference in model. In addition, confirmation of the similarity between EWI's `[t]` and `Insertion` by someone with a more in-depth understanding of EWI will be helpful. 
+Injection of Entries into context is also controlled by `Insertion`. Insertion appears to be similar to EWI. Testing will be needed to see what `Insertion` positions will be helpful given the difference in model. In addition, confirmation of the similarity between EWI's `[t]` and `Insertion` by someone with a more in-depth understanding of EWI will be helpful.
 
 **Will expand on this later.**
- 
+
 ## Format Testing
 
-Update: As mentioned below, with `[ ]` instead of `•`, Featherlite appears to work. Further testing is needed, but results have so far been promising.
+_June 22, 2021 update_: As mentioned below, with `[ ]` instead of `•`, Featherlite appears to work. Further testing is needed, but results have so far been promising.
 
 Format testing so far is showing that use of encapsulation `[ .]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight.]`
 
-Monky research in NAI Discord suggests that keeping lines to 20 tokens then separating new lines seems to work well. Will follow up with my own testing.
+Monky research in NAI Discord suggests that keeping lines to 20 tokens then separating new lines seems to work well.
+* I have confirmed that 20 tokens or less for new lines appears to be preferable for entries. Reinforcing entries with names on each line is important.
 
 ### Current To-do for Format Testing
 
-**1. `[ ]` Prose Format**
+* **1. `[ ]` Prose Format**
 
-So far the current preference. See above. 
+So far the current preference, with caveman type prose. See above.
 
-**2. `{ }` Prose Format**
+* **2. `{ }` Prose Format**
 
-Initial testing did not show `{ }` as superior to `[ ]`. Will need to devote further time to review, but unlikely to continue. 
+Initial testing did not show `{ }` as superior to `[ ]`. Will need to devote further time to review, but unlikely to continue. So far this method of encapsulation appears to have been dropped by serious testers, outside of JSON.
 
-**3. Featherlite**
+* **3. Featherlite**
 
 *June 22 2021 update*:
 
@@ -88,15 +89,15 @@ Revising previous notes about issues with Featherlite. Featherlite appears to be
 
 Earlier testing of Featherlite, specifically using OPVAM's positioning, has seen some success. In 40 generations break testing wolfkin, there were no serious leaks of formatting, and only one compressed word. While the outputs made a little less sense than the alternative caveman formatting, there may be an opportunity for word choice adjustment. Additional testing with alternative words will be needed.
 
-**4. Futureman**
+* 4. **Futureman**
 
 TBC
 
-**5. Cat<nip>
+* 5. **Cat[nip]**
 
 TBC
 
-**6. JSON/Python-like
+* 6. **JSON/Python-like**
 
 TBC
 
@@ -114,13 +115,15 @@ From Monky (NAID):
 
 >For 2.7b/Calliope, top k of 45 and nucleus sampling of 0.875 seem to be the strongest tweaks for consistency from WI without delving into uncreative/not looping. Haven't been able to nail down how many tokens Calliope can sustain for yet.
 
+Additional information will need to be added here. Currently, I am using Jarel's generation settings (available on NAI discord).
+
 ## Other Testing
 
 ### Signposts
 
 Testing injection of signposts, `<<•>>>>`, in various places in the context.
 
-During attempted break testing and play testing, I have not seen a noticeable effect from using signposts. Of interest, the AI seems to at least partially be aware of them as story breakers. `<<•>>>>` leaked relatively frequently, but when it did it was almost universally placed at a point breaking the story into a new section. 
+During attempted break testing and play testing, I have not seen a noticeable effect from using signposts. Of interest, the AI seems to at least partially be aware of them as story breakers. `<<•>>>>` leaked relatively frequently, but when it did it was almost universally placed at a point breaking the story into a new section.
 
 Research on signposts will be held until I am able to fully understand the effect of the available settings on output.
 
@@ -128,8 +131,12 @@ Research on signposts will be held until I am able to fully understand the effec
 
 There appears to be some potential benefit with "director" entries, which are short entries telling the AI what to do. These include things like:
 
->```[ Do: take the book]```
+```
+[ Do: take the book]
+```
 
->```[ Describe in prose]```
+```
+[ Describe in prose]
+```
 
-I have not conducted enough research into this to comment. 
+I have not conducted enough research into this to comment on its usefulness at this time. Some people on NAI discord report usefulness from this.
