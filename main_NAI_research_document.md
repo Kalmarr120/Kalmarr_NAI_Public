@@ -89,15 +89,15 @@ Revising previous notes about issues with Featherlite. Featherlite appears to be
 
 Earlier testing of Featherlite, specifically using OPVAM's positioning, has seen some success. In 40 generations break testing wolfkin, there were no serious leaks of formatting, and only one compressed word. While the outputs made a little less sense than the alternative caveman formatting, there may be an opportunity for word choice adjustment. Additional testing with alternative words will be needed.
 
-* 4. **Futureman**
+* **4. Futureman**
 
 TBC
 
-* 5. **Cat[nip]**
+* **5. Cat[nip]**
 
 TBC
 
-* 6. **JSON/Python-like**
+* **6. JSON/Python-like**
 
 TBC
 
