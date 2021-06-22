@@ -13,11 +13,9 @@
     - [4.1 Signposts](#41-signposts)
     - [4.2 "Director" Entries](#42-director-entries)
 
-_Note: going to move this to a research document in the main repository. Will leave wiki for finalized suggestions after this initial research phase is over._
+As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible.
 
-As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others.
-
-Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI.
+Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. I speak in further detail in the sections below.
 
 Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output.
 
@@ -44,6 +42,10 @@ I have updated my suggestion to use `-200` for `Priority`. Instead, I recommend 
 From OPVAM (_New from June 22, 2021_):
 > Pretty much breaking your author's notes into 2 parts.  Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story.  For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting.  Genre: action] then change it to [ Genre: romance.] or something like that.
 
+Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs.
+
+I will be working with priority/insertion as part of testing for Featherlite, and may deviate from this system. I will include that information under [Featherlite](#21-featherlite-testing).
+
 **Older information:**
 
 From NAI:
@@ -61,63 +63,58 @@ My solution to this problem was to set the `Priority` to **`-200.`** This places
 
 ### 1.2 Insertion
 
-My current recommended `Insertion` setting for entries is based on usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make a similar entry in NAI with `Insertion: -9`.
+ `Insertion` setting for entries is similar to usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make a similar entry in NAI with `Insertion: -9`.
+
+ My recommended insertion settings are above, under OPVAM's general lorebook settings.
 
 From NAI:
 
 > The location the entry will be inserted into the context. 0 is the very top of the context, 1 is one unit down, 2 is two units down etc. Negative numbers will count from the bottom of the context starting with -1 at the very bottom, making -2 one unit up, -3 two units up etc.
-Insertion
 
 Default `Insertion` settings for `Story`, `Author Note`, and `Memory` are as follows:
->**Story:** -1<br/>**Author Note:** -4<br/>**Memory:** 0
 
-Injection of Entries into context is also controlled by `Insertion`. Insertion appears to be similar to EWI. Testing will be needed to see what `Insertion` positions will be helpful given the difference in model. In addition, confirmation of the similarity between EWI's `[t]` and `Insertion` by someone with a more in-depth understanding of EWI will be helpful.
+> - **Story:** -1
+> - **Author Note:** -4
+> - **Memory:** 0
 
-**Will expand on this later.**
+_To be expanded on later._
 
 ## 2. Format Testing
 
 _June 22, 2021 update_: As mentioned below, with `[ ]` instead of `•`, Featherlite appears to work. Further testing is needed, but results have so far been promising.
 
-Format testing so far is showing that use of encapsulation `[ .]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight.]`
+Format testing so far has shown that use of encapsulation `[ .]` or just `[ ]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight]`.
 
 Monky research in NAI Discord suggests that keeping lines to 20 tokens then separating new lines seems to work well.
 
 - I have confirmed that 20 tokens or less for new lines appears to be preferable for entries. Reinforcing entries with names on each line is important.
+- Alternative formatting in the form of JSON/python-like formats may not need this line-splitting method.
 
 ### 2.1 Featherlite Testing
 
 Rinter, the creator of Featherlite, has a wiki that can be found here with all the up to date information on the format in NAI: [Rinter's Featherlite Wiki](https://github.com/RinterWaptor/NAI-research/wiki).
 
-This section to be completed.
+Initial testing of Featherlite was not necessary promising, due to leaking issues. However, with `•` swapped for `[ ]`, leaking has been tamped down to a minimum and outputs appear to be of good quality. As I did significant amounts of my research using Featherlite in AID, I intend to spend most of my time studying it and ways it can by used in NAI. Initial research will be contained in this document, but I may draft a separate document in the future should using this one become unweildy.
 
 ### 2.2 Current To-do for Format Testing
 
-* **1. `[ ]` Prose Format**
+- **1. `[ ]` Prose Format**
 
 So far the current preference, with caveman type prose. See above.
 
-* **2. `{ }` Prose Format**
+- **2. `{ }` Prose Format**
 
 Initial testing did not show `{ }` as superior to `[ ]`. Will need to devote further time to review, but unlikely to continue. So far this method of encapsulation appears to have been dropped by serious testers, outside of JSON.
 
-* **3. Featherlite**
-
-*June 22 2021 update*:
-
-Revising previous notes about issues with Featherlite. Featherlite appears to be promising especially with `[ ]` encapsulation rather than `•`. So far, results have been highly accurate, with few leaks. Only one major leak of the format in over 100 tests. There were some leaks between entries--such as replacing once character's eye colour with another.
-
-Earlier testing of Featherlite, specifically using OPVAM's positioning, has seen some success. In 40 generations break testing wolfkin, there were no serious leaks of formatting, and only one compressed word. While the outputs made a little less sense than the alternative caveman formatting, there may be an opportunity for word choice adjustment. Additional testing with alternative words will be needed.
-
-* **4. Futureman**
+- **3. Futureman**
 
 TBC
 
-* **5. Cat[nip]**
+- **4. Cat[nip]**
 
 TBC
 
-* **6. JSON/Python-like**
+- **5. JSON/Python-like**
 
 TBC
 
@@ -141,11 +138,15 @@ Additional information will need to be added here. Currently, I am using Jarel's
 
 ### 4.1 Signposts
 
-Testing injection of signposts, `<<•>>>>`, in various places in the context.
+_Research on this is paused._
+
+Tested injection of signposts, `<<•>>>>`, in various places in the context.
 
 During attempted break testing and play testing, I have not seen a noticeable effect from using signposts. Of interest, the AI seems to at least partially be aware of them as story breakers. `<<•>>>>` leaked relatively frequently, but when it did it was almost universally placed at a point breaking the story into a new section.
 
 Research on signposts will be held until I am able to fully understand the effect of the available settings on output.
+
+Others have reported that signposts seem to have no benefit and/or have significant problems with leaking.
 
 ### 4.2 "Director" Entries
 
@@ -159,4 +160,6 @@ There appears to be some potential benefit with "director" entries, which are sh
 [ Describe in prose]
 ```
 
-I have not conducted enough research into this to comment on its usefulness at this time. Some people on NAI discord report usefulness from this.
+I have not conducted enough research into this to comment on its usefulness at this time. 
+
+Some people on NAI Discord report usefulness from this. In particular, the first `[ Do: x]` and similar (`[ Use: x]`, `[ Event: x]`) etc. appear to be able to significantly affect output in a desirable way.
