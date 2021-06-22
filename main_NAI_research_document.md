@@ -1,5 +1,18 @@
 # Format and Customization Research
 
+- [Format and Customization Research](#format-and-customization-research)
+  - [1. Lorebook Settings](#1-lorebook-settings)
+    - [1.1 Priority](#11-priority)
+    - [1.2 Insertion](#12-insertion)
+  - [2. Format Testing](#2-format-testing)
+    - [2.1 Featherlite Testing](#21-featherlite-testing)
+    - [2.2 Current To-do for Format Testing](#22-current-to-do-for-format-testing)
+    - [2.3 Miscellaneous](#23-miscellaneous)
+  - [3. Story Settings](#3-story-settings)
+  - [4. Other Testing](#4-other-testing)
+    - [4.1 Signposts](#41-signposts)
+    - [4.2 "Director" Entries](#42-director-entries)
+
 _Note: going to move this to a research document in the main repository. Will leave wiki for finalized suggestions after this initial research phase is over._
 
 As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others.
@@ -8,11 +21,11 @@ Note that my preferred use case is detailed Lorebook Entries injected relatively
 
 Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output.
 
-## Lorebook Settings
+## 1. Lorebook Settings
 
 The Lorebook has incredibly helpful settings for use in context injection. It is extremely customizable. These are the settings I have found to be the most useful and why. I also address some testing completed.
 
-### Priority
+### 1.1 Priority
 
 I have updated my suggestion to use `-200` for `Priority`. Instead, I recommend the following, proposed by OPVAM (and updated June 21):
 
@@ -46,7 +59,7 @@ OPVAM suggested that `Priority` for Lorebook Entries should be set to `0` to avo
 
 My solution to this problem was to set the `Priority` to **`-200.`** This places the entries essentially where directed by the `Injection` setting, as it sets Entries to a higher priority than `Story` or `Memory`.
 
-### Insertion
+### 1.2 Insertion
 
 My current recommended `Insertion` setting for entries is based on usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make a similar entry in NAI with `Insertion: -9`.
 
@@ -62,16 +75,23 @@ Injection of Entries into context is also controlled by `Insertion`. Insertion a
 
 **Will expand on this later.**
 
-## Format Testing
+## 2. Format Testing
 
 _June 22, 2021 update_: As mentioned below, with `[ ]` instead of `•`, Featherlite appears to work. Further testing is needed, but results have so far been promising.
 
 Format testing so far is showing that use of encapsulation `[ .]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight.]`
 
 Monky research in NAI Discord suggests that keeping lines to 20 tokens then separating new lines seems to work well.
-* I have confirmed that 20 tokens or less for new lines appears to be preferable for entries. Reinforcing entries with names on each line is important.
 
-### Current To-do for Format Testing
+- I have confirmed that 20 tokens or less for new lines appears to be preferable for entries. Reinforcing entries with names on each line is important.
+
+### 2.1 Featherlite Testing
+
+Rinter, the creator of Featherlite, has a wiki that can be found here with all the up to date information on the format in NAI: [Rinter's Featherlite Wiki](https://github.com/RinterWaptor/NAI-research/wiki).
+
+This section to be completed.
+
+### 2.2 Current To-do for Format Testing
 
 * **1. `[ ]` Prose Format**
 
@@ -101,7 +121,7 @@ TBC
 
 TBC
 
-### Miscellaneous
+### 2.3 Miscellaneous
 
 From NAI Server:
 
@@ -109,7 +129,7 @@ From NAI Server:
 
 Tested Birb's suggested formatting. Some issues with intra-mixing entry information, but no significant leakage outside. Will want to test with different separators. `≡` could be viable. Will also test with `< >` encapsulation, similar to Cat<nip>, e.g. `hair<black& short>`. Results will be described here.
 
-## Story Settings
+## 3. Story Settings
 
 From Monky (NAID):
 
@@ -117,9 +137,9 @@ From Monky (NAID):
 
 Additional information will need to be added here. Currently, I am using Jarel's generation settings (available on NAI discord).
 
-## Other Testing
+## 4. Other Testing
 
-### Signposts
+### 4.1 Signposts
 
 Testing injection of signposts, `<<•>>>>`, in various places in the context.
 
@@ -127,7 +147,7 @@ During attempted break testing and play testing, I have not seen a noticeable ef
 
 Research on signposts will be held until I am able to fully understand the effect of the available settings on output.
 
-### "Director" Entries
+### 4.2 "Director" Entries
 
 There appears to be some potential benefit with "director" entries, which are short entries telling the AI what to do. These include things like:
 
