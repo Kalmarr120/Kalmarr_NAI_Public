@@ -7,13 +7,22 @@
   - [2. Format Testing](#2-format-testing)
     - [2.1 Featherlite Testing](#21-featherlite-testing)
     - [2.2 Current To-do for Format Testing](#22-current-to-do-for-format-testing)
+      - [2.2(a) `[ ]` Prose Format](#22a---prose-format)
+      - [2.2(b) `{ }` Prose Format](#22b---prose-format)
+      - [2.2(c) Futureman](#22c-futureman)
+      - [2.2(d) Cat[nip]](#22d-catnip)
+      - [2.2(e) JSON/Python-like](#22e-jsonpython-like)
     - [2.3 Miscellaneous](#23-miscellaneous)
   - [3. Story Settings](#3-story-settings)
-  - [4. Other Testing](#4-other-testing)
-    - [4.1 Signposts](#41-signposts)
-    - [4.2 "Director" Entries](#42-director-entries)
+  - [4. Author's Notes](#4-authors-notes)
+  - [5. Other Testing](#5-other-testing)
+    - [5.1 Signposts](#51-signposts)
+    - [5.2 "Director" Entries](#52-director-entries)
+    - [5.3 Scene Separators](#53-scene-separators)
+      - [5.3(a) Asterix Separator](#53a-asterix-separator)
+      - [5.3(b) <|endoftext|> Separator](#53b-endoftext-separator)
 
-As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible.
+As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord if you believe credit is misattributed.
 
 Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. I speak in further detail in the sections below.
 
@@ -98,23 +107,23 @@ Initial testing of Featherlite was not necessary promising, due to leaking issue
 
 ### 2.2 Current To-do for Format Testing
 
-- **1. `[ ]` Prose Format**
+#### 2.2(a) `[ ]` Prose Format
 
 So far the current preference, with caveman type prose. See above.
 
-- **2. `{ }` Prose Format**
+#### 2.2(b) `{ }` Prose Format
 
 Initial testing did not show `{ }` as superior to `[ ]`. Will need to devote further time to review, but unlikely to continue. So far this method of encapsulation appears to have been dropped by serious testers, outside of JSON.
 
-- **3. Futureman**
+#### 2.2(c) Futureman
 
 TBC
 
-- **4. Cat[nip]**
+#### 2.2(d) Cat[nip]
 
 TBC
 
-- **5. JSON/Python-like**
+#### 2.2(e) JSON/Python-like
 
 TBC
 
@@ -134,9 +143,27 @@ From Monky (NAID):
 
 Additional information will need to be added here. Currently, I am using Jarel's generation settings (available on NAI discord).
 
-## 4. Other Testing
+## 4. Author's Notes (TBC)
 
-### 4.1 Signposts
+_To be completed_
+
+### 4.1 Writing Styles
+
+TBC
+
+### 4.2 Genres, Themes, Etc.
+
+TBC
+
+### 4.3 Other Uses
+
+TBC
+
+## 5. Other Testing
+
+TBC
+
+### 5.1 Signposts
 
 _Research on this is paused._
 
@@ -148,7 +175,7 @@ Research on signposts will be held until I am able to fully understand the effec
 
 Others have reported that signposts seem to have no benefit and/or have significant problems with leaking.
 
-### 4.2 "Director" Entries
+### 5.2 "Director" Entries
 
 There appears to be some potential benefit with "director" entries, which are short entries telling the AI what to do. These include things like:
 
@@ -160,6 +187,30 @@ There appears to be some potential benefit with "director" entries, which are sh
 [ Describe in prose]
 ```
 
-I have not conducted enough research into this to comment on its usefulness at this time. 
+I have not conducted enough research into this to comment on its usefulness at this time. Initial testing shows that `[ Describe in prose]` may have an effect on how the AI outputs information from Lorebook entries.
 
 Some people on NAI Discord report usefulness from this. In particular, the first `[ Do: x]` and similar (`[ Use: x]`, `[ Event: x]`) etc. appear to be able to significantly affect output in a desirable way.
+
+### 5.3 Scene Separators
+
+I have done minor work on scene separators, and otherwise have tested other scene separators recommended on the NAI Discord.
+
+#### 5.3(a) Asterix Separator
+
+Asterix separators for scenes appears to be relatively powerful, especially combined with newlines. In break testing within an NSFW scene, inputting only a newline, `***`, another newline, and `Mark`, I was getting results such as:
+
+```
+[Lewd stuff]
+
+***
+
+Mark woke up the next morning feeling refreshed and rested. He felt like he had a new lease on life. It was a perfect start to a wonderful weekend.
+```
+
+An issue that may occur with adding newlines is that the AI may output newlines itself in future generations. Play testing will be necessary to see if this impact is too strong to recommend using `***`. 
+
+#### 5.3(b) `<|endoftext|>` Separator
+
+I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success. 
+
+_I will update this section with results._
