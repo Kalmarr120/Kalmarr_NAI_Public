@@ -14,13 +14,16 @@
       - [2.2(e) JSON/Python-like](#22e-jsonpython-like)
     - [2.3 Miscellaneous](#23-miscellaneous)
   - [3. Story Settings](#3-story-settings)
-  - [4. Author's Notes](#4-authors-notes)
+  - [4. Author's Notes (TBC)](#4-authors-notes-tbc)
+    - [4.1 Writing Styles](#41-writing-styles)
+    - [4.2 Genres, Themes, Etc.](#42-genres-themes-etc)
+    - [4.3 Other Uses](#43-other-uses)
   - [5. Other Testing](#5-other-testing)
     - [5.1 Signposts](#51-signposts)
     - [5.2 "Director" Entries](#52-director-entries)
     - [5.3 Scene Separators](#53-scene-separators)
       - [5.3(a) Asterix Separator](#53a-asterix-separator)
-      - [5.3(b) <|endoftext|> Separator](#53b-endoftext-separator)
+      - [5.3(b) `<|endoftext|>` Separator](#53b-endoftext-separator)
 
 As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord if you believe credit is misattributed.
 
