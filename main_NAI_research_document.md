@@ -5,13 +5,15 @@
     - [1.1 Priority](#11-priority)
     - [1.2 Insertion](#12-insertion)
   - [2. Format Testing](#2-format-testing)
-    - [2.1 Featherlite Testing](#21-featherlite-testing)
+    - [2.1 Featherlite](#21-featherlite)
+      - [**2.1(a) Featherlite Conversion (with examples)**](#21a-featherlite-conversion-with-examples)
+      - [**2.1(b) Featherlite Testing**](#21b-featherlite-testing)
     - [2.2 Current To-do for Format Testing](#22-current-to-do-for-format-testing)
-      - [2.2(a) `[ ]` Prose Format](#22a---prose-format)
-      - [2.2(b) `{ }` Prose Format](#22b---prose-format)
-      - [2.2(c) Futureman](#22c-futureman)
-      - [2.2(d) Cat[nip]](#22d-catnip)
-      - [2.2(e) JSON/Python-like](#22e-jsonpython-like)
+      - [**2.2(a) `[ ]` Prose Format**](#22a---prose-format)
+      - [**2.2(b) `{ }` Prose Format**](#22b---prose-format)
+      - [**2.2(c) Futureman**](#22c-futureman)
+      - [**2.2(d) Cat[nip]**](#22d-catnip)
+      - [**2.2(e) JSON/Python-like**](#22e-jsonpython-like)
     - [2.3 Miscellaneous](#23-miscellaneous)
   - [3. Story Settings](#3-story-settings)
   - [4. Author's Notes (TBC)](#4-authors-notes-tbc)
@@ -22,8 +24,8 @@
     - [5.1 Signposts](#51-signposts)
     - [5.2 "Director" Entries](#52-director-entries)
     - [5.3 Scene Separators](#53-scene-separators)
-      - [5.3(a) Asterix Separator](#53a-asterix-separator)
-      - [5.3(b) `<|endoftext|>` Separator](#53b-endoftext-separator)
+      - [**5.3(a) Asterix Separator**](#53a-asterix-separator)
+      - [**5.3(b) `<|endoftext|>` Separator**](#53b-endoftext-separator)
 
 As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord if you believe credit is misattributed.
 
@@ -102,31 +104,84 @@ Monky research in NAI Discord suggests that keeping lines to 20 tokens then sepa
 - I have confirmed that 20 tokens or less for new lines appears to be preferable for entries. Reinforcing entries with names on each line is important.
 - Alternative formatting in the form of JSON/python-like formats may not need this line-splitting method.
 
-### 2.1 Featherlite Testing
+### 2.1 Featherlite
 
 Rinter, the creator of Featherlite, has a wiki that can be found here with all the up to date information on the format in NAI: [Rinter's Featherlite Wiki](https://github.com/RinterWaptor/NAI-research/wiki).
 
 Initial testing of Featherlite was not necessary promising, due to leaking issues. However, with `•` swapped for `[ ]`, leaking has been tamped down to a minimum and outputs appear to be of good quality. As I did significant amounts of my research using Featherlite in AID, I intend to spend most of my time studying it and ways it can by used in NAI. Initial research will be contained in this document, but I may draft a separate document in the future should using this one become unweildy.
 
+#### **2.1(a) Featherlite Conversion (with examples)**
+
+Following Rinter's new guidelines for Featherlite in NAI, I converted my entries from AID-version to NAI-version. To show this, I will use an example with a race and character I commonly use. Please see [my document](https://github.com/Kalmarr120/Kalmarr_NAI_Public/blob/755de9ae8c29bb7cc8f33d339edfadf395008893/wolfkin_race_featherlite.md) for details on how I constructed the racial entries for AID.
+
+The conversion primarily deals with replacing `•` as preceding syntax, and replacing it with `[ ]` incapsulation. In addition, terms that do not have a significant relation (unlike, for example, hair and hair colour), are separated. Word smashing is kept for related terms in order to potentially maintain their association.
+
+>_My wolfkin race, in AID Featherlite (`with EWIJSON`):_
+>
+>`•define wolfkin: Lupinebody muzzleBeastkinThey peaceful tribal` \\`[p=5]`<br>
+>`•wolfkin behavior: expressivetail&ears They friendlyopen` \\ `[p=5]`
+>
+>_Converted to NAI Featherlite (`OPVAM race insertion`):_
+>
+>`[ wolfkin: Lupinebody muzzle Beastkin They peaceful tribal ]`<br>
+>`[ wolfkin behavior: expressivetail&ears They friendly open ]`
+
+Applying the principles of new Featherlite, the conversion is minor in this case:
+
+- `•` encapsulation is removed and replaced with `[ ]`.
+- `define` is removed. It will need to be tested to determine usefulness in NAI.
+  - On principle, it should assist the AI with defining a new term, in this case `wolfkin`. The use case may be different from AID.
+- `Lupinebody` remains smashed, as the intention is to describe their bodies/appearance as "lupine."
+- `muzzle` is separated from `Beastkin`, as the two terms are not directly related.
+- `They` is separated from Beastkin, as it is a generic pronoun.
+- `friendly` is separated from `open`. The two terms are not associated.
+
+To use another example, here is a character entry based on that race:
+
+>Mark, a wolfkin character, in AID Featherlite:
+>
+>`• Mark:30♂︎wolfkin lean Hekind joyful` \\ [p=1]<br>
+>`• Mark:Blackfur,White-spot tail,leftearscarHefriendVol` \\ [p=3]
+>
+> _Converted to NAI Featherlite:_
+> `[ Mark: 30 male wolfkin lean He kind joyful]`<br>
+> `[ Mark: Blackfur, White-spot tail, leftearscar He friend Vol]`
+
+The conversion in this case should be a bit more of an obvious example of the new principles.
+
+- `•` encapsulation is removed and replaced with `[ ]`.
+- `♂︎` is removed, and replaced with `male`. It is unclear if NAI is able to properly understand and use `♂︎` in the context of this format.
+- `30`, `male`, and `wolfkin` are broken out into their own words, as they are not associated.
+- `kind` is broken off from `He`, as they are not associated.
+- `Blackfur` remains smashed in order to maintain their association.
+- `leftearscar` is broken off into its own word, as the association is a scar on his left ear.
+- `He`, `friend`, and `Vol` are broken into separate words.
+
+#### **2.1(b) Featherlite Testing**
+
+_This section is currently incomplete_.
+
+From initial testing, leaking is rare and outputs are accurate and high quality. There was only one significant leak of the format style in well over a hundred break tests, e.g. `Detailed description of wolfkin: wolfkin are`.
+
 ### 2.2 Current To-do for Format Testing
 
-#### 2.2(a) `[ ]` Prose Format
+#### **2.2(a) `[ ]` Prose Format**
 
 So far the current preference, with caveman type prose. See above.
 
-#### 2.2(b) `{ }` Prose Format
+#### **2.2(b) `{ }` Prose Format**
 
 Initial testing did not show `{ }` as superior to `[ ]`. Will need to devote further time to review, but unlikely to continue. So far this method of encapsulation appears to have been dropped by serious testers, outside of JSON.
 
-#### 2.2(c) Futureman
+#### **2.2(c) Futureman**
 
 TBC
 
-#### 2.2(d) Cat[nip]
+#### **2.2(d) Cat[nip]**
 
 TBC
 
-#### 2.2(e) JSON/Python-like
+#### **2.2(e) JSON/Python-like**
 
 TBC
 
@@ -198,7 +253,7 @@ Some people on NAI Discord report usefulness from this. In particular, the first
 
 I have done minor work on scene separators, and otherwise have tested other scene separators recommended on the NAI Discord.
 
-#### 5.3(a) Asterix Separator
+#### **5.3(a) Asterix Separator**
 
 Asterix separators for scenes appears to be relatively powerful, especially combined with newlines. In break testing within an NSFW scene, inputting only a newline, `***`, another newline, and `Mark`, I was getting results such as:
 
@@ -212,8 +267,10 @@ Mark woke up the next morning feeling refreshed and rested. He felt like he had 
 
 An issue that may occur with adding newlines is that the AI may output newlines itself in future generations. Play testing will be necessary to see if this impact is too strong to recommend using `***`. 
 
-#### 5.3(b) `<|endoftext|>` Separator
+#### **5.3(b) `<|endoftext|>` Separator**
 
 I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success. 
+
+I found that, although `<|endoftext|>` was generally successful at separating out scenes, 
 
 _I will update this section with results._
