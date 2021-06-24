@@ -116,7 +116,7 @@ Following Rinter's new guidelines for Featherlite in NAI, I converted my entries
 
 The conversion primarily deals with replacing `•` as preceding syntax, and replacing it with `[ ]` incapsulation. In addition, terms that do not have a significant relation (unlike, for example, hair and hair colour), are separated. Word smashing is kept for related terms in order to potentially maintain their association.
 
->_My wolfkin race, in AID Featherlite (`with EWIJSON`):_
+>_My wolfkin race, in AID Featherlite (`EWIJSON`):_
 >
 >`•define wolfkin: Lupinebody muzzleBeastkinThey peaceful tribal` \\`[p=5]`<br>
 >`•wolfkin behavior: expressivetail&ears They friendlyopen` \\ `[p=5]`
@@ -191,7 +191,7 @@ From NAI Server:
 
 >Birb suggests formatting along the lines of `{Alice; age: 25; hair: black; eyes: blue; speech(Alice): Valley girl.}`. Another suggestion is to use `,` with multiple values. _(June 22, 2021: This may be out of date based on recent research)._
 
-Tested Birb's suggested formatting. Some issues with intra-mixing entry information, but no significant leakage outside. Will want to test with different separators. `≡` could be viable. Will also test with `< >` encapsulation, similar to Cat<nip>, e.g. `hair<black& short>`. Results will be described here.
+Tested Birb's suggested formatting. Some issues with intra-mixing entry information, but no significant leakage outside. Will want to test with different separators. `≡` could be viable. Will also test with `< >` encapsulation, similar to Cat<nip>, e.g. `hair<black& short>`. Results will be described here, if further testing is done on this formatting.
 
 ## 3. Story Settings
 
@@ -219,12 +219,44 @@ TBC
 
 ## 5. Other Testing
 
-TBC
-
 ### 5.1 Signposts
 
-_Research on this is paused._
+_June 23/24 2021: Significant testing was done into the use of `***` as a signpost to help break the AI's concentration on the prompt/story while allowing it to focus on the more recent information available to it._
 
+I am recommending signposts, in particular one signpost of `***` at insertion `-5` and priority `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+
+My testing was first done with default settings and 0.6 randomness, then Monky's settings (now recommended):
+> Randomness: `0.8`<br>
+> Top-K Sampling: `disabled`<br>
+> Nucleus Sampling: `disabled`<br>
+> Tail-Free Sampling: `0.5`<br>
+> Repitition Penalty: `1.2`<br>
+> Repitition Penalty Range: `512`<br>
+> Repitition Penalty Slope: `4.05`<br>
+
+At Monky's suggestion, I tested a single `***` signpost at an insertion of `-5`. I chose a priority of `-1000`. After some time testing, I also adjusted the signpost entry to include surrounding newlines:
+
+```
+
+***
+
+```
+
+I tested with a simple break test of `Detailed description of Vol: Vol is`, using a character of mine, in addition to existing activated lorebook entries for another character and for my character race. Everything was tested using featherlite.
+
+The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`). 
+
+Overall, I am pleased with the results and I believe that at least the single one tested can be reasonably recommended. The initial testing is promising and additional testing will be certainly justified.
+
+There are additional items with respect to signposts that I would like to test:
+
+- Using multiple signposts at different insertion points
+  - At specific points to separate types of lorebook entries
+  - At intervals (e.g. every 4 lines)
+- Use during actual play
+
+_Previous report:_
+```
 Tested injection of signposts, `<<•>>>>`, in various places in the context.
 
 During attempted break testing and play testing, I have not seen a noticeable effect from using signposts. Of interest, the AI seems to at least partially be aware of them as story breakers. `<<•>>>>` leaked relatively frequently, but when it did it was almost universally placed at a point breaking the story into a new section.
@@ -232,6 +264,7 @@ During attempted break testing and play testing, I have not seen a noticeable ef
 Research on signposts will be held until I am able to fully understand the effect of the available settings on output.
 
 Others have reported that signposts seem to have no benefit and/or have significant problems with leaking.
+```
 
 ### 5.2 "Director" Entries
 
