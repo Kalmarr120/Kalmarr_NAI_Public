@@ -15,6 +15,8 @@ Currently, he intends to update this repository with the following over time:
 - Scripting (either by others or personally-created).
     - TBC
 
+Please note that all work completed to date has been on the 6B parameter __Sigurd__ model.
+
 Thank you for your interest!
 
 ~Kalmarr
