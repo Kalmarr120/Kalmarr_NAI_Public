@@ -27,15 +27,21 @@
       - [**5.3(a) Asterix Separator**](#53a-asterix-separator)
       - [**5.3(b) `<|endoftext|>` Separator**](#53b-endoftext-separator)
 
-As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord if you believe credit is misattributed.
+As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord (Kalmarr) if you believe credit is misattributed.
 
-Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. I speak in further detail in the sections below.
+Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. I speak in further detail in the sections below. My use case is generally due to my preference to use non-human characters in my stories. I expect that simpler use cases with fewer unusual characters/attributes will probably behave better and without as much force.
 
-Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output.
+Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output. I will generall try to describe the result in relative terms (clearer, more accurate, more creative, etc.), compared to other settings/entries. 
 
 ## 1. Lorebook Settings
 
 The Lorebook has incredibly helpful settings for use in context injection. It is extremely customizable. These are the settings I have found to be the most useful and why. I also address some testing completed.
+
+The primary useful settings to change in Lorebook entries are `Priority` and `Insertion`. The other settings may be referenced in other areas of this guide, or in more detail in the future.
+
+- `Priority` refers to, essentially, the order in which types of context are built in the overall context. The lower the number as an integer (`-700` as an example), the closer to input the priority type is injected into the context. The number is, in essence, completely arbitrary and used as the basis of their relative position to each other.
+- `Insertion` is what occurs after the entries are sorted by priority, and refers to how many lines/sentences/tokens (depending on settings chosen) the entries is moved from its position in the context. In the example of an Author's Note set to have `-800` priority ("highest" priority) and `-4` insertion, the AN will be placed 3 new lines from the bottom of the context. A positive insertion value will push the entry down in the context.
+  - Positive insertion value remains, to my knowledge, untested. It remains to be seen whether there is potential use for that.
 
 ### 1.1 Priority
 
@@ -59,6 +65,8 @@ From OPVAM (_New from June 22, 2021_):
 Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs.
 
 I will be working with priority/insertion as part of testing for Featherlite, and may deviate from this system. I will include that information under [Featherlite](#21-featherlite-testing).
+
+_Update (June 24, 2021):_ Changing insertion/priority under featherlite appears to be unnecessary in my use case (non-human non-standard race and characters). These settings appear to be very effective. I am not likely to attempt to test new settings in the near future.
 
 **Older information:**
 
@@ -205,9 +213,20 @@ Additional information will need to be added here. Currently, I am using Jarel's
 
 _To be completed_
 
+This section will like not have significant work done on it until some of the other items in this document are properly researched. 
+
 ### 4.1 Writing Styles
 
-TBC
+I have been using the following as a generic writing style:
+
+> `[ WritingStyle: grandiloquent, purple prose]`
+
+Further additions that have shown some use (when added to the above in a list), that are otherwise niche, include:
+> - `gay`
+>   - This style has assisted with avoiding gender changes in gay-focussed stories. It is unclear if it has any other impact on writing.
+> - `furry`
+>   - This style seems to bring character's non-human attributes into greater focus. 
+
 
 ### 4.2 Genres, Themes, Etc.
 
@@ -256,6 +275,7 @@ There are additional items with respect to signposts that I would like to test:
 - Use during actual play
 
 _Previous report:_
+
 ```
 Tested injection of signposts, `<<•>>>>`, in various places in the context.
 
