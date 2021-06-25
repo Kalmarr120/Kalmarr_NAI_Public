@@ -203,11 +203,11 @@ Tested Birb's suggested formatting. Some issues with intra-mixing entry informat
 
 ## 3. Story Settings
 
-From Monky (NAID):
+I am currently using Monky's suggested story settings.
 
->For 2.7b/Calliope, top k of 45 and nucleus sampling of 0.875 seem to be the strongest tweaks for consistency from WI without delving into uncreative/not looping. Haven't been able to nail down how many tokens Calliope can sustain for yet.
+Updated settings based on Monkys suggestions (_June 25, 2021_):
 
-Additional information will need to be added here. Currently, I am using Jarel's generation settings (available on NAI discord).
+Only changes to default are Tail-Free Sampling set to `0.5`, Top-K Sampling `disabled`. So far seeing success combined with signpost and featherlite formatting. 
 
 ## 4. Author's Notes (TBC)
 
