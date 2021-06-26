@@ -1,6 +1,12 @@
 # Format and Customization Research
 
+<details>
+<summary> Contents </summary>
+
+### Table of Contents
+
 - [Format and Customization Research](#format-and-customization-research)
+    - [Table of Contents](#table-of-contents)
   - [1. Lorebook Settings](#1-lorebook-settings)
     - [1.1 Priority](#11-priority)
     - [1.2 Insertion](#12-insertion)
@@ -22,10 +28,16 @@
     - [4.3 Other Uses](#43-other-uses)
   - [5. Other Testing](#5-other-testing)
     - [5.1 Signposts](#51-signposts)
+      - [5.1(a) `***` Signpost](#51a--signpost)
+      - [5.1(b) `***` In-Entry Signpost](#51b--in-entry-signpost)
+      - [5.1(c) `<<•>>>` Signpost](#51c--signpost)
     - [5.2 "Director" Entries](#52-director-entries)
     - [5.3 Scene Separators](#53-scene-separators)
       - [**5.3(a) Asterix Separator**](#53a-asterix-separator)
       - [**5.3(b) `<|endoftext|>` Separator**](#53b-endoftext-separator)
+
+</details>
+<br>
 
 As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord (Kalmarr) if you believe credit is misattributed.
 
@@ -240,6 +252,8 @@ TBC
 
 ### 5.1 Signposts
 
+#### 5.1(a) `***` Signpost
+
 _June 23/24 2021: Significant testing was done into the use of `***` as a signpost to help break the AI's concentration on the prompt/story while allowing it to focus on the more recent information available to it._
 
 I am recommending signposts, in particular one signpost of `***` at insertion `-5` and priority `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
@@ -274,17 +288,18 @@ There are additional items with respect to signposts that I would like to test:
   - At intervals (e.g. every 4 lines)
 - Use during actual play
 
-_Previous report:_
+#### 5.1(b) `***` In-Entry Signpost
 
-```
-Tested injection of signposts, `<<•>>>>`, in various places in the context.
+Benvolio has mentioned that using `***` within an entry may show some promise, and therefore will be worth testing. The method appears as:
+> `[ *** Name: entry information here ]`
 
-During attempted break testing and play testing, I have not seen a noticeable effect from using signposts. Of interest, the AI seems to at least partially be aware of them as story breakers. `<<•>>>>` leaked relatively frequently, but when it did it was almost universally placed at a point breaking the story into a new section.
+I will test this methodology and report the results.
 
-Research on signposts will be held until I am able to fully understand the effect of the available settings on output.
+#### 5.1(c) `<<•>>>` Signpost
 
-Others have reported that signposts seem to have no benefit and/or have significant problems with leaking.
-```
+`<<•>>>` was developed by Monky as a signpost for use with EWIJSON in AI Dungeon. 
+
+Previously, tests using `<<•>>>` as a signpost was unsuccessful. Additional testing of it may be necessary, as there is a possibility that it was merely inserted into the incorrect position at the time.
 
 ### 5.2 "Director" Entries
 
@@ -304,7 +319,7 @@ Some people on NAI Discord report usefulness from this. In particular, the first
 
 ### 5.3 Scene Separators
 
-I have done minor work on scene separators, and otherwise have tested other scene separators recommended on the NAI Discord.
+I have done some research on scene separators, and otherwise have tested other scene separators recommended on the NAI Discord.
 
 #### **5.3(a) Asterix Separator**
 
@@ -318,12 +333,10 @@ Asterix separators for scenes appears to be relatively powerful, especially comb
 Mark woke up the next morning feeling refreshed and rested. He felt like he had a new lease on life. It was a perfect start to a wonderful weekend.
 ```
 
-An issue that may occur with adding newlines is that the AI may output newlines itself in future generations. Play testing will be necessary to see if this impact is too strong to recommend using `***`. 
+An issue that may occur with adding newlines is that the AI may output newlines itself in future generations. Play testing will be necessary to see if this impact is too strong to recommend using `***`.
 
 #### **5.3(b) `<|endoftext|>` Separator**
 
 I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success. 
 
-I found that, although `<|endoftext|>` was generally successful at separating out scenes, 
-
-_I will update this section with results._
+I found that, although `<|endoftext|>` was generally successful at separating out scenes, the outputs were shorter, less creative, and less cohesive than the recommended `***`.
