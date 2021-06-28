@@ -219,30 +219,51 @@ I am currently using Monky's suggested story settings.
 
 Updated settings based on Monkys suggestions (_June 25, 2021_):
 
-Only changes to default are Tail-Free Sampling set to `0.5`, Top-K Sampling `disabled`. So far seeing success combined with signpost and featherlite formatting. 
+Only changes to default are Tail-Free Sampling set to `0.5`, Top-K Sampling `disabled`. So far seeing success combined with signpost and featherlite formatting.
 
 ## 4. Author's Notes (TBC)
 
 _To be completed_
 
-This section will like not have significant work done on it until some of the other items in this document are properly researched. 
 
 ### 4.1 Writing Styles
 
-I have been using the following as a generic writing style:
+Under my current system, all Author's Notes are written in featherlite and placed into the 
 
-> `[ WritingStyle: grandiloquent, purple prose]`
+_Update (June 27, 2021)_: I have been examining the use of writing styles such as `sesquipedalian` and `creative`, which I have seen used by members of the NAI Discord. These particular styles appear to have significant effects on output.
 
-Further additions that have shown some use (when added to the above in a list), that are otherwise niche, include:
+- `sesquipedalian` was suggested as a strong version of `purple prose`. Play testing and descriptive testing appears to confirm that.
+- `creative` appears to encourage the AI to be less repetitive and more varied in its word choices. Lorebook entries are still referred to properly, but the AI is much more likely to choose interesting alternative language when doing so.
+
+Combining these two terms has had a significant impact on how often I need to  I now recommend this as the base writing style:
+
+>`[ WritingStyle: sesquipedalian& creative ]`
+
+Further additions that have shown some helpful use (when added to the above), that are otherwise niche, include:
 > - `gay`
 >   - This style has assisted with avoiding gender changes in gay-focussed stories. It is unclear if it has any other impact on writing.
 > - `furry`
->   - This style seems to bring character's non-human attributes into greater focus. 
+>   - This style seems to bring character's non-human attributes into greater focus.
+>
+>If added to the base writing style above, these combined would look like: 
+>
+>`[ WritingStyle: sesquipedalian& creative& gay& furry ]` 
 
+I previously recommended this style, which may still be useful to some:
+
+>`[ WritingStyle: grandiloquent, purple prose]`
 
 ### 4.2 Genres, Themes, Etc.
 
-TBC
+Genres, like Writing Style, are added to the featherlite Author's Note, and may look like this:
+
+> `[ Writing Style: example1& example2; Genre: example3 ]`
+
+This methodology is not finalized, and is subject to ongoing testing. It is the methodology I am currently using in my own play.
+
+Here are Genres, Themes, etc. which I have tested in NAI:
+
+> - `[ Genre: LITEROTICA ]` (_attributed to TravellingRobot's wiki_): when used in conjunction with the recommended writing style seems at least somewhat effective at making interesting outputs and keeping on track for NSFW-focussed stories. Further testing needed to determine magnitude of effect.
 
 ### 4.3 Other Uses
 
@@ -254,11 +275,13 @@ TBC
 
 #### 5.1(a) `***` Signpost
 
-_June 23/24 2021: Significant testing was done into the use of `***` as a signpost to help break the AI's concentration on the prompt/story while allowing it to focus on the more recent information available to it._
+_Updated (June 27, 2021):_ Follow-up testing of signposts has demonstrated that, in fact, `-4` may be a preferable insertion position for the signpost, which puts it right after the Author's Note. I will keep the below for now and will update to reflect that later. Please keep in mind while reading that `-4` is the recommendation, and not `-5`.
 
-I am recommending signposts, in particular one signpost of `***` at insertion `-5` and priority `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+_Further Updated (June 27, 2021):_ Further testing of before-entries signposts has not yielded successful results. Noticed lowered cohesion and a general worsening of quality/creativity in the outputs. In addition, multiple signposts at varied locations in the context do not appear to have had a positive effect on outputs, with similar (although not as severe) impacts as before-entry signposts. May conduct further testing, but for now one signpost at `-5` and `-1000` appears to be preferable for recommended use.
 
-My testing was first done with default settings and 0.6 randomness, then Monky's settings (now recommended):
+I am recommending signposts, in particular one signpost of `***` at insertion ~~`-5`~~ `-4` and priority `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+
+My testing was first done with default settings and 0.6 randomness, then Monky's settings (I may be adjusting this recommendation--testing ongoing. See section 3. for information):
 > Randomness: `0.8`<br>
 > Top-K Sampling: `disabled`<br>
 > Nucleus Sampling: `disabled`<br>
@@ -279,21 +302,14 @@ I tested with a simple break test of `Detailed description of Vol: Vol is`, usin
 
 The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`). 
 
-Overall, I am pleased with the results and I believe that at least the single one tested can be reasonably recommended. The initial testing is promising and additional testing will be certainly justified.
-
-There are additional items with respect to signposts that I would like to test:
-
-- Using multiple signposts at different insertion points
-  - At specific points to separate types of lorebook entries
-  - At intervals (e.g. every 4 lines)
-- Use during actual play
-
 #### 5.1(b) `***` In-Entry Signpost
 
-Benvolio has mentioned that using `***` within an entry may show some promise, and therefore will be worth testing. The method appears as:
+Benvolio mentioned that using `***` within an entry may show some initial promise, based off the use of in-entry signposts in AID, and I therefore decided to test. The method appears as:
 > `[ *** Name: entry information here ]`
 
-I will test this methodology and report the results.
+Testing of this did not yield particularly helpful results. Major segments of the entry were generally ignored.
+
+Benvolio confirmed that his own testing did not have successful results.
 
 #### 5.1(c) `<<•>>>` Signpost
 
