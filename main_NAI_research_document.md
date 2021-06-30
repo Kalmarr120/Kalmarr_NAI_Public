@@ -12,8 +12,8 @@
     - [1.2 Insertion](#12-insertion)
   - [2. Format Testing](#2-format-testing)
     - [2.1 Featherlite](#21-featherlite)
-      - [**2.1(a) Featherlite Conversion (with examples)**](#21a-featherlite-conversion-with-examples)
-      - [**2.1(b) Featherlite Testing**](#21b-featherlite-testing)
+      - [2.1(a) Featherlite Conversion (with examples)](#21a-featherlite-conversion-with-examples)
+      - [2.1(b) Featherlite Testing](#21b-featherlite-testing)
     - [2.2 Current Format Testing To-Do](#22-current-format-testing-to-do)
       - [2.2(a) JSON/Python-like](#22a-jsonpython-like)
       - [2.2(b) `[ ]` Prose Format](#22b---prose-format)
@@ -22,22 +22,26 @@
       - [2.2(e) futureman](#22e-futureman)
       - [2.2(f) `Cat<NIP>`](#22f-catnip)
   - [3. Story Settings](#3-story-settings)
+    - [3.1 Generation Settings](#31-generation-settings)
+    - [3.2 Token Banning](#32-token-banning)
   - [4. Author's Notes](#4-authors-notes)
     - [4.1 Writing Styles](#41-writing-styles)
     - [4.2 Genres, Themes, Etc.](#42-genres-themes-etc)
     - [4.3 Other Uses](#43-other-uses)
-  - [5. Other Testing](#5-other-testing)
-    - [5.1 Signposts](#51-signposts)
-      - [5.1(a) `***` Signpost](#51a--signpost)
-      - [5.1(b) `***` In-Entry Signpost](#51b--in-entry-signpost)
-      - [5.1(c) `<<•>>>` Signpost](#51c--signpost)
-      - [5.1(d) `* * *` Signpost](#51d----signpost)
-      - [5.1(e) `⁂` Signpost](#51e--signpost)
-    - [5.2 "Director" Entries](#52-director-entries)
-    - [5.3 Scene Separators](#53-scene-separators)
-      - [5.3(a) Asterix Separator](#53a-asterix-separator)
-      - [5.3(b) `<|endoftext|>` Separator](#53b-endoftext-separator)
-    - [6. Glossary](#6-glossary)
+  - [5. Person Perspective](#5-person-perspective)
+  - [6. Other Testing](#6-other-testing)
+    - [6.1 Signposts](#61-signposts)
+      - [6.1(a) `***` Signpost](#61a--signpost)
+      - [6.1(b) `***` In-Entry Signpost](#61b--in-entry-signpost)
+      - [6.1(c) `<<•>>>` Signpost](#61c--signpost)
+      - [6.1(d) `* * *` Signpost](#61d----signpost)
+      - [6.1(e) `⁂` Signpost](#61e--signpost)
+    - [6.2 "Director" Entries](#62-director-entries)
+    - [6.3 Scene Separators](#63-scene-separators)
+      - [6.3(a) Asterix Separator](#63a-asterix-separator)
+      - [6.3(b) `<|endoftext|>` Separator](#63b-endoftext-separator)
+  - [7. Character/Species "Generator"](#7-characterspecies-generator)
+  - [8. Glossary](#8-glossary)
 
 </details>
 <br>
@@ -47,6 +51,8 @@ As a former EWI AID user, finding the best formats to inject context and explori
 Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. I speak in further detail in the sections below. My use case is generally due to my preference to use non-human characters in my stories. I expect that simpler use cases with fewer unusual characters/attributes will probably behave better and without as much force.
 
 Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output. I will generall try to describe the result in relative terms (clearer, more accurate, more creative, etc.), compared to other settings/entries. 
+
+In general, the information will reflect the current highest Opus tier model (now v3 Sigurd) unless otherwise stated.
 
 ----
 
@@ -72,8 +78,10 @@ I have updated my suggestion to use `-200` for `Priority`. Instead, I recommend 
 | -10      | -400     | 100     | Lore: Places                            |
 | -10      | -500     | 100     | Lore: Factions                          |
 | -8       | -600     | 200     | Lore: Story Overview (forced active)    |
+| -7       | -650     | 200     | Lore: Irregular Races (Kalmarr addition)|
 | -6       | -700     | 100     | Lore: Characters                        |
 | -4       | -800     | 200     | Author's Note                           |
+| -4       | -1000    | 3       | Signpost (Kalmarr addition)             |
 | 0        | 0        | 512     | Story                                   |
 
 
@@ -85,6 +93,30 @@ Testing has shown this method to be excellent, both in terms of accuracy and qua
 I will be working with priority/insertion as part of testing for Featherlite, and may deviate from this system. I will include that information under my testing for featherlite. see [Rinter's featherlite wiki](https://github.com/RinterWaptor/NAI-research/wiki/Featherlite).
 
 _Update (June 24, 2021):_ Changing insertion/priority under featherlite appears to be unnecessary in my use case (non-human non-standard race and characters). These settings appear to be very effective. I have seen another scaffolding method proposed by Fuzzy which I will review, but am otherwise not likely to experiment further on my own in the near future.
+
+_Update (June 30, 2021):_ OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
+
+__ADVANCED CONTEXT SETTINGS__
+
+| Name          | Position | Order | Reserve | Insertion Type | Notes                      |       
+| ------------- | :------: | :---: | :-----: | -------------- | -------------------------- | 
+| Story         | 0        | 0     | 512     | Newline        | These are default settings |
+| Memory        | -1       | 100   | 512     | Newline        |                            |
+| Author's Note | -4       | -800  | 512     | Newline        |                            |
+
+__LOREBOOK CREATION SETTINGS__
+
+| Name      | Position | Order | Reserve | Search Range | Notes            |
+| --------- | :------: | :---: | :-----: | :----------: | ---------------- |
+| Concept   | -1       | 800   | 0       | 2000         | (Multiple)       |
+| Faction   | -1       | 700   | 0       | 5000         | (Multiple)       |
+| Species   | -1       | 600   | 0       | 2000         | (Multiple)       |
+| Place     | -1       | 500   | 0       | 3000         | (Multiple)       |
+| Character | -1       | 400   | 200     | 2000         | (Multiple)       |
+| Brace     | -8       | -400  | 200     | -            | (Multiple)       |
+| Synopsis  | -8       | -500  | 200     | -            | (Single, Forced) |
+| Pillar    | -4       | -600  | 200     | -            | (Multiple)       |
+
 
 **Older information:**
 
@@ -243,19 +275,43 @@ I am putting `Cat<NIP>` on permanent hiatus Due to my preference to focus on eit
 
 ## 3. Story Settings
 
-I am currently using a modified version Monky's suggested story settings.
+### 3.1 Generation Settings
 
-Updated settings based on Monkys suggestions (_June 28, 2021_):
+I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. This is a rough estimate of the settings working for me, based on my own experimentation and thoughts from researchers such as Monky and Rinter. I currently recommend an approximation of the following:
 
-Only changes to default recommended by Monky are Tail-Free Sampling set to `0.5`, Top-K Sampling `disabled`. So far seeing success combined with signpost and featherlite formatting. I have found that decreased randomness is necessary as well, and am generally using `0.7`.
+| Setting                  | Value     | Notes       |
+| :----------------------- | :-------: | :---------: |
+| Randomness               | 0.6 - 0.7 | -           |
+| Top-K Sampling           | Disabled  | Default on  |
+| Nucleus Sampling         | Disabled  | Default on  |
+| Tail Free Sampling       | 0.5 - 0.9 | Default off |
+| Repetition Penalty       | 2.8       | Old default |
+| Repetition Penalty Range | 512       | Old default |
+| Repetition Penalty Slope | 3.33      | Old default |
 
-_Updated (June 28, 2021):_ I am now conducting tests using Tail-Free Sampling set to `0.992` and will post results here once ready. 
+Some combination of high Tail Free Sampling (TFS) and low randomness appears to be a good combination for higher quality outputs. Rinter has recommended using `.55` randomness and `.995` TFS. I will test this as well, and post the result. The recommendation chart will be updated if this has a positive effect.
+
+Generally, keep in mind that higher TFS seems to behave better with lower randomness. My personal choice has been around `.65` randomness and `.9` TFS.
+
+I will also be testing the below repetition settings, from Monky's old suggestion, combined with my randomness/TFS settings:
+
+| Setting                  | Value |
+| ------------------------ | :---- |
+| Repetition Penalty       | 1.2   |
+| Repetition Penalty Range | 512   |
+| Repetition Penalty Slope | 4.05  |
+
+### 3.2 Token Banning
+
+TBC
 
 ----
 
 ## 4. Author's Notes
 
 ### 4.1 Writing Styles
+
+_Update (June 29, 2021):_ Zaltys appears to recommend against using `Writing Style` or any variant thereof, due to the way that the data is organized. I will need to conduct testing to determine whether there is a better alternative way of having the same effect. `Tags:` and `Genre:` appear to be recommended. Zaltys suggests using generic terms and ideas like `robot` or `military` or `France` or `1600s`.
 
 Under my current system, all Author's Notes are written in featherlite and placed into the context at Priority `-800` and Insertion `-4`.
 
@@ -300,11 +356,15 @@ TBC
 
 ----
 
-## 5. Other Testing
+## 5. Person Perspective
 
-### 5.1 Signposts
+It is confirmed that most of the training data uses first and third person, both of which are more effective than second person. 
 
-#### 5.1(a) `***` Signpost
+## 6. Other Testing
+
+### 6.1 Signposts
+
+#### 6.1(a) `***` Signpost
 
 _Updated (June 27, 2021):_ Follow-up testing of signposts has demonstrated that, in fact, `-4` may be a preferable insertion position for the signpost, which puts it right after the Author's Note. I will keep the below for now and will update to reflect that later. Please keep in mind while reading that `-4` is the recommendation, and not `-5`.
 
@@ -333,7 +393,7 @@ I tested with a simple break test of `Detailed description of Vol: Vol is`, usin
 
 The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`). 
 
-#### 5.1(b) `***` In-Entry Signpost
+#### 6.1(b) `***` In-Entry Signpost
 
 Benvolio mentioned that using `***` within an entry may show some initial promise, based off the use of in-entry signposts in AID, and I therefore decided to test. The method appears as:
 > `[ *** Name: entry information here ]`
@@ -342,21 +402,21 @@ Testing of this did not yield particularly helpful results. Major segments of th
 
 Benvolio confirmed that his own testing did not have successful results.
 
-#### 5.1(c) `<<•>>>` Signpost
+#### 6.1(c) `<<•>>>` Signpost
 
 `<<•>>>` was developed by Monky as a signpost for use with EWIJSON in AI Dungeon. 
 
 Previously, tests using `<<•>>>` as a signpost was unsuccessful. Additional testing of it may be necessary, as there is a possibility that it was merely inserted into the incorrect position at the time.
 
-#### 5.1(d) `* * *` Signpost
+#### 6.1(d) `* * *` Signpost
 
 Recommended by Zaltys as a chapter separator included in training data.
 
-#### 5.1(e) `⁂` Signpost
+#### 6.1(e) `⁂` Signpost
 
 Recommended by Zaltys as a chapter separator included in training data.
 
-### 5.2 "Director" Entries
+### 6.2 "Director" Entries
 
 There appears to be some potential benefit with "director" entries, which are short entries telling the AI what to do. These include things like:
 
@@ -368,11 +428,13 @@ I have not conducted enough research into this to comment on its usefulness at t
 
 Some people on NAI Discord report usefulness from this. In particular, the first `[ Do: x]` and similar (`[ Use: x]`, `[ Event: x]`) etc. appear to be able to significantly affect output in a desirable way.
 
-### 5.3 Scene Separators
+Monky recommends `[ x is currently happening ]`.
+
+### 6.3 Scene Separators
 
 I have done some research on scene separators, and otherwise have tested other scene separators recommended on the NAI Discord.
 
-#### 5.3(a) Asterix Separator
+#### 6.3(a) Asterix Separator
 
 Asterix separators for scenes appears to be relatively powerful, especially combined with newlines. In break testing within an NSFW scene, inputting only a newline, `***`, another newline, and `Mark`, I was getting results such as:
 
@@ -386,7 +448,7 @@ Mark woke up the next morning feeling refreshed and rested. He felt like he had 
 
 An issue that may occur with adding newlines is that the AI may output newlines itself in future generations. Play testing will be necessary to see if this impact is too strong to recommend using `***`.
 
-#### 5.3(b) `<|endoftext|>` Separator
+#### 6.3(b) `<|endoftext|>` Separator
 
 I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success. 
 
@@ -394,7 +456,28 @@ I found that, although `<|endoftext|>` was generally successful at separating ou
 
 ----
 
-### 6. Glossary
+## 7. Character/Species "Generator"
+
+From lion:
+
+> The Character / Species generator format for quick use btw
+>
+> Species Example:
+> > [ Species: Clefairy ] [ Type: Fairy ]<br>
+> > [ Evolution: Clefairy evolves from Cleffa when leveled up with high friendship and evolves into Clefable when exposed to a Moon Stone. ]<br>
+> > [ Size: 2 ft | 60 cm (small) ] [ Weight: 15 lb | 8 kg ]<br>
+> > [ Biome: Mountains ]<br>
+> > Clefairy is a bipedal, pink Pokémon with a chubby, vaguely star-shaped body. A small, pointed tooth protrudes from the upper left corner of its mouth. It has wrinkles beside its black, oval eyes, a single dark pink oval marking on each cheek, and large, pointed ears with brown tips. A tuft of fur curls over its forehead, much like its large, upward-curling tail. Each stocky arm has two small claws and a thumb on each hand and both feet have a single toenail. There is a pair of tiny, butterfly-shaped wings on its back. Though incapable of flight, Clefairy's wings can store moonlight and allow it to float.
+>
+>Character Example:
+>>[ Species: Clefairy ] [ Age: 25 ]<br>
+>>[ Powers: Can bestow the joy of Pepsi brand cola to all he meets. ]
+>
+>Of course, feel free to mix and match and add whatever categories you want in the [ CATEGORY: CONTENT ]'s so long as they follow that format
+
+----
+
+## 8. Glossary
 
 This is a glossary of terms used and relied upon in this document. Please feel free to contact me on Discord if you feel a term could use further explanation or is missing from this glossary. I will be updating it on an ad hoc basis.
 
