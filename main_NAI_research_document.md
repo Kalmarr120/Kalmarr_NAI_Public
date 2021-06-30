@@ -9,38 +9,38 @@
     - [Table of Contents](#table-of-contents)
   - [1. Lorebook Settings](#1-lorebook-settings)
     - [1.1 Scaffolds and Recommended Settings](#11-scaffolds-and-recommended-settings)
-  - [2. Format Testing](#2-format-testing)
+  - [2. Lorebook Application (AKA Formatting)](#2-lorebook-application-aka-formatting)
     - [2.1 Featherlite](#21-featherlite)
-      - [2.1(a) Featherlite Conversion (with examples)](#21a-featherlite-conversion-with-examples)
-      - [2.1(b) Featherlite Testing](#21b-featherlite-testing)
+      - [2.1(a) Featherlite Testing Note](#21a-featherlite-testing-note)
+      - [2.1(b) Featherlite Example Entries](#21b-featherlite-example-entries)
+      - [2.1(c) Featherlite Conversion from AID (with examples)](#21c-featherlite-conversion-from-aid-with-examples)
     - [2.2 Current Format Testing To-Do](#22-current-format-testing-to-do)
       - [2.2(a) JSON/Python-like](#22a-jsonpython-like)
       - [2.2(b) `[ ]` Prose Format](#22b---prose-format)
       - [2.2(c) Regular Prose Format](#22c-regular-prose-format)
-      - [2.2(d) `{ }` Prose Format](#22d---prose-format)
-      - [2.2(e) futureman](#22e-futureman)
-      - [2.2(f) `Cat<NIP>`](#22f-catnip)
   - [3. Story Settings](#3-story-settings)
     - [3.1 Generation Settings](#31-generation-settings)
     - [3.2 Token Banning](#32-token-banning)
   - [4. Author's Notes](#4-authors-notes)
-    - [4.1 Writing Styles](#41-writing-styles)
-    - [4.2 Genres, Themes, Etc.](#42-genres-themes-etc)
-    - [4.3 Other Uses](#43-other-uses)
+    - [4.1 Authors](#41-authors)
+    - [4.2 Writing Styles](#42-writing-styles)
+      - [4.2(a) Other Writing Style Application Methods](#42a-other-writing-style-application-methods)
+    - [4.3 Genres, Themes, Etc.](#43-genres-themes-etc)
   - [5. Person Perspective](#5-person-perspective)
-  - [6. Other Testing](#6-other-testing)
-    - [6.1 Signposts](#61-signposts)
-      - [6.1(a) `***` Signpost](#61a--signpost)
-      - [6.1(b) `***` In-Entry Signpost](#61b--in-entry-signpost)
-      - [6.1(c) `<<•>>>` Signpost](#61c--signpost)
-      - [6.1(d) `* * *` Signpost](#61d----signpost)
-      - [6.1(e) `⁂` Signpost](#61e--signpost)
-    - [6.2 "Director" Entries](#62-director-entries)
-    - [6.3 Scene Separators](#63-scene-separators)
-      - [6.3(a) Asterix Separator](#63a-asterix-separator)
-      - [6.3(b) `<|endoftext|>` Separator](#63b-endoftext-separator)
-  - [7. Character/Species "Generator"](#7-characterspecies-generator)
-  - [8. Glossary](#8-glossary)
+  - [6. Signposts](#6-signposts)
+    - [6.1 `***` Signposts](#61--signposts)
+    - [6.2 `***` In-Entry Signpost](#62--in-entry-signpost)
+    - [6.3 `<<•>>>` Signpost](#63--signpost)
+    - [6.4 Other Signposts](#64-other-signposts)
+      - [6.4(a) `* * *` Signpost](#64a----signpost)
+      - [6.4(b) `⁂` Signpost](#64b--signpost)
+  - [7. Other Testing](#7-other-testing)
+    - [7.1 "Director" Entries](#71-director-entries)
+    - [7.2 Scene Separators](#72-scene-separators)
+      - [7.2(a) Asterix Separator](#72a-asterix-separator)
+      - [7.2(b) `<|endoftext|>` Separator](#72b-endoftext-separator)
+  - [8. Character/Species "Generator"](#8-characterspecies-generator)
+  - [9. Glossary](#9-glossary)
 
 </details>
 <br>
@@ -190,25 +190,69 @@ Testing has shown this method to be excellent, both in terms of accuracy and qua
 
 ----
 
-## 2. Format Testing
+## 2. Lorebook Application (AKA Formatting)
 
-_Updated (June 28, 2021):_ Using `[ ]` instead of `•`, featherlite has shown an excellent ability to avoid leaking (including syntax/mashed words), and at the same time prove to be an effective source of information for the AI. 
+The Lorebook is an incredibly useful function, that can be applied in an almost absurd number of ways. Combined with different Generation Settings, Advanced Context settings, etc., it is every difficult to properly qualify what the *best* way of using Lorebooks is. The recommendations I make in this document work for me in my use case. If they do not work for you, you may need to try to change certain aspects to better fit yours.
 
-I am currently using the featherlite format, as noted in [section 2.1](#21-featherlite).
+Formatting refers, simply, to the syntax one can use in their Lorebook to draft entries in such a way that the AI is able to understand and apply the contents of entries to the Story. Formats have many forms, but they range from straight descriptive or flowing prose entries (just written normally) or using complicated syntax such as the `{`, `[`, `"` etc. of JSON. Your preference for format may depend on how easy to use you want it to be, how accurate, whether you want the AI to rely on your personal writing style, and other things. Each format has advantages and disadvantages.
 
-Alternatively, format testing so far has shown that use of encapsulation `[ .]` or just `[ ]` appears to work well, and works when combined with caveman. E.g.: `[ Mark age 30 male tall he skilled knight]`.
+I will not discourage anyone from using any format that works for them.
 
-Monky research in NAI Discord suggested that keeping lines to 18 tokens then separating new lines seems to work well.
+Current formats addressed in this document, or that I intend to address, and which are not inclusive of all those discussed in the NAI Discord or other places, are:
 
-I have confirmed that 18 tokens or less for new lines appears to be preferable for entries, at least using caveman formatting. Reinforcing entries with names on each line is important.
+- featherlite (my current preference)
+  - Represented by concise, smashed, low-syntax style. Meant to get across ideas for the AI but not impact its writing.
+- caveman encapsulated prose
+  - Represented by use of short caveman-like entries that cut out unnecessary words (is, that, etc.) and use of `[ ]`.
+- regular encapsulated prose
+  - Regular writing describing the entity/concept in the entry, surrounded by `[ ]`.
+- regular prose
+  - Prose without encapsulation of any kind.
+- JSON
+  - Syntax-heavy format in style of JSON code: `[{"Entryname":{"key":"value","key1":"value1"}}]`. JSON should be minified using JSONmate or another resource. 
+
+Monky suggested that keeping lines to 18 tokens then separating new lines seems to work well. I confirmed that 18 tokens or less for new lines appears to have a positive effect on entries, at least using caveman and featherlite formatting. Reinforcing entries with names on each line is important, and in entries with pronouns appears to help.
+
+
+I am currently using the featherlite format.
 
 ### 2.1 Featherlite
 
 Rinter, the creator of Featherlite, has a wiki that can be found here with all the up to date information on the format in NAI: [Rinter's Featherlite Wiki](https://github.com/RinterWaptor/NAI-research/wiki).
 
-Initial testing of Featherlite was not necessary promising, due to leaking issues. However, with `•` swapped for `[ ]`, leaking has been tamped down to a minimum and outputs appear to be of good quality. As I did significant amounts of my research using Featherlite in AID, I intend to spend most of my time studying it and ways it can by used in NAI. Initial research will be contained in this document, but I may draft a separate document in the future should using this one become unweildy.
+I will not speak in great detail to featherlite's benefits and drawbacks here. Please see Rinter's wiki at the above link for more specific information.
 
-#### 2.1(a) Featherlite Conversion (with examples)
+After hiccups with initial testing, where the original `•` syntax starting entries appeared to no longer work, Rinter reworked the format and determined that `[ ]` is acceptable encapsulation for featherlite in NAI. After moving to the new encapsulation, featherlite appears to be a very viable format.
+
+I used featherlite as my primary format in AID, finding that I generally liked its structure and application. I intend to focus quite a bit of my time assisting Rinter with refining its use in NAI. I may eventually draft a separate document on featherlite testing if this document becomes too unwieldy. Additionally, please note that my way of using featherlite may not necessarily match Rinter's fully. I often integrate caveman-like elements into my entries.
+
+#### 2.1(a) Featherlite Testing Note
+
+From initial testing, leaking is incredibly rare and outputs are accurate and high quality, in both play and descriptive testing. I have conducted significant testing since over the past several days and have found that featherlite does not appear to have significant drawbacks. Necessary information is pulled from the entries without inferring writing style. I am finding that the AI is capable of referencing the entries without repitition or incoherence, and in fact is quite capable of connecting entries together in a desireable way. Racial traits are incorporated into the characters, and the characters' relationships with each other are referenced often.
+
+I will undertake comparative testing to determine relative performance once I am comfortable that my current entries are optimized and can be compared properly to optimal entries under other formats. This will most likely occur after I am able to test JSON/python.
+
+#### 2.1(b) Featherlite Example Entries
+
+_This section is a work in progress, and will be continually updated._
+
+**CHARACTERS**
+
+> Mark (main character of many of my stories):
+>
+>> `[ Mark: male wolfkin lean He kind joyful ]`<br>
+>> `[ Mark: Blackfur muzzle He bestfriendVol ]`
+
+**RACES**
+
+> Wolfkin (primary race in most of my stories):
+>
+>> `[ wolfkin: caninebody digitigrade Beastkin they muzzle ]`<br>
+>> `[ wolfkin behavior: expressivetail&ears They friendly peaceful ]` 
+
+#### 2.1(c) Featherlite Conversion from AID (with examples)
+
+_No longer being updated--for informational purposes._
 
 Following Rinter's new guidelines for Featherlite in NAI, I converted my entries from AID-version to NAI-version. To show this, I will use an example with a race and character I commonly use. Please see [my document](https://github.com/Kalmarr120/Kalmarr_NAI_Public/blob/755de9ae8c29bb7cc8f33d339edfadf395008893/wolfkin_race_featherlite.md) for details on how I constructed the racial entries for AID.
 
@@ -255,27 +299,6 @@ To use another example, here is a character entry based on that race:
 > > - `leftearscar` is broken off into its own word, as the association is >a scar on his left ear.
 > > - `He`, `friend`, and `Vol` are broken into separate words.
 
-#### 2.1(b) Featherlite Testing
-
-_This section is currently incomplete_.
-
-From initial testing, leaking is rare and outputs are accurate and high quality. There was only one significant leak of the format style in well over a hundred break tests, e.g:
->`Detailed description of wolfkin: wolfkin are`
-
-_Updated (June 28, 2021):_ I have conducted significant testing, both play and descriptive testing, with featherlite over the past two days. I can now say with some confidence that featherlite works very well and appears to be quite resistant to leaks using current settings. I am finding that the AI is capable of referencing the entries without repitition or incoherence, and in fact is quite capable of connecting entries together in a desireable way. Racial traits are incorporated into the characters, and the characters' relationships with each other are referenced often.
-
-I will undertake comparative testing to determine relative performance once I am comfortable that my current entries are optimized and can be compared properly to optimal entries under other formats. This will most likely occur after I am able to test JSON/python.
-
->Current examples of WIP entries I am using (as of June 28, 2021) include:
->
->> `[ wolfkin: caninebody digitigrade Beastkin they muzzle ]`<br>
->> `[ wolfkin behavior: expressivetail&ears They friendly peaceful ]` 
->
->> `[ Mark: male wolfkin lean He kind joyful ]`<br>
->> `[ Mark: Blackfur muzzle He bestfriendVol ]`
-
-Please note that my use of featherlite is at least slightly different from the version usually proposed by Rinter, in that I rely on other punctuation such as `&` a bit more often (like in my Author's Note example further down). I also tend to mash words less frequently, making my entries slightly more similar to caveman.
-
 ### 2.2 Current Format Testing To-Do
 
 #### 2.2(a) JSON/Python-like
@@ -294,37 +317,31 @@ Further testing is needed to see how this format behaves with the current recomm
 
 #### 2.2(c) Regular Prose Format
 
-Some users on NAI Discord see success using regular Prose, with no encapsulation, as a successful means of formatting Lorebook entries. In my very first interactions and testing with NAI, I tried regular Prose with little success in my use case. However, I have not tested regular Prose with my current settings/Lorebook setup, and results may differ now. Further testing is necessary.
+Some users on NAI Discord see success using regular Prose, with no encapsulation, as a successful means of formatting Lorebook entries. In my very first interactions and testing with NAI, I tried regular Prose with little success in my use case.
 
 Occult believes that Prose works well when you want to convey the same style in your outputs as in your entries. Prose may not be recommended without encapsulation unless you want that style to transfer to output. This will depend on how you use NAI, your patience, your desire to do creative writing, etc.
 
-#### 2.2(d) `{ }` Prose Format
-
-Initial testing did not show `{ }` as superior to `[ ]`. Testing for this method of encapsulation is on permanent hiatus. So far appears to have been dropped by serious testers, outside of JSON or python-like formats.
-
-#### 2.2(e) futureman
-
-Due to the success of the caveman format, futureman appears to no longer fit the particular niche that it did in AID.
-
-#### 2.2(f) `Cat<NIP>`
-
-I am putting `Cat<NIP>` on permanent hiatus Due to my preference to focus on either caveman/featherlite-oriented formats.
+Testing of regular prose did not yield success for my use case, either with out without scaffolding. I am not likely to try it again, at least until a larger model is released. Please see other sources, such as the NAI Discord #community-research channel, if you are looking for advice on how to format prose entries
 
 ## 3. Story Settings
 
 ### 3.1 Generation Settings
 
+_Note: significant discussions on these settings are ongoing and recommendation is likely to change._
+
 I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. This is a rough estimate of the settings working for me, based on my own experimentation and thoughts from researchers such as Monky and Rinter. I currently recommend an approximation of the following:
 
-| Setting                  | Value     | Notes       |
-| :----------------------- | :-------: | :---------: |
-| Randomness               | 0.6 - 0.7 | -           |
-| Top-K Sampling           | Disabled  | Default on  |
-| Nucleus Sampling         | Disabled  | Default on  |
-| Tail Free Sampling       | 0.5 - 0.9 | Default off |
-| Repetition Penalty       | 2.8       | Old default |
-| Repetition Penalty Range | 512       | Old default |
-| Repetition Penalty Slope | 3.33      | Old default |
+**KALMARR SETTINGS**
+
+>| Setting                  | Value     | Notes       |
+>| :----------------------- | :-------: | :---------: |
+>| Randomness               | 0.6 - 0.7 | -           |
+>| Top-K Sampling           | Disabled  | Default on  |
+>| Nucleus Sampling         | Disabled  | Default on  |
+>| Tail Free Sampling       | 0.5 - 0.9 | Default off |
+>| Repetition Penalty       | 2.8       | Old default |
+>| Repetition Penalty Range | 512       | Old default |
+>| Repetition Penalty Slope | 3.33      | Old default |
 
 Some combination of high Tail Free Sampling (TFS) and low randomness appears to be a good combination for higher quality outputs. Rinter has recommended using `.55` randomness and `.995` TFS. I will test this as well, and post the result. The recommendation chart will be updated if this has a positive effect.
 
@@ -332,21 +349,29 @@ Generally, keep in mind that higher TFS seems to behave better with lower random
 
 I will also be testing the below repetition settings, from Monky's old suggestion, combined with my randomness/TFS settings:
 
-| Setting                  | Value |
-| ------------------------ | :---- |
-| Repetition Penalty       | 1.2   |
-| Repetition Penalty Range | 512   |
-| Repetition Penalty Slope | 4.05  |
+>| Setting                  | Value |
+>| ------------------------ | :---- |
+>| Repetition Penalty       | 1.2   |
+>| Repetition Penalty Range | 512   |
+>| Repetition Penalty Slope | 4.05  |
+
+An explanation of the settings will take some time to create, as I am not currently comfortable enough with my understanding to properly explain it here.
 
 ### 3.2 Token Banning
 
-TBC
+Rinter suggested that NAI's token banning may be a useful way of avoiding certain outputs without significantly hampering the AI's ability to use common tokens. This is due to multi-token banning.
+
+Multi-token banning involves banning only instances where tokens are conntected togther directly. For example, if a user wanted to ban possible instances of ` human female`, regular token bans could massively affect outputs due to how common those words are. Instead, by doing a multi-token ban of ` human female`, your ban will only impact cases of those tokens being connected together, making you avoid banning use of ` human` or ` female` entirely. 
 
 ----
 
 ## 4. Author's Notes
 
-### 4.1 Writing Styles
+### 4.1 Authors
+
+_To be updated in further detail. In the meantime, please note that setting an author via `[ Author: Name ]`, for example replacing `Name` with an author like `Terry Pratchett`, has an extremely significant impact on the writing style of the outputs. Depending on the author chosen, the tone and style of the story can be greatly benefitted. So far in testing, I have not seen actually story elements from the authors' own creations enter my stories when using this tool._
+
+### 4.2 Writing Styles
 
 _Update (June 29, 2021):_ Zaltys appears to recommend against using `Writing Style` or any variant thereof, due to the way that the data is organized. I will need to conduct testing to determine whether there is a better alternative way of having the same effect. `Tags:` and `Genre:` appear to be recommended. Zaltys suggests using generic terms and ideas like `robot` or `military` or `France` or `1600s`.
 
@@ -375,7 +400,14 @@ I previously recommended this style, which may still be useful to some:
 
 >`[ WritingStyle: grandiloquent, purple prose]`
 
-### 4.2 Genres, Themes, Etc.
+#### 4.2(a) Other Writing Style Application Methods
+
+The prefix terms `Writing Style` or `WritingStyle` are not necessarily confirmed to be the most effective ways of applying style to a story. Testing should be done on other terms, such as:
+- `Tone:`
+- `Style:`
+- `Focus:`
+
+### 4.3 Genres, Themes, Etc.
 
 Genres, like Writing Style, are added to the featherlite Author's Note, and may look like this:
 
@@ -387,23 +419,42 @@ Here are Genres, Themes, etc. which I have tested in NAI:
 
 > - `[ Genre: LITEROTICA ]` (_attributed to TravellingRobot's wiki_): when used in conjunction with the recommended writing style seems at least somewhat effective at making interesting outputs and keeping on track for NSFW-focussed stories. Further testing needed to determine magnitude of effect.
 
-### 4.3 Other Uses
-
-TBC
+Other terms of this type to be tested include:
+- `Plot`
+- `Scene`
+- `Focus`
 
 ----
 
 ## 5. Person Perspective
 
-It is confirmed that most of the training data uses first and third person, both of which are more effective than second person. 
+It is confirmed that most of the training data uses first and third person, both of which are more effective than second person. To confirm for anyone unaware of the terms, these are:
+- First Person: Use of "I," describing the narrative from your perspective.
+  - "I looked up at the mountain."
+- Second Person: Use of "you," describing the narrative from another person's perspective but referring to you.
+  - "You look up at the mountain."
+- Third Person: Use of "he/she/they," describing the narrative from the perspective of another person.
+  - "He looked up at the mountain."
 
-## 6. Other Testing
+Person perspective may be in either past or present tense. It is not clear which tense is preferable, but the AI may find past easier as most writing is done in past tense.
 
-### 6.1 Signposts
+## 6. Signposts
 
-#### 6.1(a) `***` Signpost
+Extensive testing of signposts has demonstrated that the creation of a "signpost," a forced active Lorebook entry with a group of characters inserted at a specific point to help draw or break the AI's attention, is quite useful. In particular, I recommend using `***`, which the AI knows to be a scene separator. Please see below for more information.
 
-_Updated (June 27, 2021):_ Follow-up testing of signposts has demonstrated that, in fact, `-4` may be a preferable insertion position for the signpost, which puts it right after the Author's Note. I will keep the below for now and will update to reflect that later. Please keep in mind while reading that `-4` is the recommendation, and not `-5`.
+### 6.1 `***` Signposts
+
+Currently, I recommend the placement of a signpost with the following settings:
+
+> Entry:
+> 
+> ```
+> 
+> ***
+> 
+> ```
+> Order: `-1000`<br>
+> Position: `-4`
 
 _Further Updated (June 27, 2021):_ Further testing of before-entries signposts has not yielded successful results. Noticed lowered cohesion and a general worsening of quality/creativity in the outputs. In addition, multiple signposts at varied locations in the context do not appear to have had a positive effect on outputs, with similar (although not as severe) impacts as before-entry signposts. May conduct further testing, but for now one signpost at `-5` and `-1000` appears to be preferable for recommended use.
 
@@ -430,7 +481,7 @@ I tested with a simple break test of `Detailed description of Vol: Vol is`, usin
 
 The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`). 
 
-#### 6.1(b) `***` In-Entry Signpost
+### 6.2 `***` In-Entry Signpost
 
 Benvolio mentioned that using `***` within an entry may show some initial promise, based off the use of in-entry signposts in AID, and I therefore decided to test. The method appears as:
 > `[ *** Name: entry information here ]`
@@ -439,21 +490,27 @@ Testing of this did not yield particularly helpful results. Major segments of th
 
 Benvolio confirmed that his own testing did not have successful results.
 
-#### 6.1(c) `<<•>>>` Signpost
+### 6.3 `<<•>>>` Signpost
 
 `<<•>>>` was developed by Monky as a signpost for use with EWIJSON in AI Dungeon. 
 
 Previously, tests using `<<•>>>` as a signpost was unsuccessful. Additional testing of it may be necessary, as there is a possibility that it was merely inserted into the incorrect position at the time.
 
-#### 6.1(d) `* * *` Signpost
+### 6.4 Other Signposts
+
+#### 6.4(a) `* * *` Signpost
+
+ `* * *` Signpost
 
 Recommended by Zaltys as a chapter separator included in training data.
 
-#### 6.1(e) `⁂` Signpost
+#### 6.4(b) `⁂` Signpost
 
 Recommended by Zaltys as a chapter separator included in training data.
 
-### 6.2 "Director" Entries
+## 7. Other Testing
+
+### 7.1 "Director" Entries
 
 There appears to be some potential benefit with "director" entries, which are short entries telling the AI what to do. These include things like:
 
@@ -467,11 +524,11 @@ Some people on NAI Discord report usefulness from this. In particular, the first
 
 Monky recommends `[ x is currently happening ]`.
 
-### 6.3 Scene Separators
+### 7.2 Scene Separators
 
 I have done some research on scene separators, and otherwise have tested other scene separators recommended on the NAI Discord.
 
-#### 6.3(a) Asterix Separator
+#### 7.2(a) Asterix Separator
 
 Asterix separators for scenes appears to be relatively powerful, especially combined with newlines. In break testing within an NSFW scene, inputting only a newline, `***`, another newline, and `Mark`, I was getting results such as:
 
@@ -485,7 +542,7 @@ Mark woke up the next morning feeling refreshed and rested. He felt like he had 
 
 An issue that may occur with adding newlines is that the AI may output newlines itself in future generations. Play testing will be necessary to see if this impact is too strong to recommend using `***`.
 
-#### 6.3(b) `<|endoftext|>` Separator
+#### 7.2(b) `<|endoftext|>` Separator
 
 I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success. 
 
@@ -493,7 +550,7 @@ I found that, although `<|endoftext|>` was generally successful at separating ou
 
 ----
 
-## 7. Character/Species "Generator"
+## 8. Character/Species "Generator"
 
 From lion:
 
@@ -514,7 +571,7 @@ From lion:
 
 ----
 
-## 8. Glossary
+## 9. Glossary
 
 This is a glossary of terms used and relied upon in this document. Please feel free to contact me on Discord if you feel a term could use further explanation or is missing from this glossary. I will be updating it on an ad hoc basis.
 
