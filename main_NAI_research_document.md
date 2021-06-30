@@ -8,8 +8,7 @@
 - [Format and Customization Research](#format-and-customization-research)
     - [Table of Contents](#table-of-contents)
   - [1. Lorebook Settings](#1-lorebook-settings)
-    - [1.1 Priority](#11-priority)
-    - [1.2 Insertion](#12-insertion)
+    - [1.1 Scaffolds and Recommended Settings](#11-scaffolds-and-recommended-settings)
   - [2. Format Testing](#2-format-testing)
     - [2.1 Featherlite](#21-featherlite)
       - [2.1(a) Featherlite Conversion (with examples)](#21a-featherlite-conversion-with-examples)
@@ -46,55 +45,87 @@
 </details>
 <br>
 
-As a former EWI AID user, finding the best formats to inject context and exploring the ability to inject items into specific places in the context are an important part of my NAI user experience. This page contains information I have learned through testing or the work of others. I will try to credit the original discoverer where possible. Please feel free to reach out on Discord (Kalmarr) if you believe credit is misattributed.
+Welcome to my Novel AI (NAI) primary research, testing, and information document. 
 
-Note that my preferred use case is detailed Lorebook Entries injected relatively close to the context. You can shift your use of `Insertion Position` to be similar to your use in EWI. I speak in further detail in the sections below. My use case is generally due to my preference to use non-human characters in my stories. I expect that simpler use cases with fewer unusual characters/attributes will probably behave better and without as much force.
+As introduction, this document contains a wide array of information relating to settings, lorebook structuring, and other key parts of manipulating NAI into generating outputs that are coherent, consistent, accurate, and enjoyable. This information comes from a variety of sources--people from the former #world-info community in AI Dungeon (AID), researchers in the NAI #community-research channel, and others. I will attribute ideas where possible. Please feel free to reach out to me on Discord (Kalmarr) if you feel anything is misattributed.
 
-Testing will not always be described in significant detail, e.g. always including percentage of success/failure for certain things. At this stage, my goal is to test general ways of improving output. I will generall try to describe the result in relative terms (clearer, more accurate, more creative, etc.), compared to other settings/entries. 
+Recommendations in this document may not work for everyone, but they should at least give you an insight into where you can start to use NAI's capabilities to suit your usage. Also--it is encouraged that you test things for yourself even if they did not necessarily work for me, as they could be useful for how you use the service.
 
-In general, the information will reflect the current highest Opus tier model (now v3 Sigurd) unless otherwise stated.
+My goal as a user of the service is to be able to provide a foundational structure of information guiding the AI into writing a story using my ideas and with as minimal guidance as possible. My goal is _not_ to have the AI write in my particular style, or to have it flesh out stories that I write mostly myself. If you are in the latter category, please keep that in mind as you use recommendations presented in this document.
+
+As a former user of EWIJSON (a powerful script) in AID, much of my perspective here is coloured by my preference to take a heavy hand with the AI. Some users may prefer to take a lighter approach. My usage is also coloured by my generally using non-human characters in my stories. I expect that simpler use cases with fewer unusual characters/attributes will probably behave well without brute force, especially in Sigurd v3.
+
+In general, the information will reflect the current highest Opus tier model (*now Sigurd v3*) unless otherwise stated.
+
+Finally, please note that my testing will not be described in granular detail, e.g. always including rates of success/failure or numbers of generations. At this stage, I am qualitativly testing using dozens of outputs in comparable situations to determine whether output appears to be improved. How often I feel the need to retry an output, for example, is a metric I use. I will try to describe results in relative terms (clearer, more accurate, more creative, etc.) when compared to other settings/entries.
+
+Happy writing!
+
+~Kalmarr
 
 ----
 
 ## 1. Lorebook Settings
 
-The Lorebook has incredibly helpful settings for use in context injection. It is extremely customizable. These are the settings I have found to be the most useful and why. I also address some testing completed.
+Please jump to [section 1.1](#11-scaffolds-and-recommended-settings) for recommended settings if you wish to skip the explainer.
 
-The primary useful settings to change in Lorebook entries are `Priority` and `Insertion`. The other settings may be referenced in other areas of this guide, or in more detail in the future.
+The Lorebook is the system that you will primarily use to tell the AI what you want it to remember and focus on as it writes. It provides guidance that assists the AI with remembering character traits, locations, concepts, and many other things. In NAI, the Lorebook has incredibly helpful settings that allow users to give very specific instructions to where in the context an entry should be "injected" (i.e. added behind the scenes). Generally, the closer to the context, the easier it is for the AI to remember and pull from.
 
-- `Priority` refers to, essentially, the order in which types of context are built in the overall context. The lower the number as an integer (`-700` as an example), the closer to input the priority type is injected into the context. The number is, in essence, completely arbitrary and used as the basis of entries' relative position to each other.
-- `Insertion` is what occurs after the entries are sorted by priority, and refers to how many lines/sentences/tokens (depending on settings chosen) the entries is moved from its position in the context. In the example of an Author's Note set to have `-800` priority ("highest" priority) and `-4` insertion, the AN will be placed 3 new lines from the bottom of the context. A positive insertion value will push the entry down in the context.
-  - Positive insertion value remains, to my knowledge, untested. It remains to be seen whether there is potential use for that.
+The most useful settings in the Lorebook (under *show advanced settings*) are:
 
-### 1.1 Priority
+- `Insertion Order:` formerly called Priority, `Order` refers to, essentially, the order in which types of context are built in the overall context. The lower the number as an integer (`-700` as an example), the closer to input the order type is injected into the context. The number is, in essence, completely arbitrary and used as the basis of entries' relative position to each other. There is a current trend towards changing all numbers to positive ones, likely for ease of use.
+- `Insertion Position:` `Position` is what occurs after the entries are sorted by `Order`, and refers to how many lines/sentences/tokens (depending on settings chosen) the entries are moved from their position in the context. In the example of an Author's Note set to have `-800` priority (in this hypothetical, the "highest" priority) and `-4` insertion, the AN will be placed 3 new lines from the bottom of the context.
+  -  A positive `Position` value will push the entry down in the context. A positive value remains, to my knowledge, untested. It remains to be seen whether there is potential use for that.
 
-I have updated my suggestion to use `-200` for `Priority`. Instead, I recommend the following, proposed by OPVAM (and updated June 21):
+There is an important reason that we want to manipulate the Lorebook and Advanced Context settings.
 
-| Position | Priority | Reserve | Type                                    |
-| -------- | -------- | ------- | --------------------------------------- |
-| -12      | -100     | 200     | Memory                                  |
-| -10      | -200     | 100     | Lore: Concepts                          |
-| -10      | -300     | 100     | Lore: Races                             |
-| -10      | -400     | 100     | Lore: Places                            |
-| -10      | -500     | 100     | Lore: Factions                          |
-| -8       | -600     | 200     | Lore: Story Overview (forced active)    |
-| -7       | -650     | 200     | Lore: Irregular Races (Kalmarr addition)|
-| -6       | -700     | 100     | Lore: Characters                        |
-| -4       | -800     | 200     | Author's Note                           |
-| -4       | -1000    | 3       | Signpost (Kalmarr addition)             |
-| 0        | 0        | 512     | Story                                   |
+**INSERTION ORDER:**
+
+From NAI:
+
+> [Insertion Order is] ordered by priority before context is built. Entries with higher [Order] will reserve and use tokens first. If two entries share the same [Order] there is no guarantee which will go first.
+
+In the default Advanced Context Menu, the `Order` for `Story`, `Author's Note`, and `Memory` are:
+
+>| Type           | Value |
+>| -------------- | ----- |
+>| Memory         | 800   |
+>| Story          | 0     |
+>| Author's Notes | -400  |
+
+In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Order` setting of 400 for Lorebook entries, the result puts entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context and more difficult characters and concepts can be lost. 
+
+At the beginning, OPVAM suggested that `Order` for Lorebook Entries should be set to `0` to avoid placing them in the back of the context with `Memory`. Upon testing, `0` worked. However, there was a side effect. Due to `0` being the same `Priority` as `Story`, I found that sometimes the `Story` and Entries would conflict with where they entered the context. Some generations would put all of the Entries at the very front, literally in front of the output. Others would split an output into two and put them in different parts of the context.
+
+My original solution to this problem was to set the `Order` to `-200.` This placed the entries essentially where directed by the `Position` setting, as it sets entries to a higher priority than `Story` or `Memory`. However, it was limited in effectiveness as it was difficult to control where context items were put into context. From there, OPVAM developed the settings scaffolds referred to in the next section.
+
+**INSERTION POSITION:**
+
+From NAI:
+
+> The location the entry will be inserted into the context. 0 is the very top of the context, 1 is one unit down, 2 is two units down etc. Negative numbers will count from the bottom of the context starting with -1 at the very bottom, making -2 one unit up, -3 two units up etc.
+
+Default `Position` settings for `Story`, `Author Note`, and `Memory` are as follows:
+
+>| Type           | Value |
+>| -------------- | ----- |
+>| Memory         | 0     |
+>| Story          | -1    |
+>| Author's Notes | -4    |
+
+ `Position` setting for entries is similar to usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make aim to make similar entry in NAI with `Insertion: -9`.
 
 
-From OPVAM (_New from June 22, 2021_):
-> Pretty much breaking your author's notes into 2 parts.  Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story.  For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting.  Genre: action] then change it to [ Genre: romance.] or something like that.
+There is not a significant comment relative to insertion, beside two main things:
 
-Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs.
+- It is not clear whether insertion for non-Story items closer than `-4` is particularly helpful, and may in fact damage coherence. Further testing is needed to determine whether that is a hard limit.
+- There is a clear correlation between entries being closer to context and the AI's understanding and incorporation of those entries into the story. Keep that in mind as you tinker settings to your liking.
 
-I will be working with priority/insertion as part of testing for Featherlite, and may deviate from this system. I will include that information under my testing for featherlite. see [Rinter's featherlite wiki](https://github.com/RinterWaptor/NAI-research/wiki/Featherlite).
+### 1.1 Scaffolds and Recommended Settings
 
-_Update (June 24, 2021):_ Changing insertion/priority under featherlite appears to be unnecessary in my use case (non-human non-standard race and characters). These settings appear to be very effective. I have seen another scaffolding method proposed by Fuzzy which I will review, but am otherwise not likely to experiment further on my own in the near future.
+Scaffolds are simply groups of settings, usually represented in table form, which detail values recommended for each setting in the Lorebook and Advanced Context Settings. Scaffolds will be used in this document to convey settings that may be useful for readers.
 
-_Update (June 30, 2021):_ OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
+OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
 
 __ADVANCED CONTEXT SETTINGS__
 
@@ -103,6 +134,10 @@ __ADVANCED CONTEXT SETTINGS__
 | Story         | 0        | 0     | 512     | Newline        | These are default settings |
 | Memory        | -1       | 100   | 512     | Newline        |                            |
 | Author's Note | -4       | -800  | 512     | Newline        |                            |
+
+> **Memory**: Used during playthrough to keep a running summary of the "Story so far". Has a light effect on AI output as it is far from the front/bottom of context. Should be ***intermittently*** updated with story highlights.
+>
+> **Author's Note**: Used to control the flow of the current scene. Position is at -4 from the front/bottom of context, so has a strong effect on output. Should be ***regularly*** updated as the scene changes.
 
 __LOREBOOK CREATION SETTINGS__
 
@@ -116,40 +151,42 @@ __LOREBOOK CREATION SETTINGS__
 | Brace     | -8       | -400  | 200     | -            | (Multiple)       |
 | Synopsis  | -8       | -500  | 200     | -            | (Single, Forced) |
 | Pillar    | -4       | -600  | 200     | -            | (Multiple)       |
+| Signpost  | -4       | -700  | 3       | -            | (Single, Forced) - Kalmarr addition
 
+From OPVAM:
 
-**Older information:**
+>**Synopsis**: Used as an Author's Note that describes the story as a whole. Use tags like Genre, Themes, Setting etc. Previously called "Editor's Note".
+>
+>**Brace**: Any supporting information for concept/faction/species/place/char entries. A brace is typically used to reinforce an idea or concept that the AI has trouble remembering. Can also be used to emphasize important information, ie character/species appearance, worn clothing and motive. Also should be used to describe relationships.
+>
+>**Pillar**: Same idea as a brace, but much closer to the front/bottom of context for crucial information that needs to be highly emphasized.
+>
+>**Notes**: Recommended search ranges have been provided, but it's really something that needs to be treated on a case-by-case basis. For lore with keys that are hard to trigger (or don't trigger often) you may want to increase your search range to ensure the lore stays in context for a longer period of time after each mention.
 
-From NAI:
+I am currently testing the new scaffolds proposed by OPVAM and will report the results as well as any recommended changes. 
 
-> Priority Entries are ordered by priority before context is built. Entries with higher priority will reserve and use tokens first. If two entries share the same priority there is no guarantee which will go first.
+I previously recommended the below scaffold, also by OPVAM. It will likely still be very useful, and is recommended for anyone who wants to use a system that has been shown to work well.
 
-In the default Advanced Context Menu, the `Priority` for `Story`, `Author's Note`, and `Memory` are:
-> **Story:** 0<br/>**Author's Notes:** -400<br/>**Memory:** 800
+**OPVAM ORIGINAL LOREBOOK SCAFFOLD**
 
-In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Priority` setting of 400 for Entries, the result puts Entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context.
+| Position | Order    | Reserve | Type                                    |
+| -------- | -------- | ------- | --------------------------------------- |
+| -12      | -100     | 200     | Memory                                  |
+| -10      | -200     | 100     | Lore: Concepts                          |
+| -10      | -300     | 100     | Lore: Races                             |
+| -10      | -400     | 100     | Lore: Places                            |
+| -10      | -500     | 100     | Lore: Factions                          |
+| -8       | -600     | 200     | Lore: Story Overview (forced active)    |
+| -7       | -650     | 200     | Lore: Irregular Races (Kalmarr addition)|
+| -6       | -700     | 100     | Lore: Characters                        |
+| -4       | -800     | 200     | Author's Note                           |
+| -4       | -1000    | 3       | Signpost (Kalmarr addition)             |
+| 0        | 0        | 512     | Story                                   |
 
-OPVAM suggested that `Priority` for Lorebook Entries should be set to `0` to avoid placing them in the back of the context with `Memory`. Upon testing, `0` worked. However, there was a side effect. Due to `0` being the same `Priority` as `Story`, I found that sometimes the `Story` and Entries would conflict with where they entered the context. Some generations would put all of the Entries at the very front, literally in front of the output. Others would split an output into two and put them in different parts of the context.
+From OPVAM:
+> Pretty much breaking your author's notes into 2 parts.  Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story.  For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting.  Genre: action] then change it to [ Genre: romance.] or something like that.
 
-My solution to this problem was to set the `Priority` to `-200.` This places the entries essentially where directed by the `Injection` setting, as it sets Entries to a higher priority than `Story` or `Memory`.
-
-### 1.2 Insertion
-
- `Insertion` setting for entries is similar to usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make a similar entry in NAI with `Insertion: -9`.
-
- My recommended insertion settings are above, under OPVAM's general lorebook settings.
-
-From NAI:
-
-> The location the entry will be inserted into the context. 0 is the very top of the context, 1 is one unit down, 2 is two units down etc. Negative numbers will count from the bottom of the context starting with -1 at the very bottom, making -2 one unit up, -3 two units up etc.
-
-Default `Insertion` settings for `Story`, `Author Note`, and `Memory` are as follows:
-
-> - **Story:** -1
-> - **Author Note:** -4
-> - **Memory:** 0
-
-_To be expanded on later._
+Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I used this method consistently since it was recommended, to great effect. My entries were referenced consistently and accurately by the AI. 
 
 ----
 
