@@ -151,7 +151,7 @@ __LOREBOOK CREATION SETTINGS__
 | Brace     | -8       | -400  | 200     | -            | (Multiple)       |
 | Synopsis  | -8       | -500  | 200     | -            | (Single, Forced) |
 | Pillar    | -4       | -600  | 200     | -            | (Multiple)       |
-| Signpost  | -4       | -700  | 3       | -            | (Single, Forced) - Kalmarr addition
+| Signpost  | -4       | -1000 | 3       | -            | (Single, Forced) - Kalmarr addition
 
 From OPVAM:
 
