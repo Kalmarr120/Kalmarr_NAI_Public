@@ -45,25 +45,23 @@
 </details>
 <br>
 
-Welcome to my Novel AI (NAI) primary research, testing, and information document. 
+Welcome to my Novel AI (NAI) primary research, testing, and information document.
 
-As introduction, this document contains a wide array of information relating to settings, lorebook structuring, and other key parts of manipulating NAI into generating outputs that are coherent, consistent, accurate, and enjoyable. This information comes from a variety of sources--people from the former #world-info community in AI Dungeon (AID), researchers in the NAI #community-research channel, and others. I will attribute ideas where possible. Please feel free to reach out to me on Discord (Kalmarr) if you feel anything is misattributed.
+As an introduction, this document contains an array of information relating to settings, lorebook structuring, and other key parts of manipulating NAI into generating outputs that are rational, consistent, accurate, and enjoyable. This information comes from a variety of sources—people from the former #world-info community in AI Dungeon (AID), researchers in the NAI #community-research channel, and others. I will attribute ideas where possible. Please reach out to me on Discord (Kalmarr) if you believe anything is mis-attributed.
 
-Recommendations in this document may not work for everyone, but they should at least give you an insight into where you can start to use NAI's capabilities to suit your usage. Also--it is encouraged that you test things for yourself even if they did not necessarily work for me, as they could be useful for how you use the service.
+Recommendations in this document may not work for everyone, but they should at least give you an insight into where you can use NAI’s capabilities to suit your usage. I encourage you to test things even if they did not work for me. They could be useful for how you use the service.
 
-My goal as a user of the service is to be able to provide a foundational structure of information guiding the AI into writing a story using my ideas and with as minimal guidance as possible. My goal is _not_ to have the AI write in my particular style, or to have it flesh out stories that I write mostly myself. If you are in the latter category, please keep that in mind as you use recommendations presented in this document.
+As a user of the service, my goal is to provide a foundational structure of information guiding the AI into writing a story using my ideas and with as minimal guidance as possible. My goal is _not_ to have the AI write in my particular style, or to have it flesh out stories I write myself. If you are in the latter category, please keep that in mind as you use recommendations presented in this document. As a former user of EWIJSON (a powerful script) in AID, my preference colours much of my perspective here, encouraging me to take a heavy hand with the AI. Some users may prefer to take a lighter approach. My use of non-human characters in my stories also colours my preferences. I expect simpler use cases with fewer unusual characters/attributes will presumably behave well without brute force, particularly in Sigurd v3.
 
-As a former user of EWIJSON (a powerful script) in AID, much of my perspective here is coloured by my preference to take a heavy hand with the AI. Some users may prefer to take a lighter approach. My usage is also coloured by my generally using non-human characters in my stories. I expect that simpler use cases with fewer unusual characters/attributes will probably behave well without brute force, especially in Sigurd v3.
+The information will reflect the current highest Opus tier model (_now Sigurd v3_) unless otherwise stated.
 
-In general, the information will reflect the current highest Opus tier model (*now Sigurd v3*) unless otherwise stated.
-
-Finally, please note that my testing will not be described in granular detail, e.g. always including rates of success/failure or numbers of generations. At this stage, I am qualitativly testing using dozens of outputs in comparable situations to determine whether output appears to be improved. How often I feel the need to retry an output, for example, is a metric I use. I will try to describe results in relative terms (clearer, more accurate, more creative, etc.) when compared to other settings/entries.
+Please note that I will not describe my testing in granular detail, e.g. always including rates of success/failure or numbers of generations. At this stage, I am testing using dozens of outputs in comparable situations to determine whether output appears to be improved. For example, how often I see the need to retry an output is a helpful metric. I will try to describe results in relative terms (clearer, more accurate, more creative, etc.) when compared to other settings/entries.
 
 Happy writing!
 
 ~Kalmarr
 
-----
+---
 
 ## 1. Lorebook Settings
 
@@ -71,11 +69,11 @@ Please jump to [section 1.1](#11-scaffolds-and-recommended-settings) for recomme
 
 The Lorebook is the system that you will primarily use to tell the AI what you want it to remember and focus on as it writes. It provides guidance that assists the AI with remembering character traits, locations, concepts, and many other things. In NAI, the Lorebook has incredibly helpful settings that allow users to give very specific instructions to where in the context an entry should be "injected" (i.e. added behind the scenes). Generally, the closer to the context, the easier it is for the AI to remember and pull from.
 
-The most useful settings in the Lorebook (under *show advanced settings*) are:
+The most useful settings in the Lorebook (under _show advanced settings_) are:
 
 - `Insertion Order:` formerly called Priority, `Order` refers to, essentially, the order in which types of context are built in the overall context. The lower the number as an integer (`-700` as an example), the closer to input the order type is injected into the context. The number is, in essence, completely arbitrary and used as the basis of entries' relative position to each other. There is a current trend towards changing all numbers to positive ones, likely for ease of use.
 - `Insertion Position:` `Position` is what occurs after the entries are sorted by `Order`, and refers to how many lines/sentences/tokens (depending on settings chosen) the entries are moved from their position in the context. In the example of an Author's Note set to have `-800` priority (in this hypothetical, the "highest" priority) and `-4` insertion, the AN will be placed 3 new lines from the bottom of the context.
-  -  A positive `Position` value will push the entry down in the context. A positive value remains, to my knowledge, untested. It remains to be seen whether there is potential use for that.
+  - A positive `Position` value will push the entry down in the context. A positive value remains, to my knowledge, untested. It remains to be seen whether there is potential use for that.
 
 There is an important reason that we want to manipulate the Lorebook and Advanced Context settings.
 
@@ -87,13 +85,13 @@ From NAI:
 
 In the default Advanced Context Menu, the `Order` for `Story`, `Author's Note`, and `Memory` are:
 
->| Type           | Value |
->| -------------- | ----- |
->| Memory         | 800   |
->| Story          | 0     |
->| Author's Notes | -400  |
+> | Type           | Value |
+> | -------------- | ----- |
+> | Memory         | 800   |
+> | Story          | 0     |
+> | Author's Notes | -400  |
 
-In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Order` setting of 400 for Lorebook entries, the result puts entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context and more difficult characters and concepts can be lost. 
+In practice, this means that `Author's Note` is placed at the front, then `Story`, then `Memory`. With the default `Order` setting of 400 for Lorebook entries, the result puts entries at the very back just in front of `Memory`. This leads to an especially problematic scenario when the higher tier `2048` tokens of mostly story overwhelms the context and more difficult characters and concepts can be lost.
 
 At the beginning, OPVAM suggested that `Order` for Lorebook Entries should be set to `0` to avoid placing them in the back of the context with `Memory`. Upon testing, `0` worked. However, there was a side effect. Due to `0` being the same `Priority` as `Story`, I found that sometimes the `Story` and Entries would conflict with where they entered the context. Some generations would put all of the Entries at the very front, literally in front of the output. Others would split an output into two and put them in different parts of the context.
 
@@ -107,14 +105,13 @@ From NAI:
 
 Default `Position` settings for `Story`, `Author Note`, and `Memory` are as follows:
 
->| Type           | Value |
->| -------------- | ----- |
->| Memory         | 0     |
->| Story          | -1    |
->| Author's Notes | -4    |
+> | Type           | Value |
+> | -------------- | ----- |
+> | Memory         | 0     |
+> | Story          | -1    |
+> | Author's Notes | -4    |
 
- `Position` setting for entries is similar to usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make aim to make similar entry in NAI with `Insertion: -9`.
-
+`Position` setting for entries is similar to usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make aim to make similar entry in NAI with `Insertion: -9`.
 
 There is not a significant comment relative to insertion, beside two main things:
 
@@ -127,76 +124,77 @@ Scaffolds are simply groups of settings, usually represented in table form, whic
 
 OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
 
-__ADVANCED CONTEXT SETTINGS__
+**ADVANCED CONTEXT SETTINGS**
 
-| Name          | Position | Order | Reserve | Insertion Type | Notes                      |       
-| ------------- | :------: | :---: | :-----: | -------------- | -------------------------- | 
-| Story         | 0        | 0     | 512     | Newline        | These are default settings |
-| Memory        | -1       | 100   | 512     | Newline        |                            |
-| Author's Note | -4       | -800  | 512     | Newline        |                            |
+| Name          | Position | Order | Reserve | Insertion Type | Notes                      |
+| ------------- | :------: | :---: | :-----: | -------------- | -------------------------- |
+| Story         |    0     |   0   |   512   | Newline        | These are default settings |
+| Memory        |    -1    |  100  |   512   | Newline        |                            |
+| Author's Note |    -4    | -800  |   512   | Newline        |                            |
 
-> **Memory**: Used during playthrough to keep a running summary of the "Story so far". Has a light effect on AI output as it is far from the front/bottom of context. Should be ***intermittently*** updated with story highlights.
+> **Memory**: Used during playthrough to keep a running summary of the "Story so far". Has a light effect on AI output as it is far from the front/bottom of context. Should be **_intermittently_** updated with story highlights.
 >
-> **Author's Note**: Used to control the flow of the current scene. Position is at -4 from the front/bottom of context, so has a strong effect on output. Should be ***regularly*** updated as the scene changes.
+> **Author's Note**: Used to control the flow of the current scene. Position is at -4 from the front/bottom of context, so has a strong effect on output. Should be **_regularly_** updated as the scene changes.
 
-__LOREBOOK CREATION SETTINGS__
+**LOREBOOK CREATION SETTINGS**
 
-| Name      | Position | Order | Reserve | Search Range | Notes            |
-| --------- | :------: | :---: | :-----: | :----------: | ---------------- |
-| Concept   | -1       | 800   | 0       | 2000         | (Multiple)       |
-| Faction   | -1       | 700   | 0       | 5000         | (Multiple)       |
-| Species   | -1       | 600   | 0       | 2000         | (Multiple)       |
-| Place     | -1       | 500   | 0       | 3000         | (Multiple)       |
-| Character | -1       | 400   | 200     | 2000         | (Multiple)       |
-| Brace     | -8       | -400  | 200     | -            | (Multiple)       |
-| Synopsis  | -8       | -500  | 200     | -            | (Single, Forced) |
-| Pillar    | -4       | -600  | 200     | -            | (Multiple)       |
-| Signpost  | -4       | -1000 | 3       | -            | (Single, Forced) - Kalmarr addition
+| Name      | Position | Order | Reserve | Search Range | Notes                               |
+| --------- | :------: | :---: | :-----: | :----------: | ----------------------------------- |
+| Concept   |    -1    |  800  |    0    |     2000     | (Multiple)                          |
+| Faction   |    -1    |  700  |    0    |     5000     | (Multiple)                          |
+| Species   |    -1    |  600  |    0    |     2000     | (Multiple)                          |
+| Place     |    -1    |  500  |    0    |     3000     | (Multiple)                          |
+| Character |    -1    |  400  |   200   |     2000     | (Multiple)                          |
+| Brace     |    -8    | -400  |   200   |      -       | (Multiple)                          |
+| Synopsis  |    -8    | -500  |   200   |      -       | (Single, Forced)                    |
+| Pillar    |    -4    | -600  |   200   |      -       | (Multiple)                          |
+| Signpost  |    -4    | -1000 |    3    |      -       | (Single, Forced) - Kalmarr addition |
 
 From OPVAM:
 
->**Synopsis**: Used as an Author's Note that describes the story as a whole. Use tags like Genre, Themes, Setting etc. Previously called "Editor's Note".
+> **Synopsis**: Used as an Author's Note that describes the story as a whole. Use tags like Genre, Themes, Setting etc. Previously called "Editor's Note".
 >
->**Brace**: Any supporting information for concept/faction/species/place/char entries. A brace is typically used to reinforce an idea or concept that the AI has trouble remembering. Can also be used to emphasize important information, ie character/species appearance, worn clothing and motive. Also should be used to describe relationships.
+> **Brace**: Any supporting information for concept/faction/species/place/char entries. A brace is typically used to reinforce an idea or concept that the AI has trouble remembering. Can also be used to emphasize important information, ie character/species appearance, worn clothing and motive. Also should be used to describe relationships.
 >
->**Pillar**: Same idea as a brace, but much closer to the front/bottom of context for crucial information that needs to be highly emphasized.
+> **Pillar**: Same idea as a brace, but much closer to the front/bottom of context for crucial information that needs to be highly emphasized.
 >
->**Notes**: Recommended search ranges have been provided, but it's really something that needs to be treated on a case-by-case basis. For lore with keys that are hard to trigger (or don't trigger often) you may want to increase your search range to ensure the lore stays in context for a longer period of time after each mention.
+> **Notes**: Recommended search ranges have been provided, but it's really something that needs to be treated on a case-by-case basis. For lore with keys that are hard to trigger (or don't trigger often) you may want to increase your search range to ensure the lore stays in context for a longer period of time after each mention.
 
-I am currently testing the new scaffolds proposed by OPVAM and will report the results as well as any recommended changes. 
+I am currently testing the new scaffolds proposed by OPVAM and will report the results as well as any recommended changes.
 
 I previously recommended the below scaffold, also by OPVAM. It will likely still be very useful, and is recommended for anyone who wants to use a system that has been shown to work well.
 
 **OPVAM ORIGINAL LOREBOOK SCAFFOLD**
 
-| Position | Order    | Reserve | Type                                    |
-| -------- | -------- | ------- | --------------------------------------- |
-| -12      | -100     | 200     | Memory                                  |
-| -10      | -200     | 100     | Lore: Concepts                          |
-| -10      | -300     | 100     | Lore: Races                             |
-| -10      | -400     | 100     | Lore: Places                            |
-| -10      | -500     | 100     | Lore: Factions                          |
-| -8       | -600     | 200     | Lore: Story Overview (forced active)    |
-| -7       | -650     | 200     | Lore: Irregular Races (Kalmarr addition)|
-| -6       | -700     | 100     | Lore: Characters                        |
-| -4       | -800     | 200     | Author's Note                           |
-| -4       | -1000    | 3       | Signpost (Kalmarr addition)             |
-| 0        | 0        | 512     | Story                                   |
+| Position | Order | Reserve | Type                                     |
+| -------- | ----- | ------- | ---------------------------------------- |
+| -12      | -100  | 200     | Memory                                   |
+| -10      | -200  | 100     | Lore: Concepts                           |
+| -10      | -300  | 100     | Lore: Races                              |
+| -10      | -400  | 100     | Lore: Places                             |
+| -10      | -500  | 100     | Lore: Factions                           |
+| -8       | -600  | 200     | Lore: Story Overview (forced active)     |
+| -7       | -650  | 200     | Lore: Irregular Races (Kalmarr addition) |
+| -6       | -700  | 100     | Lore: Characters                         |
+| -4       | -800  | 200     | Author's Note                            |
+| -4       | -1000 | 3       | Signpost (Kalmarr addition)              |
+| 0        | 0     | 512     | Story                                    |
 
 From OPVAM:
-> Pretty much breaking your author's notes into 2 parts.  Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story.  For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting.  Genre: action] then change it to [ Genre: romance.] or something like that.
 
-Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I used this method consistently since it was recommended, to great effect. My entries were referenced consistently and accurately by the AI. 
+> Pretty much breaking your author's notes into 2 parts. Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story. For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting. Genre: action] then change it to [ Genre: romance.] or something like that.
 
-----
+Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I used this method consistently since it was recommended, to great effect. My entries were referenced consistently and accurately by the AI.
+
+---
 
 ## 2. Lorebook Application (AKA Formatting)
 
-The Lorebook is an incredibly useful function, that can be applied in an almost absurd number of ways. Combined with different Generation Settings, Advanced Context settings, etc., it is every difficult to properly qualify what the *best* way of using Lorebooks is. The recommendations I make in this document work for me in my use case. If they do not work for you, you may need to try to change certain aspects to better fit yours.
+The Lorebook is an incredibly useful function, that can be applied in an almost absurd number of ways. Combined with different Generation Settings, Advanced Context settings, etc., it is very difficult to qualify what the _best_ way of using Lorebooks is. The recommendations I make in this document work for me in my use case. If they do not work for you, you may need to change certain aspects to better fit yours.
 
-Formatting refers, simply, to the syntax one can use in their Lorebook to draft entries in such a way that the AI is able to understand and apply the contents of entries to the Story. Formats have many forms, but they range from straight descriptive or flowing prose entries (just written normally) or using complicated syntax such as the `{`, `[`, `"` etc. of JSON. Your preference for format may depend on how easy to use you want it to be, how accurate, whether you want the AI to rely on your personal writing style, and other things. Each format has advantages and disadvantages.
+Formatting refers, simply, to the syntax one can use in their Lorebook to draft entries in such a way that the AI can understand and apply the contents of entries to the Story. Formats have many forms, but they range from straight descriptive or flowing prose entries (just written normally) or using complicated syntax such as the `{`, `[`, `"` of JSON. Your preference for format may depend on how easy to use you want it to be, how accurate, whether you want the AI to rely on your personal writing style, and other things. 
 
-I will not discourage anyone from using any format that works for them.
+Each format has advantages and disadvantages. I will not discourage anyone from using any format that works for them. 
 
 Current formats addressed in this document, or that I intend to address, and which are not inclusive of all those discussed in the NAI Discord or other places, are:
 
@@ -209,10 +207,9 @@ Current formats addressed in this document, or that I intend to address, and whi
 - regular prose
   - Prose without encapsulation of any kind.
 - JSON
-  - Syntax-heavy format in style of JSON code: `[{"Entryname":{"key":"value","key1":"value1"}}]`. JSON should be minified using JSONmate or another resource. 
+  - Syntax-heavy format in style of JSON code: `[{"Entryname":{"key":"value","key1":"value1"}}]`. JSON should be minified using JSONmate or another resource.
 
 Monky suggested that keeping lines to 18 tokens then separating new lines seems to work well. I confirmed that 18 tokens or less for new lines appears to have a positive effect on entries, at least using caveman and featherlite formatting. Reinforcing entries with names on each line is important, and in entries with pronouns appears to help.
-
 
 I am currently using the featherlite format.
 
@@ -240,15 +237,13 @@ _This section is a work in progress, and will be continually updated._
 
 > Mark (main character of many of my stories):
 >
->> `[ Mark: male wolfkin lean He kind joyful ]`<br>
->> `[ Mark: Blackfur muzzle He bestfriendVol ]`
+> > `[ Mark: male wolfkin lean He kind joyful ]`<br> `[ Mark: Blackfur muzzle He bestfriendVol ]`
 
 **RACES**
 
 > Wolfkin (primary race in most of my stories):
 >
->> `[ wolfkin: caninebody digitigrade Beastkin they muzzle ]`<br>
->> `[ wolfkin behavior: expressivetail&ears They friendly peaceful ]` 
+> > `[ wolfkin: caninebody digitigrade Beastkin they muzzle ]`<br> `[ wolfkin behavior: expressivetail&ears They friendly peaceful ]`
 
 #### 2.1(c) Featherlite Conversion from AID (with examples)
 
@@ -258,15 +253,13 @@ Following Rinter's new guidelines for Featherlite in NAI, I converted my entries
 
 The conversion primarily deals with replacing `•` as preceding syntax, and replacing it with `[ ]` incapsulation. In addition, terms that do not have a significant relation (unlike, for example, hair and hair colour), are separated. Word smashing is kept for related terms in order to potentially maintain their association.
 
->_My wolfkin race, in AID Featherlite (`EWIJSON`):_
+> _My wolfkin race, in AID Featherlite (`EWIJSON`):_
 >
-> > `•define wolfkin: Lupinebody muzzleBeastkinThey peaceful tribal` \\`[p=5]`<br>
-> > `•wolfkin behavior: expressivetail&ears They friendlyopen` \\ `[p=5]`
+> > `•define wolfkin: Lupinebody muzzleBeastkinThey peaceful tribal` \\`[p=5]`<br> `•wolfkin behavior: expressivetail&ears They friendlyopen` \\ `[p=5]`
 >
->_Converted to NAI Featherlite (`OPVAM race insertion`):_
+> _Converted to NAI Featherlite (`OPVAM race insertion`):_
 >
-> > `[ wolfkin: Lupinebody muzzle Beastkin They peaceful tribal ]`<br>
-> > `[ wolfkin behavior: expressivetail&ears They friendly open ]`
+> > `[ wolfkin: Lupinebody muzzle Beastkin They peaceful tribal ]`<br> `[ wolfkin behavior: expressivetail&ears They friendly open ]`
 >
 > Applying the principles of new Featherlite, the conversion is minor in this case:
 >
@@ -280,23 +273,22 @@ The conversion primarily deals with replacing `•` as preceding syntax, and rep
 
 To use another example, here is a character entry based on that race:
 
->Mark, a wolfkin character, in AID Featherlite:
+> Mark, a wolfkin character, in AID Featherlite:
 >
-> >`• Mark:30♂︎wolfkin lean Hekind joyful` \\ [p=1]<br>
-> >`• Mark:Blackfur,White-spot tail,leftearscarHefriendVol` \\ [p=3]
+> > `• Mark:30♂︎wolfkin lean Hekind joyful` \\ [p=1]<br> `• Mark:Blackfur,White-spot tail,leftearscarHefriendVol` \\ [p=3]
 >
 > _Converted to NAI Featherlite:_
-> >`[ Mark: 30 male wolfkin lean He kind joyful]`<br>
-> >`[ Mark: Blackfur, White-spot tail, leftearscar He friend Vol]`
 >
->The conversion in this case should be a bit more of an obvious example of the new principles.
+> > `[ Mark: 30 male wolfkin lean He kind joyful]`<br> `[ Mark: Blackfur, White-spot tail, leftearscar He friend Vol]`
+>
+> The conversion in this case should be a bit more of an obvious example of the new principles.
 >
 > > - `•` encapsulation is removed and replaced with `[ ]`.
 > > - `♂︎` is removed, and replaced with `male`. It is unclear if NAI is able to properly understand and use `♂︎` in the context of this format.
 > > - `30`, `male`, and `wolfkin` are broken out into their own words, as they are not associated.
 > > - `kind` is broken off from `He`, as they are not associated.
 > > - `Blackfur` remains smashed in order to maintain their association.
-> > - `leftearscar` is broken off into its own word, as the association is >a scar on his left ear.
+> > - `leftearscar` is broken off into its own word, as the association is a scar on his left ear.
 > > - `He`, `friend`, and `Vol` are broken into separate words.
 
 ### 2.2 Current Format Testing To-Do
@@ -311,7 +303,7 @@ I will be testing these formats in their regular style (i.e. with all encapculat
 
 This format appears to work well with caveman/concise prose, and is recommended for users who do not want to fuss with the intricacies of the featherlite format. An example would be:
 
->`[ Mark age 30 male human knight He strong]`
+> `[ Mark age 30 male human knight He strong]`
 
 Further testing is needed to see how this format behaves with the current recommended settings/Lorebook setup.
 
@@ -333,15 +325,15 @@ I have been working on finding ideal settings for many of the methods used in th
 
 **KALMARR SETTINGS**
 
->| Setting                  | Value     | Notes       |
->| :----------------------- | :-------: | :---------: |
->| Randomness               | 0.6 - 0.7 | -           |
->| Top-K Sampling           | Disabled  | Default on  |
->| Nucleus Sampling         | Disabled  | Default on  |
->| Tail Free Sampling       | 0.5 - 0.9 | Default off |
->| Repetition Penalty       | 2.8       | Old default |
->| Repetition Penalty Range | 512       | Old default |
->| Repetition Penalty Slope | 3.33      | Old default |
+> | Setting                  |   Value   |    Notes    |
+> | :----------------------- | :-------: | :---------: |
+> | Randomness               | 0.6 - 0.7 |      -      |
+> | Top-K Sampling           | Disabled  | Default on  |
+> | Nucleus Sampling         | Disabled  | Default on  |
+> | Tail Free Sampling       | 0.5 - 0.9 | Default off |
+> | Repetition Penalty       |    2.8    | Old default |
+> | Repetition Penalty Range |    512    | Old default |
+> | Repetition Penalty Slope |   3.33    | Old default |
 
 Some combination of high Tail Free Sampling (TFS) and low randomness appears to be a good combination for higher quality outputs. Rinter has recommended using `.55` randomness and `.995` TFS. I will test this as well, and post the result. The recommendation chart will be updated if this has a positive effect.
 
@@ -349,11 +341,11 @@ Generally, keep in mind that higher TFS seems to behave better with lower random
 
 I will also be testing the below repetition settings, from Monky's old suggestion, combined with my randomness/TFS settings:
 
->| Setting                  | Value |
->| ------------------------ | :---- |
->| Repetition Penalty       | 1.2   |
->| Repetition Penalty Range | 512   |
->| Repetition Penalty Slope | 4.05  |
+> | Setting                  | Value |
+> | ------------------------ | :---- |
+> | Repetition Penalty       | 1.2   |
+> | Repetition Penalty Range | 512   |
+> | Repetition Penalty Slope | 4.05  |
 
 An explanation of the settings will take some time to create, as I am not currently comfortable enough with my understanding to properly explain it here.
 
@@ -361,9 +353,9 @@ An explanation of the settings will take some time to create, as I am not curren
 
 Rinter suggested that NAI's token banning may be a useful way of avoiding certain outputs without significantly hampering the AI's ability to use common tokens. This is due to multi-token banning.
 
-Multi-token banning involves banning only instances where tokens are conntected togther directly. For example, if a user wanted to ban possible instances of ` human female`, regular token bans could massively affect outputs due to how common those words are. Instead, by doing a multi-token ban of ` human female`, your ban will only impact cases of those tokens being connected together, making you avoid banning use of ` human` or ` female` entirely. 
+Multi-token banning involves banning only instances where tokens are conntected togther directly. For example, if a user wanted to ban possible instances of ` human female`, regular token bans could massively affect outputs due to how common those words are. Instead, by doing a multi-token ban of ` human female`, your ban will only impact cases of those tokens being connected together, making you avoid banning use of ` human` or ` female` entirely.
 
-----
+---
 
 ## 4. Author's Notes
 
@@ -382,27 +374,29 @@ _Update (June 27, 2021)_: I have been examining the use of writing styles such a
 - `sesquipedalian` was suggested (Cass) as a strong version of `purple prose`. Play testing and descriptive testing appears to confirm that.
 - `creative` (Kaelia) appears to encourage the AI to be less repetitive and more varied in its word choices. Lorebook entries are still referred to properly, but the AI is much more likely to choose interesting alternative language when doing so.
 
-Combining these two terms has had a significant impact on how often I need to  I now recommend this as the base writing style:
+Combining these two terms has had a significant impact on how often I need to I now recommend this as the base writing style:
 
->`[ WritingStyle: sesquipedalian& creative ]`
+> `[ WritingStyle: sesquipedalian& creative ]`
 
 Further additions that have shown some helpful use (when added to the above), that are otherwise niche, include:
+
 > - `gay`
 >   - This style has assisted with avoiding gender changes in gay-focussed stories. It is unclear if it has any other impact on writing.
 > - `furry`
 >   - This style seems to bring character's non-human attributes into greater focus.
 >
->>If added to the base writing style above, these combined would look like: 
->>
->>`[ WritingStyle: sesquipedalian& creative& gay& furry ]` 
+> > If added to the base writing style above, these combined would look like:
+> >
+> > `[ WritingStyle: sesquipedalian& creative& gay& furry ]`
 
 I previously recommended this style, which may still be useful to some:
 
->`[ WritingStyle: grandiloquent, purple prose]`
+> `[ WritingStyle: grandiloquent, purple prose]`
 
 #### 4.2(a) Other Writing Style Application Methods
 
 The prefix terms `Writing Style` or `WritingStyle` are not necessarily confirmed to be the most effective ways of applying style to a story. Testing should be done on other terms, such as:
+
 - `Tone:`
 - `Style:`
 - `Focus:`
@@ -420,15 +414,17 @@ Here are Genres, Themes, etc. which I have tested in NAI:
 > - `[ Genre: LITEROTICA ]` (_attributed to TravellingRobot's wiki_): when used in conjunction with the recommended writing style seems at least somewhat effective at making interesting outputs and keeping on track for NSFW-focussed stories. Further testing needed to determine magnitude of effect.
 
 Other terms of this type to be tested include:
+
 - `Plot`
 - `Scene`
 - `Focus`
 
-----
+---
 
 ## 5. Person Perspective
 
 It is confirmed that most of the training data uses first and third person, both of which are more effective than second person. To confirm for anyone unaware of the terms, these are:
+
 - First Person: Use of "I," describing the narrative from your perspective.
   - "I looked up at the mountain."
 - Second Person: Use of "you," describing the narrative from another person's perspective but referring to you.
@@ -447,12 +443,13 @@ Extensive testing of signposts has demonstrated that the creation of a "signpost
 Currently, I recommend the placement of a signpost with the following settings:
 
 > Entry:
-> 
+>
 > ```
-> 
+>
 > ***
-> 
+>
 > ```
+>
 > Order: `-1000`<br>
 > Position: `-4`
 
@@ -461,6 +458,7 @@ _Further Updated (June 27, 2021):_ Further testing of before-entries signposts h
 I am recommending signposts, in particular one signpost of `***` at insertion ~~`-5`~~ `-4` and priority `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
 
 My testing was first done with default settings and 0.6 randomness, then Monky's settings (I may be adjusting this recommendation--testing ongoing. See section 3. for information):
+
 > Randomness: `0.8`<br>
 > Top-K Sampling: `disabled`<br>
 > Nucleus Sampling: `disabled`<br>
@@ -479,11 +477,12 @@ At Monky's suggestion, I tested a single `***` signpost at an insertion of `-5`.
 
 I tested with a simple break test of `Detailed description of Vol: Vol is`, using a character of mine, in addition to existing activated lorebook entries for another character and for my character race. Everything was tested using featherlite.
 
-The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`). 
+The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`).
 
 ### 6.2 `***` In-Entry Signpost
 
 Benvolio mentioned that using `***` within an entry may show some initial promise, based off the use of in-entry signposts in AID, and I therefore decided to test. The method appears as:
+
 > `[ *** Name: entry information here ]`
 
 Testing of this did not yield particularly helpful results. Major segments of the entry were generally ignored.
@@ -492,15 +491,13 @@ Benvolio confirmed that his own testing did not have successful results.
 
 ### 6.3 `<<•>>>` Signpost
 
-`<<•>>>` was developed by Monky as a signpost for use with EWIJSON in AI Dungeon. 
+`<<•>>>` was developed by Monky as a signpost for use with EWIJSON in AI Dungeon.
 
 Previously, tests using `<<•>>>` as a signpost was unsuccessful. Additional testing of it may be necessary, as there is a possibility that it was merely inserted into the incorrect position at the time.
 
 ### 6.4 Other Signposts
 
 #### 6.4(a) `* * *` Signpost
-
- `* * *` Signpost
 
 Recommended by Zaltys as a chapter separator included in training data.
 
@@ -514,9 +511,9 @@ Recommended by Zaltys as a chapter separator included in training data.
 
 There appears to be some potential benefit with "director" entries, which are short entries telling the AI what to do. These include things like:
 
->`[ Do: take the book]`
+> `[ Do: take the book]`
 >
->`[ Describe in prose]`
+> `[ Describe in prose]`
 
 I have not conducted enough research into this to comment on its usefulness at this time. Initial testing shows that `[ Describe in prose]` may have an effect on how the AI outputs information from Lorebook entries.
 
@@ -544,11 +541,11 @@ An issue that may occur with adding newlines is that the AI may output newlines 
 
 #### 7.2(b) `<|endoftext|>` Separator
 
-I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success. 
+I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success.
 
 I found that, although `<|endoftext|>` was generally successful at separating out scenes, the outputs were shorter, less creative, and less cohesive than the recommended `***`.
 
-----
+---
 
 ## 8. Character/Species "Generator"
 
@@ -557,19 +554,17 @@ From lion:
 > The Character / Species generator format for quick use btw
 >
 > Species Example:
-> > [ Species: Clefairy ] [ Type: Fairy ]<br>
-> > [ Evolution: Clefairy evolves from Cleffa when leveled up with high friendship and evolves into Clefable when exposed to a Moon Stone. ]<br>
-> > [ Size: 2 ft | 60 cm (small) ] [ Weight: 15 lb | 8 kg ]<br>
-> > [ Biome: Mountains ]<br>
+>
+> > [ Species: Clefairy ] [ Type: Fairy ]<br> [ Evolution: Clefairy evolves from Cleffa when leveled up with high friendship and evolves into Clefable when exposed to a Moon Stone. ]<br> [ Size: 2 ft | 60 cm (small) ] [ Weight: 15 lb | 8 kg ]<br> [ Biome: Mountains ]<br>
 > > Clefairy is a bipedal, pink Pokémon with a chubby, vaguely star-shaped body. A small, pointed tooth protrudes from the upper left corner of its mouth. It has wrinkles beside its black, oval eyes, a single dark pink oval marking on each cheek, and large, pointed ears with brown tips. A tuft of fur curls over its forehead, much like its large, upward-curling tail. Each stocky arm has two small claws and a thumb on each hand and both feet have a single toenail. There is a pair of tiny, butterfly-shaped wings on its back. Though incapable of flight, Clefairy's wings can store moonlight and allow it to float.
 >
->Character Example:
->>[ Species: Clefairy ] [ Age: 25 ]<br>
->>[ Powers: Can bestow the joy of Pepsi brand cola to all he meets. ]
+> Character Example:
 >
->Of course, feel free to mix and match and add whatever categories you want in the [ CATEGORY: CONTENT ]'s so long as they follow that format
+> > [ Species: Clefairy ] [ Age: 25 ]<br> [ Powers: Can bestow the joy of Pepsi brand cola to all he meets. ]
+>
+> Of course, feel free to mix and match and add whatever categories you want in the [ CATEGORY: CONTENT ]'s so long as they follow that format
 
-----
+---
 
 ## 9. Glossary
 
