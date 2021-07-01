@@ -244,6 +244,24 @@ _This section is a work in progress, and will be continually updated._
 > Wolfkin (primary race in most of my stories):
 >
 > > `[ wolfkin: caninebody digitigrade Beastkin they muzzle ]`<br> `[ wolfkin behavior: expressivetail&ears They friendly peaceful ]`
+    
+**AUTHOR'S NOTE**
+
+The Author's Note seems to work well with a modified version of featherlite, taking aspects of caveman and other punctuation.
+
+In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following:
+
+> Author's Note (Modified Example):
+>
+> > `[ Author: Terry Pratchett; Tone: romantic& light; WritingStyle: sesquipedalian&& creative ]`
+>
+> Notes on this example:
+>
+> > - I will speak to the benefits of the choices of `Author`, `Tone` (and its alternatives), and `WritingStyle` in the Author's Note section.
+> > - `:` syntax: used to denote categories in featherlite. Works for categories in Author's Note--arguably works in other formats as well.
+> > - `;` syntax: used to separate categories from each other. Not normally used in featherlite. However, in the Author's Note, found it to be an effective way to separate and likely more effective than newlines.
+> > - `&` syntax: used to list items within categories, as a replacement of a comma. I have found commas to be ineffective, even weakening list items after the first. This syntax does not leak in this format.
+> > - `&&` syntax: appears to be more powerful than a single `&`, and at least has no drawbacks. More work necessary to test its effectiveness.
 
 #### 2.1(c) Featherlite Conversion from AID (with examples)
 
