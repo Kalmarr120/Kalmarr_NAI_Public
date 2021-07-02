@@ -9,6 +9,8 @@
     - [Table of Contents](#table-of-contents)
   - [1. Lorebook Settings](#1-lorebook-settings)
     - [1.1 Scaffolds and Recommended Settings](#11-scaffolds-and-recommended-settings)
+      - [1.1(a) OPVAM Scaffold](#11a-opvam-scaffold)
+      - [1.1(b)](#11b)
   - [2. Lorebook Application (AKA Formatting)](#2-lorebook-application-aka-formatting)
     - [2.1 Featherlite](#21-featherlite)
       - [2.1(a) Featherlite Testing Note](#21a-featherlite-testing-note)
@@ -122,69 +124,73 @@ There is not a significant comment relative to insertion, beside two main things
 
 Scaffolds are simply groups of settings, usually represented in table form, which detail values recommended for each setting in the Lorebook and Advanced Context Settings. Scaffolds will be used in this document to convey settings that may be useful for readers.
 
-OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
+#### 1.1(a) OPVAM Scaffold
 
-**ADVANCED CONTEXT SETTINGS**
-
-| Name          | Position | Order | Reserve | Insertion Type | Notes                      |
-| ------------- | :------: | :---: | :-----: | -------------- | -------------------------- |
-| Story         |    0     |   0   |   512   | Newline        | These are default settings |
-| Memory        |    -1    |  100  |   512   | Newline        |                            |
-| Author's Note |    -4    | -800  |   512   | Newline        |                            |
-
-> **Memory**: Used during playthrough to keep a running summary of the "Story so far". Has a light effect on AI output as it is far from the front/bottom of context. Should be **_intermittently_** updated with story highlights.
->
-> **Author's Note**: Used to control the flow of the current scene. Position is at -4 from the front/bottom of context, so has a strong effect on output. Should be **_regularly_** updated as the scene changes.
-
-**LOREBOOK CREATION SETTINGS**
-
-| Name      | Position | Order | Reserve | Search Range | Notes                               |
-| --------- | :------: | :---: | :-----: | :----------: | ----------------------------------- |
-| Concept   |    -1    |  800  |    0    |     2000     | (Multiple)                          |
-| Faction   |    -1    |  700  |    0    |     5000     | (Multiple)                          |
-| Species   |    -1    |  600  |    0    |     2000     | (Multiple)                          |
-| Place     |    -1    |  500  |    0    |     3000     | (Multiple)                          |
-| Character |    -1    |  400  |   200   |     2000     | (Multiple)                          |
-| Brace     |    -8    | -400  |   200   |      -       | (Multiple)                          |
-| Synopsis  |    -8    | -500  |   200   |      -       | (Single, Forced)                    |
-| Pillar    |    -4    | -600  |   200   |      -       | (Multiple)                          |
-| Signpost  |    -4    | -1000 |    3    |      -       | (Single, Forced) - Kalmarr addition |
-
-From OPVAM:
-
-> **Synopsis**: Used as an Author's Note that describes the story as a whole. Use tags like Genre, Themes, Setting etc. Previously called "Editor's Note".
->
-> **Brace**: Any supporting information for concept/faction/species/place/char entries. A brace is typically used to reinforce an idea or concept that the AI has trouble remembering. Can also be used to emphasize important information, ie character/species appearance, worn clothing and motive. Also should be used to describe relationships.
->
-> **Pillar**: Same idea as a brace, but much closer to the front/bottom of context for crucial information that needs to be highly emphasized.
->
-> **Notes**: Recommended search ranges have been provided, but it's really something that needs to be treated on a case-by-case basis. For lore with keys that are hard to trigger (or don't trigger often) you may want to increase your search range to ensure the lore stays in context for a longer period of time after each mention.
-
-I am currently testing the new scaffolds proposed by OPVAM and will report the results as well as any recommended changes.
-
-I previously recommended the below scaffold, also by OPVAM. It will likely still be very useful, and is recommended for anyone who wants to use a system that has been shown to work well.
+I currently use and recommend OPVAM's original scaffold.
 
 **OPVAM ORIGINAL LOREBOOK SCAFFOLD**
 
-| Position | Order | Reserve | Type                                     |
-| -------- | ----- | ------- | ---------------------------------------- |
-| -12      | -100  | 200     | Memory                                   |
-| -10      | -200  | 100     | Lore: Concepts                           |
-| -10      | -300  | 100     | Lore: Races                              |
-| -10      | -400  | 100     | Lore: Places                             |
-| -10      | -500  | 100     | Lore: Factions                           |
-| -8       | -600  | 200     | Lore: Story Overview (forced active)     |
-| -7       | -650  | 200     | Lore: Irregular Races (Kalmarr addition) |
-| -6       | -700  | 100     | Lore: Characters                         |
-| -4       | -800  | 200     | Author's Note                            |
-| -4       | -1000 | 3       | Signpost (Kalmarr addition)              |
-| 0        | 0     | 512     | Story                                    |
+> | Position | Order | Reserve | Type                                     |
+> | -------- | ----- | ------- | ---------------------------------------- |
+> | -12      | -100  | 200     | Memory                                   |
+> | -10      | -200  | 100     | Lore: Concepts                           |
+> | -10      | -300  | 100     | Lore: Races                              |
+> | -10      | -400  | 100     | Lore: Places                             |
+> | -10      | -500  | 100     | Lore: Factions                           |
+> | -8       | -600  | 200     | Lore: Story Overview (forced active)     |
+> | -7       | -650  | 200     | Lore: Irregular Races (Kalmarr addition) |
+> | -6       | -700  | 100     | Lore: Characters                         |
+> | -4       | -800  | 200     | Author's Note                            |
+> | -4       | -1000 | 3       | Signpost (Kalmarr addition)              |
+> | 0        | 0     | 512     | Story                                    |
 
 From OPVAM:
 
 > Pretty much breaking your author's notes into 2 parts. Story Overview (used to be called Editor's Note) would contain high-level story plot, style, genre, theme etc.. Then you can use your Author's note to steer the story. For example if you wanted an action story with bits of romance your AN would contain this most of the time [ Writing Style: exciting. Genre: action] then change it to [ Genre: romance.] or something like that.
 
-Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I used this method consistently since it was recommended, to great effect. My entries were referenced consistently and accurately by the AI.
+Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I use this method consistently since it was recommended, to great effect. My entries are referenced consistently and accurately by the AI, and do not interrupt story flow.
+
+#### 1.1(b)
+
+OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
+
+**ADVANCED CONTEXT SETTINGS**
+
+> | Name          | Position | Order | Reserve | Insertion Type | Notes                      |
+> | ------------- | :------: | :---: | :-----: | -------------- | -------------------------- |
+> | Story         |    0     |   0   |   512   | Newline        | These are default settings |
+> | Memory        |    -1    |  100  |   512   | Newline        |                            |
+> | Author's Note |    -4    | -800  |   512   | Newline        |                            |
+>
+> > **Memory**: Used during playthrough to keep a running summary of the "Story so far". Has a light effect on AI output as it is far from the front/bottom of context. Should be **_intermittently_** updated with story highlights.
+> >
+> > **Author's Note**: Used to control the flow of the current scene. Position is at -4 from the front/bottom of context, so has a strong effect on output. Should be **_regularly_** updated as the scene changes.
+
+**LOREBOOK CREATION SETTINGS**
+
+> | Name      | Position | Order | Reserve | Search Range | Notes                               |
+> | --------- | :------: | :---: | :-----: | :----------: | ----------------------------------- |
+> | Concept   |    -1    |  800  |    0    |     2000     | (Multiple)                          |
+> | Faction   |    -1    |  700  |    0    |     5000     | (Multiple)                          |
+> | Species   |    -1    |  600  |    0    |     2000     | (Multiple)                          |
+> | Place     |    -1    |  500  |    0    |     3000     | (Multiple)                          |
+> | Character |    -1    |  400  |   200   |     2000     | (Multiple)                          |
+> | Brace     |    -8    | -400  |   200   |      -       | (Multiple)                          |
+> | Synopsis  |    -8    | -500  |   200   |      -       | (Single, Forced)                    |
+> | Pillar    |    -4    | -600  |   200   |      -       | (Multiple)                          |
+> | Signpost  |    -4    | -1000 |    3    |      -       | (Single, Forced) - Kalmarr addition |
+>
+> > From OPVAM:
+> >
+> > **Synopsis**: Used as an Author's Note that describes the story as a whole. Use tags like Genre, Themes, Setting etc. Previously called "Editor's Note".
+> >
+> > **Brace**: Any supporting information for concept/faction/species/place/char entries. A brace is typically used to reinforce an idea or concept that the AI has trouble remembering. Can also be used to emphasize important information, ie character/species appearance, worn clothing and motive. Also should be used to describe relationships.
+> >
+> > **Pillar**: Same idea as a brace, but much closer to the front/bottom of context for crucial information that needs to be highly emphasized.
+> >
+> > **Notes**: Recommended search ranges have been provided, but it's really something that needs to be treated on a case-by-case basis. For lore with keys that are hard to trigger (or don't trigger often) you may want to increase your search range to ensure the lore stays in context for a longer period of time after each mention.
+
+I do not currently recommend this format, as I believe some tweaking is required. Entries are being injected awkwardly--there may need to be a change to insertion position as with `-1` items are being injected after the story in large quantities.
 
 ---
 
@@ -192,9 +198,9 @@ Testing has shown this method to be excellent, both in terms of accuracy and qua
 
 The Lorebook is an incredibly useful function, that can be applied in an almost absurd number of ways. Combined with different Generation Settings, Advanced Context settings, etc., it is very difficult to qualify what the _best_ way of using Lorebooks is. The recommendations I make in this document work for me in my use case. If they do not work for you, you may need to change certain aspects to better fit yours.
 
-Formatting refers, simply, to the syntax one can use in their Lorebook to draft entries in such a way that the AI can understand and apply the contents of entries to the Story. Formats have many forms, but they range from straight descriptive or flowing prose entries (just written normally) or using complicated syntax such as the `{`, `[`, `"` of JSON. Your preference for format may depend on how easy to use you want it to be, how accurate, whether you want the AI to rely on your personal writing style, and other things. 
+Formatting refers, simply, to the syntax one can use in their Lorebook to draft entries in such a way that the AI can understand and apply the contents of entries to the Story. Formats have many forms, but they range from straight descriptive or flowing prose entries (just written normally) or using complicated syntax such as the `{`, `[`, `"` of JSON. Your preference for format may depend on how easy to use you want it to be, how accurate, whether you want the AI to rely on your personal writing style, and other things.
 
-Each format has advantages and disadvantages. I will not discourage anyone from using any format that works for them. 
+Each format has advantages and disadvantages. I will not discourage anyone from using any format that works for them.
 
 Current formats addressed in this document, or that I intend to address, and which are not inclusive of all those discussed in the NAI Discord or other places, are:
 
@@ -221,6 +227,12 @@ I will not speak in great detail to featherlite's benefits and drawbacks here. P
 
 After hiccups with initial testing, where the original `•` syntax starting entries appeared to no longer work, Rinter reworked the format and determined that `[ ]` is acceptable encapsulation for featherlite in NAI. After moving to the new encapsulation, featherlite appears to be a very viable format.
 
+Rinter has since come up with further testing and suggestions for the format. In particular, removing newlines between sections of the entry and replacing them with `;`. The entry will therefor look like:
+
+> `[ Name: age gender race text text Pronoun text; Name text text pronoun text text]`
+
+You can also add a descriptive word to the second part after the `;`, in order to get across an idea that you want to reinforce. For example, you could use `text; Name: behavior`. There is no set list of options, so what works is subject to experimentation. In my experience with featherlite so far, behavior is one of those effective words.
+
 I used featherlite as my primary format in AID, finding that I generally liked its structure and application. I intend to focus quite a bit of my time assisting Rinter with refining its use in NAI. I may eventually draft a separate document on featherlite testing if this document becomes too unwieldy. Additionally, please note that my way of using featherlite may not necessarily match Rinter's fully. I often integrate caveman-like elements into my entries.
 
 #### 2.1(a) Featherlite Testing Note
@@ -237,14 +249,14 @@ _This section is a work in progress, and will be continually updated._
 
 > Mark (main character of many of my stories):
 >
-> > `[ Mark: male wolfkin lean He kind joyful ]`<br> `[ Mark: Blackfur muzzle He bestfriendVol ]`
+> > `[ Mark: male wolfkin lean He kind joyful; Mark: Blackfur muzzle He bestfriendVol ]`
 
 **RACES**
 
 > Wolfkin (primary race in most of my stories):
 >
-> > `[ wolfkin: caninebody digitigrade Beastkin they muzzle ]`<br> `[ wolfkin behavior: expressivetail&ears They friendly peaceful ]`
-    
+> > `[ wolfkin: caninebody digitigrade Beastkin they muzzle; wolfkin behavior: expressivetail&ears They friendly peaceful ]`
+
 **AUTHOR'S NOTE**
 
 The Author's Note seems to work well with a modified version of featherlite, taking aspects of caveman and other punctuation.
@@ -259,13 +271,14 @@ In my experience to date, using new lines and regular featherlite separating cat
 >
 > > - I will speak to the benefits of the choices of `Author`, `Tone` (and its alternatives), and `WritingStyle` in the Author's Note section.
 > > - `:` syntax: used to denote categories in featherlite. Works for categories in Author's Note--arguably works in other formats as well.
+> >   - Rinter has since updated featherlite to recommend use of this syntax for all entries.
 > > - `;` syntax: used to separate categories from each other. Not normally used in featherlite. However, in the Author's Note, found it to be an effective way to separate and likely more effective than newlines.
 > > - `&` syntax: used to list items within categories, as a replacement of a comma. I have found commas to be ineffective, even weakening list items after the first. This syntax does not leak in this format.
 > > - `&&` syntax: appears to be more powerful than a single `&`, and at least has no drawbacks. More work necessary to test its effectiveness.
 
 #### 2.1(c) Featherlite Conversion from AID (with examples)
 
-_No longer being updated--for informational purposes._
+_No longer being updated--for informational purposes, demonstrating how I originall converted my AID entries to NAI-friendly format._
 
 Following Rinter's new guidelines for Featherlite in NAI, I converted my entries from AID-version to NAI-version. To show this, I will use an example with a race and character I commonly use. Please see [my document](https://github.com/Kalmarr120/Kalmarr_NAI_Public/blob/755de9ae8c29bb7cc8f33d339edfadf395008893/wolfkin_race_featherlite.md) for details on how I constructed the racial entries for AID.
 
@@ -321,7 +334,7 @@ I will be testing these formats in their regular style (i.e. with all encapculat
 
 This format appears to work well with caveman/concise prose, and is recommended for users who do not want to fuss with the intricacies of the featherlite format. An example would be:
 
-> `[ Mark age 30 male human knight He strong]`
+> `[ Mark age 30 male human knight He strong ]`
 
 Further testing is needed to see how this format behaves with the current recommended settings/Lorebook setup.
 
@@ -343,29 +356,19 @@ I have been working on finding ideal settings for many of the methods used in th
 
 **KALMARR SETTINGS**
 
-> | Setting                  |   Value   |    Notes    |
-> | :----------------------- | :-------: | :---------: |
-> | Randomness               | 0.6 - 0.7 |      -      |
-> | Top-K Sampling           | Disabled  | Default on  |
-> | Nucleus Sampling         | Disabled  | Default on  |
-> | Tail Free Sampling       | 0.5 - 0.9 | Default off |
-> | Repetition Penalty       |    2.8    | Old default |
-> | Repetition Penalty Range |    512    | Old default |
-> | Repetition Penalty Slope |   3.33    | Old default |
+I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. I currently recommend an approximation of the following, based on the settings recommended by Jarel in v3 Sigurd.
 
-Some combination of high Tail Free Sampling (TFS) and low randomness appears to be a good combination for higher quality outputs. Rinter has recommended using `.55` randomness and `.995` TFS. I will test this as well, and post the result. The recommendation chart will be updated if this has a positive effect.
+> | Setting                  |   Value    |    Notes    |
+> | :----------------------- | :--------: | :---------: |
+> | Randomness               | 0.55 - 0.7 |      -      |
+> | Top-K Sampling           |  Disabled  | Default on  |
+> | Nucleus Sampling         |  Disabled  | Default on  |
+> | Tail Free Sampling (TFS) |    0.4     | Default off |
+> | Repetition Penalty       |     3      |      -      |
+> | Repetition Penalty Range |    1472    |      -      |
+> | Repetition Penalty Slope |  Disabled  |      -      |
 
-Generally, keep in mind that higher TFS seems to behave better with lower randomness. My personal choice has been around `.65` randomness and `.9` TFS.
-
-I will also be testing the below repetition settings, from Monky's old suggestion, combined with my randomness/TFS settings:
-
-> | Setting                  | Value |
-> | ------------------------ | :---- |
-> | Repetition Penalty       | 1.2   |
-> | Repetition Penalty Range | 512   |
-> | Repetition Penalty Slope | 4.05  |
-
-An explanation of the settings will take some time to create, as I am not currently comfortable enough with my understanding to properly explain it here.
+I have also found some success with using lower randomness and higher TFS, in the past using around `.65` randomness and `.9` TFS. Rinter recommends `.55` randomness and `.995` TFS, which is similar.
 
 ### 3.2 Token Banning
 
