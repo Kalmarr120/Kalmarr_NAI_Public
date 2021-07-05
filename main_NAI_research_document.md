@@ -16,10 +16,11 @@
       - [2.1(a) Featherlite Testing Note](#21a-featherlite-testing-note)
       - [2.1(b) Featherlite Example Entries](#21b-featherlite-example-entries)
       - [2.1(c) Featherlite Conversion from AID (with examples)](#21c-featherlite-conversion-from-aid-with-examples)
-    - [2.2 Current Format Testing To-Do](#22-current-format-testing-to-do)
-      - [2.2(a) JSON/Python-like](#22a-jsonpython-like)
-      - [2.2(b) `[ ]` Prose Format](#22b---prose-format)
-      - [2.2(c) Regular Prose Format](#22c-regular-prose-format)
+    - [2.2 Monky's Caveman](#22-monkys-caveman)
+    - [2.3 Current Format Testing To-Do](#23-current-format-testing-to-do)
+      - [2.3(a) JSON/Python-like](#23a-jsonpython-like)
+      - [2.3(b) `[ ]` Prose Format](#23b---prose-format)
+      - [2.3(c) Regular Prose Format](#23c-regular-prose-format)
   - [3. Story Settings](#3-story-settings)
     - [3.1 Generation Settings](#31-generation-settings)
     - [3.2 Token Banning](#32-token-banning)
@@ -41,6 +42,7 @@
     - [7.2 Scene Separators](#72-scene-separators)
       - [7.2(a) Asterix Separator](#72a-asterix-separator)
       - [7.2(b) `<|endoftext|>` Separator](#72b-endoftext-separator)
+      - [7.2(b) Top-K=1 Testing](#72b-top-k1-testing)
   - [8. Character/Species "Generator"](#8-characterspecies-generator)
   - [9. Glossary](#9-glossary)
 
@@ -207,7 +209,7 @@ Current formats addressed in this document, or that I intend to address, and whi
 - featherlite (my current preference)
   - Represented by concise, smashed, low-syntax style. Meant to get across ideas for the AI but not impact its writing.
 - caveman encapsulated prose
-  - Represented by use of short caveman-like entries that cut out unnecessary words (is, that, etc.) and use of `[ ]`.
+  - Represented by use of short caveman-like entries that cut out unnecessary words (is, that, etc.) and use of `[ ]`. Monky has since updated the format.
 - regular encapsulated prose
   - Regular writing describing the entity/concept in the entry, surrounded by `[ ]`.
 - regular prose
@@ -241,21 +243,27 @@ From initial testing, leaking is incredibly rare and outputs are accurate and hi
 
 I will undertake comparative testing to determine relative performance once I am comfortable that my current entries are optimized and can be compared properly to optimal entries under other formats. This will most likely occur after I am able to test JSON/python.
 
+**CURRENT TESTING**
+
+I am currently testing the use of `;` at the _end_ of an entry, for example:
+
+> `[ Mark: male wolfkin thickfurredofBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ];`
+
 #### 2.1(b) Featherlite Example Entries
 
 _This section is a work in progress, and will be continually updated._
 
 **CHARACTERS**
 
-> Mark (main character of many of my stories):
+> Mark (main character of many of my stories):x
 >
-> > `[ Mark: male wolfkin lean He kind joyful; Mark: Blackfur muzzle He bestfriendVol ]`
+> > `[ Mark: male wolfkin thickfurOfBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ]`
 
 **RACES**
 
 > Wolfkin (primary race in most of my stories):
 >
-> > `[ wolfkin: caninebody digitigrade Beastkin they muzzle; wolfkin behavior: expressivetail&ears They friendly peaceful ]`
+> > `[ wolfkin race: Lupinebody digitigradeBeastkin; wolfkin behavior: expressivetail&ears They friendly ]`
 
 **AUTHOR'S NOTE**
 
@@ -322,15 +330,107 @@ To use another example, here is a character entry based on that race:
 > > - `leftearscar` is broken off into its own word, as the association is a scar on his left ear.
 > > - `He`, `friend`, and `Vol` are broken into separate words.
 
-### 2.2 Current Format Testing To-Do
+### 2.2 Monky's Caveman
 
-#### 2.2(a) JSON/Python-like
+Caveman was originally developed by Monky in AID. Significant work has been done by Monky on updating the caveman format for NAI. Currently, the format looks like the following:
+
+```
+entry:
+
+***
+
+:[ Kizzy plant based extraterrestrial woman nicknamed 'Kiz' ];
+:[ Kizzy species Zellan has orange eyes and blue skin ];
+:[ Kizzy physiology human-like features attractive ];
+:[ Kizzy hair red style short Pixie-Cut ];
+:[ Kizzy opaque flesh blue build slender short ];
+:[ Kizzy eyes orange her face human-like ];
+:[ Kizzy weight 100 pounds height 4'2" ];
+:[ Kizzy roles qualified medic pilot engineer mechanic ];
+:[ Kizzy behavior blunt diction factual ];
+:[ Kizzy wears V5 Sky Maidens jumpsuit ];
+:[ Kizzy jumpsuit colored silver and grey with medic insignia ];
+
+```
+
+Monky has confirmed several helpful things to note with this format:
+
+- Each line should be 18 tokens, including encapsulation.
+- `:` at the beginning and `;` at the end of the lines can help maintain cohesion and reduce the number of inter-entry leaks. `:[` and `];` are single tokens, so there is not a token downside to this encapsulation.
+- `and` and `and with` have been demonstrated to be powerful conecting words, as an alternative to commas or `&`. Avoid the use of commas generally.
+- `[ ]` encapsulation with spaces remains the most powerful form of encapsulation for entries in NAI. This is no exception.
+- Capitalization of colours and certain other words appears to be extremely helpful with increasing accuracy. This may be due to repetition penalty.
+- It is helpful to reinforce the name of the entry on each line. Reinforcing with pronouns mid-line does not appear to be necessary with this method.
+- Be mindful of the order of attributes. General information is better to keep at the front/top, such as species, general appearance, etc.
+
+In addition, Monky does not use scaffolded settings, except for a single Author's Note-like entry called a "cue card" that looks like the following:
+
+```
+entry:
+
+***
+
+:[ Writing style: Descriptive and creative ];
+:[ Do: Describe package explode ];
+```
+
+The cue card is placed at `-500` Order and `-2` Position. _Explainer will be added soon._
+
+Finally, Monky uses the following for Memory, placed at `-399` Order:
+
+```
+:[PERSPECTIVE: Second person];
+:[THEME: Space-faring misadventure];
+```
+
+_Explainer for Memory will be added soon._
+
+In order to use the format most closely to Monky's experience, the following settings are recommended:
+
+> | Setting                  | Value    |
+> | ------------------------ | -------- |
+> | Randomness               | 0.55     |
+> | Max Output               | 60       |
+> | Min Output               | 20       |
+> | Top-K Sampling           | 140      |
+> | Nucleus Sampling         | 0.9      |
+> | Tail-Free Sampling       | Disabled |
+> | Repetition Penalty       | 5        |
+> | Repetition Penalty Range | 1536     |
+> | Repetition Penalty Slope | 3.06     |
+
+Please note that I have not tested this format and am not able to speak to its strength. However, I trust Monky's testing and relied on his formats in AID, and I believe he can be trusted to develop a strong system that's worthwhile sharing before I have the opportunity to test it personally.
+
+### 2.3 Current Format Testing To-Do
+
+#### 2.3(a) JSON/Python-like
 
 I have seen references to JSON or python-like formatting by members of the NAI Discord. Some appear to be seeing success even with incredibly long entries that would normally go against the conventional wisdom of keeping entries shorter and easier to read by the AI. The reasoning for this is probably connected to the longer context.
 
 I will be testing these formats in their regular style (i.e. with all encapculation and syntax associated), and with the quotation marks removed surrounding the `:`, which is recommended by some of the primary users of the format.
 
-#### 2.2(b) `[ ]` Prose Format
+If you do decide to make entries in JSON, I highly recommend writing them in YAML and converting them to JSON. For example, a YAML entry that looks like:
+
+```
+Vol:
+  age: 30
+  gender: male
+  species: wolfkin
+  fur-color: black
+  appearance:
+    - tall
+    - athletic
+```
+
+Once converted into JSON and minified, will look like this:
+
+```
+{"Vol":{"age":30,"gender":"male","species":"wolfkin","fur-color":"black","appearance":["tall","athletic"]}}
+```
+
+You can then just add `[ ]` encapsulation to the end.
+
+#### 2.3(b) `[ ]` Prose Format
 
 This format appears to work well with caveman/concise prose, and is recommended for users who do not want to fuss with the intricacies of the featherlite format. An example would be:
 
@@ -338,7 +438,7 @@ This format appears to work well with caveman/concise prose, and is recommended 
 
 Further testing is needed to see how this format behaves with the current recommended settings/Lorebook setup.
 
-#### 2.2(c) Regular Prose Format
+#### 2.3(c) Regular Prose Format
 
 Some users on NAI Discord see success using regular Prose, with no encapsulation, as a successful means of formatting Lorebook entries. In my very first interactions and testing with NAI, I tried regular Prose with little success in my use case.
 
@@ -428,7 +528,11 @@ Genres, like Writing Style, are added to the featherlite Author's Note, and may 
 
 > `[ Writing Style: example1& example2; Genre: example3 ]`
 
-This methodology is not finalized, and is subject to ongoing testing. It is the methodology I am currently using in my own play.
+This methodology is not finalized, and is subject to ongoing testing. It is the methodology I am currently using in my own play. I am also currently testing multi-line entries that look like the following:
+
+> `[ Author: Name ];`<br> > `[ tone: item1& item2 ];`<br> > `[ style: item1& item2 ];`<br>
+>
+> While using these, placing `[ Genre: Item ]` farther back in a Story Overview entry.
 
 Here are Genres, Themes, etc. which I have tested in NAI:
 
@@ -455,6 +559,14 @@ It is confirmed that most of the training data uses first and third person, both
 
 Person perspective may be in either past or present tense. It is not clear which tense is preferable, but the AI may find past easier as most writing is done in past tense.
 
+There are a couple of methods, though not properly tested, that may be useful to reinforce the person perspective. They are:
+
+> `[ POV: Name/You/I ]`
+>
+> > `[ protaganist: Name ]`
+
+Both of these can be reasonably used as part of an Author's Note. I have seen a somewhat better retention of person perspective but not strongly enough to fully recommend them.
+
 ## 6. Signposts
 
 Extensive testing of signposts has demonstrated that the creation of a "signpost," a forced active Lorebook entry with a group of characters inserted at a specific point to help draw or break the AI's attention, is quite useful. In particular, I recommend using `***`, which the AI knows to be a scene separator. Please see below for more information.
@@ -474,21 +586,22 @@ Currently, I recommend the placement of a signpost with the following settings:
 > Order: `-1000`<br>
 > Position: `-4`
 
-_Further Updated (June 27, 2021):_ Further testing of before-entries signposts has not yielded successful results. Noticed lowered cohesion and a general worsening of quality/creativity in the outputs. In addition, multiple signposts at varied locations in the context do not appear to have had a positive effect on outputs, with similar (although not as severe) impacts as before-entry signposts. May conduct further testing, but for now one signpost at `-5` and `-1000` appears to be preferable for recommended use.
+_Updated (July 2, 2021):_ Monky recommends signposts around large multi-line items further back in the context, like the following. Note that Monky uses and is developing caveman format.
 
-I am recommending signposts, in particular one signpost of `***` at insertion ~~`-5`~~ `-4` and priority `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+```
+***
 
-My testing was first done with default settings and 0.6 randomness, then Monky's settings (I may be adjusting this recommendation--testing ongoing. See section 3. for information):
+:[ Entry line 1 ];
+:[ Entry line 2 ];
+:[ Entry line 3 ];
+:[ Entry line 4 ];
 
-> Randomness: `0.8`<br>
-> Top-K Sampling: `disabled`<br>
-> Nucleus Sampling: `disabled`<br>
-> Tail-Free Sampling: `0.5`<br>
-> Repitition Penalty: `1.2`<br>
-> Repitition Penalty Range: `512`<br>
-> Repitition Penalty Slope: `4.05`<br>
+***
+```
 
-At Monky's suggestion, I tested a single `***` signpost at an insertion of `-5`. I chose a priority of `-1000`. After some time testing, I also adjusted the signpost entry to include surrounding newlines:
+I am recommending signposts, in particular one signpost of `***` at position `-4` and order `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+
+At Monky's suggestion, I tested a single `***` signpost at an position of `-5`. I chose order `-1000`. After some time testing, I also adjusted the signpost entry to include surrounding newlines:
 
 ```
 
@@ -496,9 +609,13 @@ At Monky's suggestion, I tested a single `***` signpost at an insertion of `-5`.
 
 ```
 
-I tested with a simple break test of `Detailed description of Vol: Vol is`, using a character of mine, in addition to existing activated lorebook entries for another character and for my character race. Everything was tested using featherlite.
+I tested with a simple break test of `Detailed description of Vol: Vol is`, using a character of mine, in addition to existing activated lorebook entries for another character and for my character race. Everything was tested using featherlite. I also underwent significant play testing.
 
 The results of the testing were successful. The AI's generations were generally more accurate, more descriptive, related to the race and the other character, and were less repititive/inclusive of too much information from the prompt/story. When references were made to previous story/prompt context, the descriptions were more creative and tended to expand on those reference (e.g. taking `deep emerald eyes` from the prompt and substituting another trait like `kind` or `forest green`).
+
+Further testing of position `-4` led to better results; more cohesive outputs, and fewer leaks or other errors.
+
+Testing multiple signposts at intervals did not give good results, and the test was abandoned.
 
 ### 6.2 `***` In-Entry Signpost
 
@@ -565,6 +682,10 @@ An issue that may occur with adding newlines is that the AI may output newlines 
 I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success.
 
 I found that, although `<|endoftext|>` was generally successful at separating out scenes, the outputs were shorter, less creative, and less cohesive than the recommended `***`.
+
+#### 7.2(b) Top-K=1 Testing
+
+I feel the need to comment on this, due to seeing it relied on quite a bit in NAI Discord as a more "objective" testing methodology.
 
 ---
 
