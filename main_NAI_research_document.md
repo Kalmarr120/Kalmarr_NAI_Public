@@ -42,9 +42,10 @@
     - [7.2 Scene Separators](#72-scene-separators)
       - [7.2(a) Asterix Separator](#72a-asterix-separator)
       - [7.2(b) `<|endoftext|>` Separator](#72b-endoftext-separator)
-      - [7.2(b) Top-K=1 Testing](#72b-top-k1-testing)
   - [8. Character/Species "Generator"](#8-characterspecies-generator)
   - [9. Glossary](#9-glossary)
+  - [10. Appendix](#10-appendix)
+    - [11. Testing Methods (TBC)](#11-testing-methods-tbc)
 
 </details>
 <br>
@@ -456,25 +457,29 @@ I have been working on finding ideal settings for many of the methods used in th
 
 **KALMARR SETTINGS**
 
-I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. I currently recommend an approximation of the following, based on the settings recommended by Jarel in v3 Sigurd.
+I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. I currently recommend an approximation of the following, based on the settings recommended by Jarel in v3 Sigurd. 
 
-> | Setting                  |   Value    |    Notes    |
-> | :----------------------- | :--------: | :---------: |
-> | Randomness               | 0.55 - 0.7 |      -      |
-> | Top-K Sampling           |  Disabled  | Default on  |
-> | Nucleus Sampling         |  Disabled  | Default on  |
-> | Tail Free Sampling (TFS) |    0.4     | Default off |
-> | Repetition Penalty       |     3      |      -      |
-> | Repetition Penalty Range |    1472    |      -      |
-> | Repetition Penalty Slope |  Disabled  |      -      |
+With further testing, I have adjusted to using higher TFS of `0.9-0.995`, similar to Rinter's suggestion, from `0.4`.
+
+> | Setting                  |    Value    |    Notes    |
+> | :----------------------- | :---------: | :---------: |
+> | Randomness               | 0.55 - 0.65 |      -      |
+> | Top-K Sampling           |  Disabled   | Default on  |
+> | Nucleus Sampling         |  Disabled   | Default on  |
+> | Tail Free Sampling (TFS) |  0.9-0.995  | Default off |
+> | Repetition Penalty       |      3      |      -      |
+> | Repetition Penalty Range |    1472     |      -      |
+> | Repetition Penalty Slope |  Disabled   |      -      |
 
 I have also found some success with using lower randomness and higher TFS, in the past using around `.65` randomness and `.9` TFS. Rinter recommends `.55` randomness and `.995` TFS, which is similar.
+
+My stories have generally been either basic slice-of-life stories, or more NSFW. There is some speculation right now that NSFW or basic stories are better served with TFS rather than Top-K or Nucleus (Top-P) Sampling. If you do not have success with these settings,
 
 ### 3.2 Token Banning
 
 Rinter suggested that NAI's token banning may be a useful way of avoiding certain outputs without significantly hampering the AI's ability to use common tokens. This is due to multi-token banning.
 
-Multi-token banning involves banning only instances where tokens are conntected togther directly. For example, if a user wanted to ban possible instances of ` human female`, regular token bans could massively affect outputs due to how common those words are. Instead, by doing a multi-token ban of ` human female`, your ban will only impact cases of those tokens being connected together, making you avoid banning use of ` human` or ` female` entirely.
+Multi-token banning involves banning only instances where tokens are conntected togther directly. For example, if a user wanted to ban possible instances of ` human female`, regular token bans could massively affect outputs due to how common those words are. Instead, by doing a multi-token ban of ` human female`, your ban will only impact cases of those tokens being connected together, making you avoid banning use of ` human` or ` female` entirely. To clarify--the AI in that case will output ` human`, but once it does, it will look for any other token besides ` female`.
 
 ---
 
@@ -586,20 +591,9 @@ Currently, I recommend the placement of a signpost with the following settings:
 > Order: `-1000`<br>
 > Position: `-4`
 
-_Updated (July 2, 2021):_ Monky recommends signposts around large multi-line items further back in the context, like the following. Note that Monky uses and is developing caveman format.
-
-```
-***
-
-:[ Entry line 1 ];
-:[ Entry line 2 ];
-:[ Entry line 3 ];
-:[ Entry line 4 ];
-
-***
-```
-
 I am recommending signposts, in particular one signpost of `***` at position `-4` and order `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+
+**TESTING**
 
 At Monky's suggestion, I tested a single `***` signpost at an position of `-5`. I chose order `-1000`. After some time testing, I also adjusted the signpost entry to include surrounding newlines:
 
@@ -683,10 +677,6 @@ I have performed some testing on the `<|endoftext|>` string that is inputted occ
 
 I found that, although `<|endoftext|>` was generally successful at separating out scenes, the outputs were shorter, less creative, and less cohesive than the recommended `***`.
 
-#### 7.2(b) Top-K=1 Testing
-
-I feel the need to comment on this, due to seeing it relied on quite a bit in NAI Discord as a more "objective" testing methodology.
-
 ---
 
 ## 8. Character/Species "Generator"
@@ -724,3 +714,7 @@ This is a glossary of terms used and relied upon in this document. Please feel f
   - python
 - Lorebook
 - Settings
+
+## 10. Appendix
+
+### 11. Testing Methods (TBC)
