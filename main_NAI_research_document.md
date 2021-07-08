@@ -9,8 +9,8 @@
     - [Table of Contents](#table-of-contents)
   - [1. Lorebook Settings](#1-lorebook-settings)
     - [1.1 Scaffolds and Recommended Settings](#11-scaffolds-and-recommended-settings)
-      - [1.1(a) OPVAM Scaffold](#11a-opvam-scaffold)
-      - [1.1(b)](#11b)
+      - [1.1(a) Modified OPVAM Scaffold (Currently Using)](#11a-modified-opvam-scaffold-currently-using)
+      - [1.1(b) New OPVAM Scaffold (Not in Use)](#11b-new-opvam-scaffold-not-in-use)
   - [2. Lorebook Application (AKA Formatting)](#2-lorebook-application-aka-formatting)
     - [2.1 Featherlite](#21-featherlite)
       - [2.1(a) Featherlite Testing Note](#21a-featherlite-testing-note)
@@ -51,6 +51,8 @@
 
 </details>
 <br>
+
+_Updated (July 7, 2021): I am conducting ongoing major updates to this page for the next day or so, so there may be contradictory information. Most of the major sections should be either fully or mostly up to date in the meantime._
 
 Welcome to my Novel AI (NAI) primary research, testing, and information document.
 
@@ -129,7 +131,7 @@ There is not a significant comment relative to insertion, beside two main things
 
 Scaffolds are simply groups of settings, usually represented in table form, which detail values recommended for the settings (particularly `Position` and `Order`) in the Lorebook and Advanced Context Settings. Scaffolds will be used in this document to convey settings that may be useful for readers.
 
-#### 1.1(a) OPVAM Scaffold
+#### 1.1(a) Modified OPVAM Scaffold (Currently Using)
 
 I currently use and recommend OPVAM's scaffold, with some modifications.
 
@@ -153,7 +155,7 @@ I have made adjustments to OPVAM's original scaffold, which was created prior to
 
 Note that I marked Irregular Races as a choice. This is due to my finding that, when always active, NAI tends to make reference to species traits and their connection to characters more often, forming what feels like a more cohesive narrative.
 
-**OPVAM ORIGINAL LOREBOOK SCAFFOLD**
+**OPVAM ORIGINAL SCAFFOLD**
 
 While the current scaffold has somewhat evolved, the original scaffold still performs well in Sigurd v3 and is highly recommended.
 
@@ -177,9 +179,7 @@ From OPVAM:
 
 Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I use this method consistently since it was recommended, to great effect. My entries are referenced consistently and accurately by the AI, and do not interrupt story flow.
 
-**MODIFIED OPVAM SCAFFOLD**
-
-#### 1.1(b)
+#### 1.1(b) New OPVAM Scaffold (Not in Use)
 
 OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
 
@@ -529,18 +529,27 @@ Following significant testing, `Author` appears to be an extremely powerful tool
 
 ### 4.2 Writing Styles
 
-_Update (June 29, 2021):_ Zaltys appears to recommend against using `Writing Style` or any variant thereof, due to the way that the data is organized. I will need to conduct testing to determine whether there is a better alternative way of having the same effect. `Tags:` and `Genre:` appear to be recommended. Zaltys suggests using generic terms and ideas like `robot` or `military` or `France` or `1600s`.
-
 Under my current system, all Author's Notes are written in featherlite and placed into the context at Priority `-800` and Insertion `-4`.
 
-_Update (June 27, 2021)_: I have been examining the use of writing styles such as `sesquipedalian` and `creative`, which I have seen used by members of the NAI Discord. These particular styles appear to have significant effects on output.
+To date, I have tested a variety of prefixes to influence the style of the AI writing, including:
+- `WritingStyle`
+- `Writing Style`
+- `Style`
+- `Word Choice`
+- `Prose`
+- (and the lowercase versions of the above)
 
+I have seen the most success out of `WritingStyle` and `Writing Style`, although the difference may be minimal between them and `Style` alone.
+
+**Examples**
+
+Combining `sesquipedalian` and `creative` as writing styles has a demonstrably positive effect on the outputs--the AI uses more creative language while at the same time maintaining longer and more complicated sentences and paragraphs.
 - `sesquipedalian` was suggested (Cass) as a strong version of `purple prose`. Play testing and descriptive testing appears to confirm that.
 - `creative` (Kaelia) appears to encourage the AI to be less repetitive and more varied in its word choices. Lorebook entries are still referred to properly, but the AI is much more likely to choose interesting alternative language when doing so.
 
 Combining these two terms has had a significant impact on how often I need to I now recommend this as the base writing style:
 
-> `[ WritingStyle: sesquipedalian& creative ]`
+> `[ WritingStyle: sesquipedalianand creative ]`
 
 Further additions that have shown some helpful use (when added to the above), that are otherwise niche, include:
 
@@ -552,6 +561,8 @@ Further additions that have shown some helpful use (when added to the above), th
 > > If added to the base writing style above, these combined would look like:
 > >
 > > `[ WritingStyle: sesquipedalian& creative& gay& furry ]`
+
+These may be better suited under the `Tags` category, but that is inconclusive so far. Feel free to try under both.
 
 I previously recommended this style, which may still be useful to some:
 
@@ -569,23 +580,23 @@ The prefix terms `Writing Style` or `WritingStyle` are not necessarily confirmed
 
 Genres, like Writing Style, are added to the featherlite Author's Note, and may look like this:
 
-> `[ Writing Style: example1& example2; Genre: example3 ]`
+> `[ Author: Name; Tags: example1and example2; Genre: Example1; WritingStyle: example1and example2 ]`
 
 This methodology is not finalized, and is subject to ongoing testing. It is the methodology I am currently using in my own play. I am also currently testing multi-line entries that look like the following:
 
-> `[ Author: Name ];`<br> > `[ Tags: item1& item2 ];`<br> > `[ Genre: item1 ];`<br>
+> `[ Author: Name ];`<br> > `[ Tags: item1and item2 ];`<br> > `[ Genre: item1 ];`<br>
 >
-> While using these, placing `[ WritingStyle: style ]` much closer to the context at `-2`.
+> While using these, placing `[ WritingStyle: style ]` much closer to the context at `-2`, including a signpost (`***`) above with a blank space separating them:
+> ```
+> ***
+>
+> [ WritingStyle: descriptiveand creative ]
 
 Here are Genres, Themes, etc. which I have tested in NAI:
 
 > - `[ Genre: LITEROTICA ]` (_attributed to TravellingRobot's wiki_): when used in conjunction with the recommended writing style seems at least somewhat effective at making interesting outputs and keeping on track for NSFW-focussed stories. Further testing needed to determine magnitude of effect.
 
-Other terms of this type to be tested include:
-
-- `Plot`
-- `Scene`
-- `Focus`
+Please note that specific Genres are not high on my priority list for testing and I may not have any additions for the near future.
 
 ---
 
@@ -669,11 +680,11 @@ Previously, tests using `<<•>>>` as a signpost was unsuccessful. Additional te
 
 #### 6.4(a) `* * *` Signpost
 
-Recommended by Zaltys as a chapter separator included in training data.
+Recommended by Zaltys as a chapter separator included in training data. Testing is required.
 
 #### 6.4(b) `⁂` Signpost
 
-Recommended by Zaltys as a chapter separator included in training data.
+Recommended by Zaltys as a chapter separator included in training data. Testing is required.
 
 ## 7. Other Testing
 
