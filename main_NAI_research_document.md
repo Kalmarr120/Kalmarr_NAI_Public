@@ -52,6 +52,8 @@
 </details>
 <br>
 
+_Further update (July 8, 2021): With the introduction of the `prefix` feature, I will need to reassess certain things like `Writing Style` and `Author` in `Author's Note`. I will try to update this document to the latest testing before moving to the next stage of testing prefixes._    
+    
 _Updated (July 7, 2021): I am conducting ongoing major updates to this page for the next day or so, so there may be contradictory information. Most of the major sections should be either fully or mostly up to date in the meantime._
 
 Welcome to my Novel AI (NAI) primary research, testing, and information document.
