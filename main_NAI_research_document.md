@@ -42,6 +42,8 @@
     - [7.2 Scene Separators](#72-scene-separators)
       - [7.2(a) Asterix Separator](#72a-asterix-separator)
       - [7.2(b) `<|endoftext|>` Separator](#72b-endoftext-separator)
+    - [7.3 Input Tools](#73-input-tools)
+    - [7.4 Prompt Generation](#74-prompt-generation)
   - [8. Character/Species "Generator"](#8-characterspecies-generator)
   - [9. Glossary](#9-glossary)
   - [10. Appendix](#10-appendix)
@@ -125,13 +127,35 @@ There is not a significant comment relative to insertion, beside two main things
 
 ### 1.1 Scaffolds and Recommended Settings
 
-Scaffolds are simply groups of settings, usually represented in table form, which detail values recommended for each setting in the Lorebook and Advanced Context Settings. Scaffolds will be used in this document to convey settings that may be useful for readers.
+Scaffolds are simply groups of settings, usually represented in table form, which detail values recommended for the settings (particularly `Position` and `Order`) in the Lorebook and Advanced Context Settings. Scaffolds will be used in this document to convey settings that may be useful for readers.
 
 #### 1.1(a) OPVAM Scaffold
 
-I currently use and recommend OPVAM's original scaffold.
+I currently use and recommend OPVAM's scaffold, with some modifications.
+
+**MODIFIED OPVAM SCAFFOLD**
+
+I have made adjustments to OPVAM's original scaffold, which was created prior to more recent discoveries for useful positioning. The modified scaffold takes into account new developments on signposts, story positioning, and my continued success with irregular races lower in context. Please note that `Reserve` would need to be higher for newer caveman formatting, nor have the two been tested together (with the exception of the new form of signpost entry). Please see below this chart for the previous iteration.
+
+> | Position | Order | Reserve | Type                                            | Forced Active? |
+> | -------- | ----- | ------- | ----------------------------------------------- | -------------- |
+> | -12      | -100  | 200     | Memory                                          | N/A            |
+> | -10      | -200  | 100     | Lore: Concepts                                  | No             |
+> | -10      | -300  | 100     | Lore: Races                                     | No             |
+> | -10      | -400  | 100     | Lore: Places                                    | No             |
+> | -10      | -500  | 100     | Lore: Factions                                  | No             |
+> | -8       | -600  | 200     | Lore: Story Overview (Themes, weather, setting) | Yes            |
+> | -7       | -650  | 200     | Lore: Irregular Races                           | Choice         |
+> | -6       | -700  | 100     | Lore: Characters                                | No             |
+> | -4       | -800  | 200     | Author's Note                                   | N/A            |
+> | -2       | -1000 | 200     | Signpost (`***`, Style, and additional notes)   | Yes            |
+> | -1       | 0     | 512     | Story                                           | N/A            |
+
+Note that I marked Irregular Races as a choice. This is due to my finding that, when always active, NAI tends to make reference to species traits and their connection to characters more often, forming what feels like a more cohesive narrative.
 
 **OPVAM ORIGINAL LOREBOOK SCAFFOLD**
+
+While the current scaffold has somewhat evolved, the original scaffold still performs well in Sigurd v3 and is highly recommended.
 
 > | Position | Order | Reserve | Type                                     |
 > | -------- | ----- | ------- | ---------------------------------------- |
@@ -153,17 +177,19 @@ From OPVAM:
 
 Testing has shown this method to be excellent, both in terms of accuracy and quality of outputs. I use this method consistently since it was recommended, to great effect. My entries are referenced consistently and accurately by the AI, and do not interrupt story flow.
 
+**MODIFIED OPVAM SCAFFOLD**
+
 #### 1.1(b)
 
 OPVAM has recommended a new scaffolding system, developed through further testing on his part. Taking into account the `***` signpost method, he now recommends the following:
 
 **ADVANCED CONTEXT SETTINGS**
 
-> | Name          | Position | Order | Reserve | Insertion Type | Notes                      |
-> | ------------- | :------: | :---: | :-----: | -------------- | -------------------------- |
-> | Story         |    0     |   0   |   512   | Newline        | These are default settings |
-> | Memory        |    -1    |  100  |   512   | Newline        |                            |
-> | Author's Note |    -4    | -800  |   512   | Newline        |                            |
+> | Name          | Position | Order | Reserve | Insertion Type |
+> | ------------- | :------: | :---: | :-----: | -------------- |
+> | Story         |    0     |   0   |   512   | Newline        |
+> | Memory        |    -1    |  100  |   512   | Newline        |
+> | Author's Note |    -4    | -800  |   512   | Newline        |
 >
 > > **Memory**: Used during playthrough to keep a running summary of the "Story so far". Has a light effect on AI output as it is far from the front/bottom of context. Should be **_intermittently_** updated with story highlights.
 > >
@@ -248,7 +274,9 @@ I will undertake comparative testing to determine relative performance once I am
 
 I am currently testing the use of `;` at the _end_ of an entry, for example:
 
-> `[ Mark: male wolfkin thickfurredofBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ];`
+> `[ Mark: male wolfkin thickfurofBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ];`
+
+I am also testing the use of `and` and `or`, word smashed. Both of these tokenize very well, and seem to tokenize to `|and` and `|or` at the end of most words they are connected to. Rinter noted that `and` is now recommended for featherlite generally, so my testing will merely help determine if it works with the OPVAM scaffold and for my slightly modified entries.
 
 #### 2.1(b) Featherlite Example Entries
 
@@ -270,13 +298,15 @@ _This section is a work in progress, and will be continually updated._
 
 The Author's Note seems to work well with a modified version of featherlite, taking aspects of caveman and other punctuation.
 
-In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following:
+In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following (_updated July 5_).
 
 > Author's Note (Modified Example):
 >
-> > `[ Author: Terry Pratchett; Tone: romantic& light; WritingStyle: sesquipedalian&& creative ]`
+> > `[ Author: Terry Pratchett; Tags: romantic& light; Genre: Romance ]`<br>
+> > Alternatively, the previous style I used was acceptable:
+> > `[ Author: Terry Pratcherr; Tone: romantic& light; WritingStyle: sesquipedalian&& creative ]`
 >
-> Notes on this example:
+> Notes on these examples:
 >
 > > - I will speak to the benefits of the choices of `Author`, `Tone` (and its alternatives), and `WritingStyle` in the Author's Note section.
 > > - `:` syntax: used to denote categories in featherlite. Works for categories in Author's Note--arguably works in other formats as well.
@@ -457,19 +487,21 @@ I have been working on finding ideal settings for many of the methods used in th
 
 **KALMARR SETTINGS**
 
-I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. I currently recommend an approximation of the following, based on the settings recommended by Jarel in v3 Sigurd. 
+_Update (July 7):_ I am working on an alternative to these settings, using some adjustments to the repetition penalty. Once settled, I will be moving on to TFS vs Top-K/Nucleus sampling and determining if changes are needed. The below settings are workable but likely to change soon.
+
+I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. I currently recommend an approximation of the following, based on the settings recommended by Jarel in v3 Sigurd.
 
 With further testing, I have adjusted to using higher TFS of `0.9-0.995`, similar to Rinter's suggestion, from `0.4`.
 
-> | Setting                  |    Value    |    Notes    |
-> | :----------------------- | :---------: | :---------: |
-> | Randomness               | 0.55 - 0.65 |      -      |
-> | Top-K Sampling           |  Disabled   | Default on  |
-> | Nucleus Sampling         |  Disabled   | Default on  |
-> | Tail Free Sampling (TFS) |  0.9-0.995  | Default off |
-> | Repetition Penalty       |      3      |      -      |
-> | Repetition Penalty Range |    1472     |      -      |
-> | Repetition Penalty Slope |  Disabled   |      -      |
+> | Setting                  |    Value    |
+> | :----------------------- | :---------: |
+> | Randomness               | 0.55 - 0.65 |
+> | Top-K Sampling           |  Disabled   |
+> | Nucleus Sampling         |  Disabled   |
+> | Tail Free Sampling (TFS) |  0.9-0.995  |
+> | Repetition Penalty       |      3      |
+> | Repetition Penalty Range |    1472     |
+> | Repetition Penalty Slope |  Disabled   |
 
 I have also found some success with using lower randomness and higher TFS, in the past using around `.65` randomness and `.9` TFS. Rinter recommends `.55` randomness and `.995` TFS, which is similar.
 
@@ -487,7 +519,13 @@ Multi-token banning involves banning only instances where tokens are conntected 
 
 ### 4.1 Authors
 
-_To be updated in further detail. In the meantime, please note that setting an author via `[ Author: Name ]`, for example replacing `Name` with an author like `Terry Pratchett`, has an extremely significant impact on the writing style of the outputs. Depending on the author chosen, the tone and style of the story can be greatly benefitted. So far in testing, I have not seen actually story elements from the authors' own creations enter my stories when using this tool._
+Following significant testing, `Author` appears to be an extremely powerful tool to influence writing style and story cohesion. This may be due to the finetuning, in which works were tagged in a system that looks like `[ Author: name; Tags: tag1, tag2; Genre: genre ]`. I have tested the following authors and noted success with them:
+
+- `Terry Pratchett`: My favourite, Pratchett invokes a whimsical and light feeling into stories. There is a significant shift in language used. Dialogue is more punchy and dynamic.
+- `George R. R. Martin`: GRRM invokes darker feelings and themes, and very descriptive prose. Dialogue is more serious and maintains story cohesion well.
+- `Robert Jordan`: Robert Jordan invokes significantly more detailed descriptions.
+- `J.K. Rowling`: JKR has a difficult-to-describe style. The descriptions are interesting and dialogue is dynamic.
+- `H.P. Lovecraft`:
 
 ### 4.2 Writing Styles
 
@@ -535,9 +573,9 @@ Genres, like Writing Style, are added to the featherlite Author's Note, and may 
 
 This methodology is not finalized, and is subject to ongoing testing. It is the methodology I am currently using in my own play. I am also currently testing multi-line entries that look like the following:
 
-> `[ Author: Name ];`<br> > `[ tone: item1& item2 ];`<br> > `[ style: item1& item2 ];`<br>
+> `[ Author: Name ];`<br> > `[ Tags: item1& item2 ];`<br> > `[ Genre: item1 ];`<br>
 >
-> While using these, placing `[ Genre: Item ]` farther back in a Story Overview entry.
+> While using these, placing `[ WritingStyle: style ]` much closer to the context at `-2`.
 
 Here are Genres, Themes, etc. which I have tested in NAI:
 
@@ -676,6 +714,23 @@ An issue that may occur with adding newlines is that the AI may output newlines 
 I have performed some testing on the `<|endoftext|>` string that is inputted occasionally into stories, and saw some success.
 
 I found that, although `<|endoftext|>` was generally successful at separating out scenes, the outputs were shorter, less creative, and less cohesive than the recommended `***`.
+
+### 7.3 Input Tools
+
+As certain useful inputs are discovered, they will be added here.
+
+- `I/they/you open[ed] my/their/your mouth to speak`: Discovered by Monky, inputting this can lead to very dramatic and tense dialogue, very dynamic.
+- `As if on cue`: I discovered this, borrowing from an AI output of Monky's to see what effect it would have. My testing found that it did create dramatic moments based on the events in the story up to that moment. Like the above, it is a good replacement for the word `suddenly` which can be obnoxious in these stories.
+
+### 7.4 Prompt Generation
+
+A fun way to generate prompts is to use the finetune tagging in an empty context, and generate. That looks like this in the story box (as an example, for an A Song of Ice and Fire based story):
+
+```
+[ Author: George R.R. Martin; Tags: dramatic, epic; Genre: Fantasy]     <--- Finetune tagging
+[ Event: Jaime Lannister goes to Winterfell ]     <--- Optional "encouragement"
+ <--- Press input at the newline here
+```
 
 ---
 
