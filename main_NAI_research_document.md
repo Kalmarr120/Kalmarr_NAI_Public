@@ -52,9 +52,7 @@
 </details>
 <br>
 
-_Further update (July 8, 2021): With the introduction of the `prefix` feature, I will need to reassess certain things like `Writing Style` and `Author` in `Author's Note`. I will try to update this document to the latest testing before moving to the next stage of testing prefixes._    
-    
-_Updated (July 7, 2021): I am conducting ongoing major updates to this page for the next day or so, so there may be contradictory information. Most of the major sections should be either fully or mostly up to date in the meantime._
+_Update (July 8, 2021): With the introduction of the `prefix` feature, I will need to reassess certain things like `Writing Style` and `Author` in `Author's Note`. The document should be essentially up to date with my most recent findings. I do not know when the next major update will be, due to the release of the prefix feature, but will try to ensure that important discoveries are added._
 
 Welcome to my Novel AI (NAI) primary research, testing, and information document.
 
@@ -86,7 +84,7 @@ The most useful settings in the Lorebook (under _show advanced settings_) are:
 - `Insertion Position:` `Position` is what occurs after the entries are sorted by `Order`, and refers to how many lines/sentences/tokens (depending on settings chosen) the entries are moved from their position in the context. In the example of an Author's Note set to have `-800` priority (in this hypothetical, the "highest" priority) and `-4` insertion, the AN will be placed 3 new lines from the bottom of the context.
   - A positive `Position` value will push the entry down in the context. A positive value remains, to my knowledge, untested. It remains to be seen whether there is potential use for that.
 
-There is an important reason that we want to manipulate the Lorebook and Advanced Context settings.
+There is an important reason that we want to manipulate the Lorebook and Advanced Context settings. The AI will interpret entries differently depending on where they are in context. While that insertion is not necessarily as important as in AID due to the length of context that goes into NAI, there appears to be a clear benefit in some cases to changing the defaults.
 
 **INSERTION ORDER:**
 
@@ -124,10 +122,7 @@ Default `Position` settings for `Story`, `Author Note`, and `Memory` are as foll
 
 `Position` setting for entries is similar to usage of `[t=x]` in EWI. Replace `[t=x]` with `-x`. For example, if you used `[t=9]` as a key for something such as `Theme:`, you could make aim to make similar entry in NAI with `Insertion: -9`.
 
-There is not a significant comment relative to insertion, beside two main things:
-
-- It is not clear whether insertion for non-Story items closer than `-4` is particularly helpful, and may in fact damage coherence. Further testing is needed to determine whether that is a hard limit.
-- There is a clear correlation between entries being closer to context and the AI's understanding and incorporation of those entries into the story. Keep that in mind as you tinker settings to your liking.
+There is a clear correlation between entries being closer to context and the AI's understanding and incorporation of those entries into the story. Keep that in mind as you tinker settings to your liking.
 
 ### 1.1 Scaffolds and Recommended Settings
 
@@ -152,10 +147,12 @@ I have made adjustments to OPVAM's original scaffold, which was created prior to
 > | -7       | -650  | 200     | Lore: Irregular Races                           | Choice         |
 > | -6       | -700  | 100     | Lore: Characters                                | No             |
 > | -4       | -800  | 200     | Author's Note                                   | N/A            |
-> | -2       | -1000 | 200     | Signpost (`***`, Style, and additional notes)   | Yes            |
+> | -2       | -1000 | 200     | Signpost (`***`, Style, and additional notes)*  | Yes            |
 > | -1       | 0     | 512     | Story                                           | N/A            |
 
 Note that I marked Irregular Races as a choice. This is due to my finding that, when always active, NAI tends to make reference to species traits and their connection to characters more often, forming what feels like a more cohesive narrative.
+
+*This signpost is currently in testing but appears to perform well when a writing style is included, which is why I include it in the modified scaffold. If you find trouble with coherence, or you choose not to include the writing style, move the signpost to `-4`.
 
 **OPVAM ORIGINAL SCAFFOLD**
 
@@ -238,7 +235,7 @@ Current formats addressed in this document, or that I intend to address, and whi
 - featherlite (my current preference)
   - Represented by concise, smashed, low-syntax style. Meant to get across ideas for the AI but not impact its writing.
 - caveman encapsulated prose
-  - Represented by use of short caveman-like entries that cut out unnecessary words (is, that, etc.) and use of `[ ]`. Monky has since updated the format.
+  - Represented by use of short caveman-like entries that cut out unnecessary words (is, that, etc.) and use of `:[ ];`. Monky has since updated the format from the original which used fewer lines and `[ ]` encapsulation.
 - regular encapsulated prose
   - Regular writing describing the entity/concept in the entry, surrounded by `[ ]`.
 - regular prose
@@ -258,11 +255,11 @@ I will not speak in great detail to featherlite's benefits and drawbacks here. P
 
 After hiccups with initial testing, where the original `•` syntax starting entries appeared to no longer work, Rinter reworked the format and determined that `[ ]` is acceptable encapsulation for featherlite in NAI. After moving to the new encapsulation, featherlite appears to be a very viable format.
 
-Rinter has since come up with further testing and suggestions for the format. In particular, removing newlines between sections of the entry and replacing them with `;`. The entry will therefor look like:
+Rinter has since come up with further testing and suggestions for the format. In particular, removing newlines between sections of the entry and replacing them with `;`. I have also found success using this. The entry will therefore look like:
 
 > `[ Name: age gender race text text Pronoun text; Name text text pronoun text text]`
 
-You can also add a descriptive word to the second part after the `;`, in order to get across an idea that you want to reinforce. For example, you could use `text; Name: behavior`. There is no set list of options, so what works is subject to experimentation. In my experience with featherlite so far, behavior is one of those effective words.
+You can also add a descriptive word to the second part after the `;`, in order to get across an idea that you want to reinforce. For example, you could use `text; Name behavior:`. There is no set list of options, so what works is subject to experimentation. In my experience with featherlite so far, behavior is one of those effective words.
 
 I used featherlite as my primary format in AID, finding that I generally liked its structure and application. I intend to focus quite a bit of my time assisting Rinter with refining its use in NAI. I may eventually draft a separate document on featherlite testing if this document becomes too unwieldy. Additionally, please note that my way of using featherlite may not necessarily match Rinter's fully. I often integrate caveman-like elements into my entries.
 
@@ -278,7 +275,7 @@ I am currently testing the use of `;` at the _end_ of an entry, for example:
 
 > `[ Mark: male wolfkin thickfurofBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ];`
 
-I am also testing the use of `and` and `or`, word smashed. Both of these tokenize very well, and seem to tokenize to `|and` and `|or` at the end of most words they are connected to. Rinter noted that `and` is now recommended for featherlite generally, so my testing will merely help determine if it works with the OPVAM scaffold and for my slightly modified entries.
+I am also testing the use of `and` and `or`, word smashed. Both of these tokenize very well, and seem to tokenize to `|and` and `|or` at the end of most words they are connected to. Rinter noted that `and` is now recommended for featherlite generally, so my testing will merely help determine if it works with the OPVAM scaffold and for my slightly modified entries. So far, it works well enough that I am recommending it.
 
 #### 2.1(b) Featherlite Example Entries
 
@@ -288,25 +285,25 @@ _This section is a work in progress, and will be continually updated._
 
 > Mark (main character of many of my stories):x
 >
-> > `[ Mark: male wolfkin thickfurOfBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ]`
+> > `[ Mark: male wolfkin thickfurOfBlack; Mark behavior: kind outgoing; Mark wears: tunicand breeches ]`
 
 **RACES**
 
 > Wolfkin (primary race in most of my stories):
 >
-> > `[ wolfkin race: Lupinebody digitigradeBeastkin; wolfkin behavior: expressivetail&ears They friendly ]`
+> > `[ wolfkin race: Lupinebody digitigradeBeastkin; wolfkin behavior: expressivetailandears They friendly ]`
 
 **AUTHOR'S NOTE**
 
 The Author's Note seems to work well with a modified version of featherlite, taking aspects of caveman and other punctuation.
 
-In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following (_updated July 5_).
+In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following (_updated July 8_).
 
 > Author's Note (Modified Example):
 >
-> > `[ Author: Terry Pratchett; Tags: romantic& light; Genre: Romance ]`<br>
+> > `[ Author: Terry Pratchett; Tags: romanticand light; Genre: Romance ]`<br>
 > > Alternatively, the previous style I used was acceptable:
-> > `[ Author: Terry Pratcherr; Tone: romantic& light; WritingStyle: sesquipedalian&& creative ]`
+> > `[ Author: Terry Pratchett; Tone: romanticand light; WritingStyle: descriptiveand creative ]`
 >
 > Notes on these examples:
 >
@@ -314,8 +311,7 @@ In my experience to date, using new lines and regular featherlite separating cat
 > > - `:` syntax: used to denote categories in featherlite. Works for categories in Author's Note--arguably works in other formats as well.
 > >   - Rinter has since updated featherlite to recommend use of this syntax for all entries.
 > > - `;` syntax: used to separate categories from each other. Not normally used in featherlite. However, in the Author's Note, found it to be an effective way to separate and likely more effective than newlines.
-> > - `&` syntax: used to list items within categories, as a replacement of a comma. I have found commas to be ineffective, even weakening list items after the first. This syntax does not leak in this format.
-> > - `&&` syntax: appears to be more powerful than a single `&`, and at least has no drawbacks. More work necessary to test its effectiveness.
+> > - `and` is now used as an alternative to `&`. It tokenizes well and appears to be more effective, although testing is ongoing.
 
 #### 2.1(c) Featherlite Conversion from AID (with examples)
 
@@ -436,6 +432,8 @@ Please note that I have not tested this format and am not able to speak to its s
 
 ### 2.3 Current Format Testing To-Do
 
+My testing for mose non-featherlite or -caveman styles is likely to be on hold for some time, as I need to concentrate my attention on fewer formats as I look at the new Prefixes feature and the ongoing and difficult settings work.
+
 #### 2.3(a) JSON/Python-like
 
 I have seen references to JSON or python-like formatting by members of the NAI Discord. Some appear to be seeing success even with incredibly long entries that would normally go against the conventional wisdom of keeping entries shorter and easier to read by the AI. The reasoning for this is probably connected to the longer context.
@@ -477,7 +475,7 @@ Some users on NAI Discord see success using regular Prose, with no encapsulation
 
 Occult believes that Prose works well when you want to convey the same style in your outputs as in your entries. Prose may not be recommended without encapsulation unless you want that style to transfer to output. This will depend on how you use NAI, your patience, your desire to do creative writing, etc.
 
-Testing of regular prose did not yield success for my use case, either with out without scaffolding. I am not likely to try it again, at least until a larger model is released. Please see other sources, such as the NAI Discord #community-research channel, if you are looking for advice on how to format prose entries
+Testing of regular prose did not yield success for my use case, either with out without scaffolding. I am not likely to try it again, at least until a larger model is released. Please see other sources, such as the NAI Discord #community-research channel, if you are looking for advice on how to format prose entries.
 
 ## 3. Story Settings
 
@@ -519,6 +517,8 @@ Multi-token banning involves banning only instances where tokens are conntected 
 
 ## 4. Author's Notes
 
+Under my current system, all Author's Notes are written in featherlite and placed into the context at Priority `-800` and Insertion `-4`.
+
 ### 4.1 Authors
 
 Following significant testing, `Author` appears to be an extremely powerful tool to influence writing style and story cohesion. This may be due to the finetuning, in which works were tagged in a system that looks like `[ Author: name; Tags: tag1, tag2; Genre: genre ]`. I have tested the following authors and noted success with them:
@@ -527,11 +527,11 @@ Following significant testing, `Author` appears to be an extremely powerful tool
 - `George R. R. Martin`: GRRM invokes darker feelings and themes, and very descriptive prose. Dialogue is more serious and maintains story cohesion well.
 - `Robert Jordan`: Robert Jordan invokes significantly more detailed descriptions.
 - `J.K. Rowling`: JKR has a difficult-to-describe style. The descriptions are interesting and dialogue is dynamic.
-- `H.P. Lovecraft`:
+- `H.P. Lovecraft`: Uses detailed and foreboeding language, with archaic descriptions. Very interesting style. (May be superceded by the Lovecraft style prefix).
 
 ### 4.2 Writing Styles
 
-Under my current system, all Author's Notes are written in featherlite and placed into the context at Priority `-800` and Insertion `-4`.
+Unlike the other Author's Note categories, Writing Style may be able to go very close to the context at `-2`. In my testing to date, it seems to not have a negative effect, and may be stronger closer to the input and separated from the other Author's Notes.
 
 To date, I have tested a variety of prefixes to influence the style of the AI writing, including:
 - `WritingStyle`
@@ -544,6 +544,8 @@ To date, I have tested a variety of prefixes to influence the style of the AI wr
 I have seen the most success out of `WritingStyle` and `Writing Style`, although the difference may be minimal between them and `Style` alone.
 
 **Examples**
+
+_Update (July 8, 2021):_ I am testing and learning towards changing my recommended writing style to use `descriptive` rather than `sesquipedalian`. The difference is difficult to explain--the outputs just seem a bit lighter. Feel free to substitute and test for yourself in the meantime.
 
 Combining `sesquipedalian` and `creative` as writing styles has a demonstrably positive effect on the outputs--the AI uses more creative language while at the same time maintaining longer and more complicated sentences and paragraphs.
 - `sesquipedalian` was suggested (Cass) as a strong version of `purple prose`. Play testing and descriptive testing appears to confirm that.
@@ -562,7 +564,7 @@ Further additions that have shown some helpful use (when added to the above), th
 >
 > > If added to the base writing style above, these combined would look like:
 > >
-> > `[ WritingStyle: sesquipedalian& creative& gay& furry ]`
+> > `[ WritingStyle: sesquipedalianand creativeand gayand furry ]`
 
 These may be better suited under the `Tags` category, but that is inconclusive so far. Feel free to try under both.
 
@@ -618,8 +620,8 @@ Person perspective may be in either past or present tense. It is not clear which
 There are a couple of methods, though not properly tested, that may be useful to reinforce the person perspective. They are:
 
 > `[ POV: Name/You/I ]`
->
-> > `[ protaganist: Name ]`
+
+> `[ protaganist: Name ]`
 
 Both of these can be reasonably used as part of an Author's Note. I have seen a somewhat better retention of person perspective but not strongly enough to fully recommend them.
 
@@ -643,6 +645,18 @@ Currently, I recommend the placement of a signpost with the following settings:
 > Position: `-4`
 
 I am recommending signposts, in particular one signpost of `***` at position `-4` and order `-1000`, based on the below. This applies especially if using OPVAM's settings (defined in this document above) and the featherlite format. The principles are likely to apply with other insertion levels and formats, but personal testing may be required to see what positioning will be effective for you.
+
+**ALTERNATIVE PLACEMENT**
+
+Monky recommends the signpost be included in a writing style entry closer to the input at `-2`. With featherlite, that would look like:
+
+```
+***
+
+[ WritingStyle: descriptiveand creative ]
+```
+
+
 
 **TESTING**
 
