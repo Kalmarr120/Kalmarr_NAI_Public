@@ -361,72 +361,55 @@ To use another example, here is a character entry based on that race:
 
 ### 2.2 Monky's Caveman
 
-Caveman was originally developed by Monky in AID. Significant work has been done by Monky on updating the caveman format for NAI. Currently, the format looks like the following:
+Monky has followed up to the information previously in this document with his new Caveman for NAI v1. 
 
-```
-entry:
+Caveman was originally developed by Monky in AID. Significant work has been done by Monky on updating the caveman format for NAI. Most of this section is taken verbatim from his new guide (July 10, 2021).
 
-***
+> Current recommended settings and style for caveman usage on v3 with 'universal settings' ; IE settings that don't need adjustment to function.
+> Default settings for v3 except rep penalty of 4, rep range of 2048 (if applicable to your sub tier, if not use 1024), rep slope of 3.06 or approximate.
+> HIGHLY RECOMMENDED to set up a Cue Card entry to replace Author's note. 
+> Cue Card entry contains the following (including newlines);
+> > ```
+> >
+> > ***
+> >
+> > :[ Writing style: Descriptive and creative ];
+> > ```
+> > - Open the advanced settings for this lorebook entry and set insertion order to -400 and insertion position at -3.
+> > - Next, go to Options and block tokens *** and * * * (you can still insert these manually if you desire, they still function it just is less likely to occasionally try to generate them).
+> > Notes: Initial run of the story may seem slightly spacey if you have a lot of LB's triggered, as rep pen will be strongest. Suggest a few paragraphs of story to start off with to give it something to build off of. Around 200 words/250 tokens seems fine in my testing.
+>
+> For caveman entries themselves, the current technique I endorse is monolithic blocks with lines set up similarly to oldschool Neanderthal in AID with some changes.
+> 1. Token length per line of 18 or less (INCLUDING the encapsulation in that count).
+> 2. Encapsulation of [] or :[]; (both variants are single token, I feel :[]; performs slightly better, but both are usable)
+> 3. Structure your blocks with the subject first, then the property of the subject being remarked upon, then details related to that property, ie;
+> > ```
+> > [ Kizzy plant based extraterrestrial woman nicknamed 'Kiz' ]
+> > [ Kizzy species Zellan has orange eyes and blue skin ]
+> > [ Kizzy physiology human-like features attractive ]
+> > [ Kizzy hair Red style short Pixie-Cut ]
+> > [ Kizzy opaque flesh blue build slender short ]
+> > [ Kizzy eyes orange her face human-like ]
+> > [ Kizzy weight 100 pounds height 4'2" ]
+> > [ Kizzy roles qualified medic pilot engineer mechanic ]
+> > [ Kizzy behavior blunt and diction factual ]
+> > [ Kizzy wears V5 Sky Maidens jumpsuit ]
+> > [ Kizzy jumpsuit colored Silver and Grey with medic insignia ]
+> > ```
+> 4. Use capitalized words for attributes that are not coming through clearly, like colors often need to be capitalized so the repetition penalty doesn't wholesale substitute another color in there. This frees up the non-capitalized form of the word to be repeated by the AI which will be what it wants to use most of the time anyways. One exception, don't put capitalized words next to the subject (ie; the name) or it may assume it is their last name. Similarly, hairstyles also seem to benefit from capitalization, among other things. If it isn't hitting - try capitalizing it and see if it works.
+> 5. Leave settings for your general LB entries as default unless you want to experiment or know what you're doing, with the above settings this appears to work fine in Sigurd v3. If you wish, increase the amount of context reserved to 1538 tokens (or half that for 1024 users).
+> 6. To avoid unprompted/unwanted furry, I recommend using hairstyle instead of hair (hair leads to fur and hairstyle tokenizes differently) and flesh instead of skin (leads to scales or fur depending on how the AI takes it). This is partly due to Sigurd v3's finetune so it must be worked around if you see it crop up in ways you don't want. Additionally, for this purpose use human-like, humanlike, Human-like, or Humanlike for non-human entities like say, an Asari from mass effect, or a Vulcan from Startrek, instead of humanoid or Humanoid, as those two also lead down furry/scaly lane.
+> 7. Addressing bleed between characters; One common problem currently is if one character has a trait, and another doesn't have that defined, sometimes it will bleed onto the character lacking that trait. One quick fix is simple defining that trait for that character, and with 2048 context you can withstand the bloat pretty easily.
+> 8. Testing VS. play. Testing leads to failure rate which can lead to thinking the entry doesn't work. If you're getting NO hits, this might be the case. Recommend testing that the AI can grasp the entry on a blank scenario with 1 rep penalty, no slope, and no range in a prompt like "You look at x, taking in their appearance" or similar, to see if the AI can put out a correct or mostly correct output you expect. If it works, it is probably suitable for play. Be wary of testing to failure - the AI is a probability machine, not an intelligence, it does sometimes decide on outputs we don't like just due to funky AI math on what should come next. It will fail sometimes - the key is does it get the entry the way we expect the majority of the time. If it does, it will likely play fine.
 
-:[ Kizzy plant based extraterrestrial woman nicknamed 'Kiz' ];
-:[ Kizzy species Zellan has orange eyes and blue skin ];
-:[ Kizzy physiology human-like features attractive ];
-:[ Kizzy hair red style short Pixie-Cut ];
-:[ Kizzy opaque flesh blue build slender short ];
-:[ Kizzy eyes orange her face human-like ];
-:[ Kizzy weight 100 pounds height 4'2" ];
-:[ Kizzy roles qualified medic pilot engineer mechanic ];
-:[ Kizzy behavior blunt diction factual ];
-:[ Kizzy wears V5 Sky Maidens jumpsuit ];
-:[ Kizzy jumpsuit colored silver and grey with medic insignia ];
-
-```
-
-Monky has confirmed several helpful things to note with this format:
+I made some notes of findings of Monky's that were not described in his new guide:
 
 - Each line should be 18 tokens, including encapsulation.
 - `:` at the beginning and `;` at the end of the lines can help maintain cohesion and reduce the number of inter-entry leaks. `:[` and `];` are single tokens, so there is not a token downside to this encapsulation.
 - `and` and `and with` have been demonstrated to be powerful conecting words, as an alternative to commas or `&`. Avoid the use of commas generally.
 - `[ ]` encapsulation with spaces remains the most powerful form of encapsulation for entries in NAI. This is no exception.
-- Capitalization of colours and certain other words appears to be extremely helpful with increasing accuracy. This may be due to repetition penalty.
 - It is helpful to reinforce the name of the entry on each line. Reinforcing with pronouns mid-line does not appear to be necessary with this method.
 - Be mindful of the order of attributes. General information is better to keep at the front/top, such as species, general appearance, etc.
-
-In addition, Monky does not use scaffolded settings, except for a single Author's Note-like entry called a "cue card" that looks like the following:
-
-```
-entry:
-
-***
-
-:[ Writing style: Descriptive and creative ];
-:[ Do: Describe package explode ];
-```
-
-The cue card is placed at `-500` Order and `-2` Position. _Explainer will be added soon._
-
-Finally, Monky uses the following for Memory, placed at `-399` Order:
-
-```
-:[PERSPECTIVE: Second person];
-:[THEME: Space-faring misadventure];
-```
-
-_Explainer for Memory will be added soon._
-
-In order to use the format most closely to Monky's experience, the following settings are recommended:
-
-> | Setting                  | Value    |
-> | ------------------------ | -------- |
-> | Randomness               | 0.55     |
-> | Max Output               | 60       |
-> | Min Output               | 20       |
-> | Top-K Sampling           | 140      |
-> | Nucleus Sampling         | 0.9      |
-> | Tail-Free Sampling       | Disabled |
-> | Repetition Penalty       | 5        |
-> | Repetition Penalty Range | 1536     |
-> | Repetition Penalty Slope | 3.06     |
 
 Please note that I have not tested this format and am not able to speak to its strength. However, I trust Monky's testing and relied on his formats in AID, and I believe he can be trusted to develop a strong system that's worthwhile sharing before I have the opportunity to test it personally.
 
