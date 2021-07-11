@@ -31,7 +31,8 @@ for i in data:
         f"Rep Range: {i['settings']['repetition_penalty_range']} | "
         f"Rep Slope: {i['settings']['repetition_penalty_slope']}"
         f"\n")
-    print(textwrap.fill(f"Results: {i['result']}"))
+    print("Results:\n")
+    print(textwrap.fill(f"{i['result']}"))
     a = a + 1
 print("\n")
 
@@ -64,7 +65,8 @@ while True:
             f"\nRep Pen: {i['settings']['repetition_penalty']} | "
             f"Rep Range: {i['settings']['repetition_penalty_range']} | "
             f"Rep Slope: {i['settings']['repetition_penalty_slope']}\n\n"
-            f"Results: {i['result']}\n"
+            f"Results:\n\n"
+            f"{i['result']}\n"
             )
             a = a + 1
         txt_file.close()
