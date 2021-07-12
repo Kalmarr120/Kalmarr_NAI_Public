@@ -5,46 +5,56 @@
 import json
 import os
 
-dl = os.listdir()
-print(dl)
+# Prepare list of files in directory to convert
+directory_list = os.listdir()
+print(directory_list)
 
-for f in dl:
-    name = f
-    a = 1
-    if f.endswith(".json"):
-    # if f.path.endswith(".json"):
-        with open(f) as file:
+# Loop running through each file in directory
+for files in directory_list:
+    file_name = files
+    # For in-text deliniation of iteration
+    iteration_count = 1
+    # Load JSON-specific files to python dictionary
+    if files.endswith(".json"):
+        with open(files) as file:
             data = json.load(file)
+        # Variable for prompt to be pasted once in txt file
         prompt = data[0]['prompt']
-        txt_file = open(f"{name}.txt","w")
+        # Create txt file, "w" to rewrite any txt files of same name
+        txt_file = open(f"{file_name}.txt","w")
         txt_file.write(
-        f"Export of {name}\n\n"
+        f"Export of {file_name}\n\n"
         f"Prompt:\n{prompt}\n\n"
         )
-        for i in data:
-            n = txt_file.write(
+        # Append each JSON object from file into txt format
+        # Comment out any undesired categories
+        for jsonitem in data:
+            # count will count number of characters written
+            count = txt_file.write(
             f"\n==========\n\n"
-            f"Iteration {a}\n\n"
+            f"Iteration {iteration_count}\n\n"
             # f"Prompt: {prompt}\n\n"
-            # f"Model: {i['settings']['model'] | }
-            f"Prefix: {i['settings']['prefix']} | "
-            f"Temperature: {i['settings']['temperature']}"
-            f"\nTop-K: {i['settings']['top_k']} | "
-            f"Top-P: {i['settings']['top_p']} | "
-            f"TFS: {i['settings']['tail_free_sampling']}"
-            f"\nRep Pen: {i['settings']['repetition_penalty']} | "
-            f"Rep Range: {i['settings']['repetition_penalty_range']} | "
-            f"Rep Slope: {i['settings']['repetition_penalty_slope']}\n\n"
+            # f"Model: {jsonitem['settings']['model'] | }
+            f"Prefix: {jsonitem['settings']['prefix']} | "
+            f"Temperature: {jsonitem['settings']['temperature']}"
+            f"\nTop-K: {jsonitem['settings']['top_k']} | "
+            f"Top-P: {jsonitem['settings']['top_p']} | "
+            f"TFS: {jsonitem['settings']['tail_free_sampling']}"
+            f"\nRep Pen: {jsonitem['settings']['repetition_penalty']} | "
+            f"Rep Range: {jsonitem['settings']['repetition_penalty_range']} | "
+            f"Rep Slope: {jsonitem['settings']['repetition_penalty_slope']}\n\n"
             f"Results:\n\n"
-            f"{i['result']}\n"
+            f"{jsonitem['result']}\n"
             )
-            a = a + 1
+            iteration_count = iteration_count + 1
         txt_file.close()
-        if n > 0:
-            print(f"File successfully written: {name}.txt.")
+        # Script should write more than 0 characters onto txt file
+        if count > 0:
+            print(f"File successfully written: {file_name}.txt.")
         else:
             print("Error writing file.")
 
+# Rename files to remove '.json'
 path = os.getcwd()
 for file in os.listdir():
     if file.endswith('.txt'):
