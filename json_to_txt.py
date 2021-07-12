@@ -49,3 +49,5 @@ path = os.getcwd()
 for file in os.listdir():
     if file.endswith('.txt'):
         os.rename(os.path.join(path, file), os.path.join(path, file.replace(".json","")))
+
+# If on UNIX system, use `cat *.txt > name.txt` to combine files together.
