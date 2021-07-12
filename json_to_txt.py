@@ -4,11 +4,7 @@
 
 import json
 import os
-from pathlib import Path
 
-# Path('./convert').mkdir(parents=True, exist_ok=True)
-
-# os.chdir('convert')
 dl = os.listdir()
 print(dl)
 
