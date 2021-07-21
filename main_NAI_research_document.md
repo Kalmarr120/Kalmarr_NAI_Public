@@ -24,6 +24,7 @@
   - [3. Story Settings](#3-story-settings)
     - [3.1 Generation Settings](#31-generation-settings)
     - [3.2 Token Banning](#32-token-banning)
+    - [3.3 AI Modules (Prefixes)](#33-ai-modules-prefixes)
   - [4. Author's Notes](#4-authors-notes)
     - [4.1 Authors](#41-authors)
     - [4.2 Writing Styles](#42-writing-styles)
@@ -271,11 +272,7 @@ I will undertake comparative testing to determine relative performance once I am
 
 **CURRENT TESTING**
 
-I am currently testing the use of `;` at the _end_ of an entry, for example:
-
-> `[ Mark: male wolfkin thickfurofBlack; Mark behavior: kind outgoing; Mark wears: tunic& breeches ];`
-
-I am also testing the use of `and` and `or`, word smashed. Both of these tokenize very well, and seem to tokenize to `|and` and `|or` at the end of most words they are connected to. Rinter noted that `and` is now recommended for featherlite generally, so my testing will merely help determine if it works with the OPVAM scaffold and for my slightly modified entries. So far, it works well enough that I am recommending it.
+Update (*July 15, 2021*): My testing of `;` at the end of entries was inconclusive and I am no longer testing with it. I can also confirm after significant testing that using `and` in place of `&` is slightly more effective and accurate.
 
 #### 2.1(b) Featherlite Example Entries
 
@@ -297,12 +294,17 @@ _This section is a work in progress, and will be continually updated._
 
 The Author's Note seems to work well with a modified version of featherlite, taking aspects of caveman and other punctuation.
 
-In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following (_updated July 8_).
+In my experience to date, using new lines and regular featherlite separating categories of Author's Note appears to be less effective than combining them all into a single line entry. Generations follow the direction less effectively, and incoherence increases. As such, I use an Author's note that looks like the following (_updated July 15_). Note that I am combining the Author, Writing Style, and signpost in this one entry.
 
 > Author's Note (Modified Example):
 >
 > > `[ Author: Terry Pratchett; Tags: romanticand light; Genre: Romance ]`<br>
-> > Alternatively, the previous style I used was acceptable:
+> > <br>
+> > `***`
+> > 
+> > `[ Writing Style: descriptiveand creative]`
+> 
+> > Alternatively, the previous style I used was acceptable:<br>
 > > `[ Author: Terry Pratchett; Tone: romanticand light; WritingStyle: descriptiveand creative ]`
 >
 > Notes on these examples:
@@ -464,13 +466,11 @@ Testing of regular prose did not yield success for my use case, either with out 
 
 ### 3.1 Generation Settings
 
-_Note: significant discussions on these settings are ongoing and recommendation is likely to change._
-
-I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. This is a rough estimate of the settings working for me, based on my own experimentation and thoughts from researchers such as Monky and Rinter. I currently recommend an approximation of the following:
+I have tested the new generation setting defaults and I currently recommend `Optimal Whitepaper` primarily. `Vegetables` is also acceptable. `Optimal Whitepaper` provides a good balance of creativity and coherence.
 
 **KALMARR SETTINGS**
 
-_Update (July 7):_ I am working on an alternative to these settings, using some adjustments to the repetition penalty. Once settled, I will be moving on to TFS vs Top-K/Nucleus sampling and determining if changes are needed. The below settings are workable but likely to change soon.
+_Update (July 21):_ The below are the settings I previously recommended. The settings still work, and I recommend trying them if the default presets do not work for you.
 
 I have been working on finding ideal settings for many of the methods used in this guide. Generation settings are probably the most difficult and yet one of the most impactful of the available ways of influencing outputs in NAI. I currently recommend an approximation of the following, based on the settings recommended by Jarel in v3 Sigurd.
 
@@ -478,7 +478,7 @@ With further testing, I have adjusted to using higher TFS of `0.9-0.995`, simila
 
 > | Setting                  |    Value    |
 > | :----------------------- | :---------: |
-> | Randomness               | 0.55 - 0.65 |
+> | Randomness               | 0.45 - 0.60 |
 > | Top-K Sampling           |  Disabled   |
 > | Nucleus Sampling         |  Disabled   |
 > | Tail Free Sampling (TFS) |  0.9-0.995  |
@@ -495,6 +495,10 @@ My stories have generally been either basic slice-of-life stories, or more NSFW.
 Rinter suggested that NAI's token banning may be a useful way of avoiding certain outputs without significantly hampering the AI's ability to use common tokens. This is due to multi-token banning.
 
 Multi-token banning involves banning only instances where tokens are conntected togther directly. For example, if a user wanted to ban possible instances of ` human female`, regular token bans could massively affect outputs due to how common those words are. Instead, by doing a multi-token ban of ` human female`, your ban will only impact cases of those tokens being connected together, making you avoid banning use of ` human` or ` female` entirely. To clarify--the AI in that case will output ` human`, but once it does, it will look for any other token besides ` female`.
+
+### 3.3 AI Modules (Prefixes)
+
+AI Modules are a new feature in NAI, which have been described as a "micro finetune" to influence the AI in certain directions.
 
 ---
 
