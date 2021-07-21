@@ -53,7 +53,9 @@
 </details>
 <br>
 
-_Update (July 8, 2021): With the introduction of the `prefix` feature, I will need to reassess certain things like `Writing Style` and `Author` in `Author's Note`. The document should be essentially up to date with my most recent findings. I do not know when the next major update will be, due to the release of the prefix feature, but will try to ensure that important discoveries are added._
+_Update (July 21, 2021): I previously noted that I would reassess `Writing Style` and `Author` in the `Author's Note` after the intorduction of the `AI Modules` options. I have performed thousands of generations of tests in the meantime, and I do not recommend any changes at this time. I have also found that many of the options are not helpful for my purposes. I found that, besides `Default`, `Naval` and `HP Lovecraft` have a largely beneficial effect on output._
+
+With the introduction of the `prefix` feature, I will need to reassess certain things like `Writing Style` and `Author` in `Author's Note`. The document should be essentially up to date with my most recent findings. I do not know when the next major update will be, due to the release of the prefix feature, but will try to ensure that important discoveries are added._
 
 Welcome to my Novel AI (NAI) primary research, testing, and information document.
 
