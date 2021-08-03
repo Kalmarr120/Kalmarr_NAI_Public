@@ -25,6 +25,7 @@
     - [3.1 Generation Settings](#31-generation-settings)
     - [3.2 Token Banning](#32-token-banning)
     - [3.3 AI Modules (Prefixes)](#33-ai-modules-prefixes)
+      - [3.3(a) Custom AI Modules (Opus Tier)](#33a-custom-ai-modules-opus-tier)
   - [4. Author's Notes](#4-authors-notes)
     - [4.1 Authors](#41-authors)
     - [4.2 Writing Styles](#42-writing-styles)
@@ -53,7 +54,7 @@
 </details>
 <br>
 
-_Update (July 21, 2021): I previously noted that I would reassess `Writing Style` and `Author` in the `Author's Note` after the intorduction of the `AI Modules` options. I have performed thousands of generations of tests in the meantime, and I do not recommend any changes at this time. I have also found that many of the options are not helpful for my purposes. I found that, besides `Default`, `Naval` and `HP Lovecraft` have a largely beneficial effect on output._
+_Update (August 3, 2021): Most of the research is on hiatus at the moment. I argue that most of the items in this document are effective for Sigurd v3 in general, so even without frequent updates the information is still useful. I expect to be getting back to frequent testing in the next couple of weeks. I have been working on prefixes, particularly the custom prefixes (relevant to Opus tier) and have updated that._
 
 With the introduction of the `prefix` feature, I will need to reassess certain things like `Writing Style` and `Author` in `Author's Note`. The document should be essentially up to date with my most recent findings. I do not know when the next major update will be, due to the release of the prefix feature, but will try to ensure that important discoveries are added._
 
@@ -501,6 +502,14 @@ Multi-token banning involves banning only instances where tokens are conntected 
 ### 3.3 AI Modules (Prefixes)
 
 AI Modules are a new feature in NAI, which have been described as a "micro finetune" to influence the AI in certain directions.
+
+#### 3.3(a) Custom AI Modules (Opus Tier)
+
+Unfortunately, custom AI modules are not available for below Opus tier subscriptions, so this section will only be helpful for anyone who has Opus.
+
+Following the suggestion of Monky, I have done testing of custom modules trained on the story being worked on, and have found that it seems to have a very positive effect on the writing and structure of the story. Essentially, taking the entire raw text of the story, copying it into a .txt file, and uploading it as a module. The AI's understanding of the characters and events seems to improve. 
+
+I have yet to determine how often a new module should be trained based on your current story, but I would recommend it after major changes to the characters or events if you have training steps available and are not using them frequently.
 
 ---
 
